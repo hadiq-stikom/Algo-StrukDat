@@ -1,0 +1,138 @@
+export interface Module {
+    id: number;
+    title: string;
+    description: string;
+    learningOutcome: string;
+    icon: string;
+    color: string;
+    progress: number;
+}
+
+export const modules: Module[] = [
+    {
+        id: 1,
+        title: "Basic Concepts",
+        description: "Introduction to logic and memory",
+        learningOutcome: "Students will be able to explain the core principles of data logic and how data is managed within computer memory.",
+        icon: "menu_book",
+        color: "indigo",
+        progress: 100,
+    },
+    {
+        id: 2,
+        title: "Big O Notation",
+        description: "Time and Space Complexity",
+        learningOutcome: "Students will be able to analyze and quantify the time and space complexity of algorithms using asymptotic notation.",
+        icon: "trending_up",
+        color: "blue",
+        progress: 65,
+    },
+    {
+        id: 3,
+        title: "Basic Sorting",
+        description: "Bubble and Selection Sort",
+        learningOutcome: "Students will be able to implement, trace, and compare the performance of Bubble Sort and Selection Sort algorithms.",
+        icon: "sort",
+        color: "amber",
+        progress: 0,
+    },
+    {
+        id: 4,
+        title: "List & Linked List",
+        description: "Singly and Doubly Linked Lists",
+        learningOutcome: "Students will be able to implement and manage dynamic data structures using Singly and Doubly Linked Lists.",
+        icon: "link",
+        color: "emerald",
+        progress: 0,
+    },
+    {
+        id: 5,
+        title: "Stack & Polish Notation",
+        description: "LIFO principle and evaluation",
+        learningOutcome: "Students will be able to apply the LIFO (Last-In-First-Out) principle and use stacks to evaluate infix/postfix expressions.",
+        icon: "layers",
+        color: "rose",
+        progress: 0,
+    },
+    {
+        id: 6,
+        title: "Queue",
+        description: "FIFO and Circular Queues",
+        learningOutcome: "Students will be able to implement FIFO (First-In-First-Out) data structures, including linear and circular queues.",
+        icon: "group",
+        color: "cyan",
+        progress: 0,
+    },
+    {
+        id: 7,
+        title: "Recursion",
+        description: "Base cases and Stack memory",
+        learningOutcome: "Students will be able to design recursive algorithms, identify base cases, and understand the role of the call stack.",
+        icon: "refresh",
+        color: "violet",
+        progress: 0,
+    },
+    {
+        id: 8,
+        title: "Basic Tree",
+        description: "Binary trees and Traversal",
+        learningOutcome: "Students will be able to construct binary trees and perform standard traversals (In-order, Pre-order, Post-order).",
+        icon: "account_tree",
+        color: "orange",
+        progress: 0,
+    },
+    {
+        id: 9,
+        title: "Advanced Tree (BST)",
+        description: "Balanced Trees and AVL",
+        learningOutcome: "Students will be able to implement search, insertion, and deletion in Binary Search Trees and explain AVL balancing.",
+        icon: "forest",
+        color: "pink",
+        progress: 0,
+    },
+    {
+        id: 10,
+        title: "Advanced Sorting",
+        description: "Merge Sort and Quick Sort",
+        learningOutcome: "Students will be able to implement divide-and-conquer sorting algorithms such as Merge Sort and Quick Sort.",
+        icon: "auto_awesome_motion",
+        color: "purple",
+        progress: 0,
+    },
+    {
+        id: 11,
+        title: "Searching",
+        description: "Linear and Binary Search",
+        learningOutcome: "Students will be able to implement and evaluate the efficiency of Linear Search and Binary Search techniques.",
+        icon: "manage_search",
+        color: "lime",
+        progress: 0,
+    },
+    {
+        id: 12,
+        title: "Hash Table",
+        description: "Dictionaries and Set theory",
+        learningOutcome: "Students will be able to implement hash-based data structures for efficient key-value mapping and collision handling.",
+        icon: "grid_view",
+        color: "yellow",
+        progress: 0,
+    },
+    {
+        id: 13,
+        title: "Basic Graph",
+        description: "Nodes, Edges, Adjacency List",
+        learningOutcome: "Students will be able to represent real-world relationships using graph components (Nodes, Edges) and adjacency lists.",
+        icon: "hub",
+        color: "sky",
+        progress: 0,
+    },
+    {
+        id: 14,
+        title: "Advanced Graph",
+        description: "BFS, DFS, and Pathfinding",
+        learningOutcome: "Students will be able to implement graph traversal algorithms (BFS and DFS) and solve basic pathfinding problems.",
+        icon: "route",
+        color: "red",
+        progress: 0,
+    },
+];
