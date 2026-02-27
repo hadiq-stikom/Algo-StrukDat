@@ -4,6 +4,7 @@ import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import Module1Content from '@/components/modules/Module1Content';
 import Module2Content from '@/components/modules/Module2Content';
+import Module3Content from '@/components/modules/Module3Content';
 import ModuleCompletionToggle from "@/components/ModuleCompletionToggle";
 import ModuleProgressHeader from "@/components/ModuleProgressHeader";
 
@@ -60,11 +61,12 @@ export default async function ModulePage({ params }: { params: Promise<{ id: str
                 {/* Dynamic Module Content Component */}
                 {id === '1' && <Module1Content />}
                 {id === '2' && <Module2Content />}
+                {id === '3' && <Module3Content />}
 
                 {/* Module Completion Toggle (Client Side) */}
                 <ModuleCompletionToggle moduleId={module.id} />
 
-                {id !== '1' && id !== '2' && (
+                {id !== '1' && id !== '2' && id !== '3' && (
                     <section className="space-y-6">
                         <h3 className="text-xl font-bold px-2">Content Topics</h3>
                         <div className="grid gap-4">
