@@ -199,10 +199,10 @@ export default function Module3Content() {
                                             <div className="flex gap-1.5">
                                                 {step.arr.map((val, vi) => (
                                                     <div key={vi} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-black border-2 transition-colors ${step.sorted.includes(vi)
-                                                            ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
-                                                            : step.highlight.includes(vi)
-                                                                ? "bg-blue-500/20 border-blue-500 text-blue-600 dark:text-blue-400"
-                                                                : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
+                                                        ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
+                                                        : step.highlight.includes(vi)
+                                                            ? "bg-blue-500/20 border-blue-500 text-blue-600 dark:text-blue-400"
+                                                            : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
                                                         }`}>
                                                         {val}
                                                     </div>
@@ -376,7 +376,7 @@ export default function Module3Content() {
                                 <div className="space-y-4">
                                     {[
                                         { label: "Awal", arr: ["64", "25", "12", "22", "11"], min: 4, sorted: [] },
-                                        { label: "Pass 1: 11↔64", arr: ["11", "25", "12", "22", "64"], min: 1, sorted: [0] },
+                                        { label: "Pass 1: 11↔64", arr: ["11", "25", "12", "22", "64"], min: 2, sorted: [0] },
                                         { label: "Pass 2: 12↔25", arr: ["11", "12", "25", "22", "64"], min: 3, sorted: [0, 1] },
                                         { label: "Pass 3: 22↔25", arr: ["11", "12", "22", "25", "64"], min: 3, sorted: [0, 1, 2] },
                                         { label: "Pass 4: Sudah ✓", arr: ["11", "12", "22", "25", "64"], min: -1, sorted: [0, 1, 2, 3, 4] },
@@ -386,12 +386,12 @@ export default function Module3Content() {
                                             <div className="flex gap-1.5">
                                                 {step.arr.map((val, vi) => (
                                                     <div key={vi} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-black border-2 transition-colors ${step.sorted.includes(vi) && step.sorted.length === 5
-                                                            ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
-                                                            : step.sorted.includes(vi)
-                                                                ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-700 dark:text-emerald-300"
-                                                                : vi === step.min
-                                                                    ? "bg-amber-500/20 border-amber-500 text-amber-600 dark:text-amber-400"
-                                                                    : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
+                                                        ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
+                                                        : step.sorted.includes(vi)
+                                                            ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-700 dark:text-emerald-300"
+                                                            : vi === step.min
+                                                                ? "bg-amber-500/20 border-amber-500 text-amber-600 dark:text-amber-400"
+                                                                : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
                                                         }`}>
                                                         {val}
                                                     </div>
