@@ -3,6 +3,7 @@
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import FocusSection from '@/components/FocusSection';
+import BigOVisualizer from './BigOVisualizer';
 
 export default function Module2Content() {
     return (
@@ -148,7 +149,7 @@ export default function Module2Content() {
                                     </div>
                                 </div>
 
-                                <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
                                     <div className="flex items-center gap-2">
                                         <div className="w-4 h-4 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/50"></div>
                                         <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">Amazing</span>
@@ -165,6 +166,10 @@ export default function Module2Content() {
                                         <div className="w-4 h-4 bg-red-500 rounded-full shadow-lg shadow-red-500/50"></div>
                                         <span className="text-sm font-black text-red-600 dark:text-red-400">Horrible</span>
                                     </div>
+                                </div>
+
+                                <div className="pt-10 border-t-2 border-slate-100 dark:border-slate-800">
+                                    <BigOVisualizer />
                                 </div>
                             </div>
                         </section>

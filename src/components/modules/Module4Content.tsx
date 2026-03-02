@@ -3,6 +3,7 @@
 import React from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import FocusSection from "@/components/FocusSection";
+import LinkedListVisualizer from "./LinkedListVisualizer";
 
 export default function Module4Content() {
     return (
@@ -224,100 +225,7 @@ export default function Module4Content() {
                             </div>
 
                             <div className="space-y-6">
-                                {/* Prepend visualization */}
-                                <div className="bg-white dark:bg-surface border-2 border-blue-500/20 rounded-2xl p-6 shadow-sm">
-                                    <h5 className="font-black text-base text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                                        <span className="bg-blue-500 text-white text-xs font-black px-2 py-0.5 rounded">PREPEND</span>
-                                        Insert di Kepala (HEAD) — O(1)
-                                    </h5>
-                                    <div className="space-y-3">
-                                        {[
-                                            { step: "State Awal", nodes: ["20", "30"], newNode: null, head: "20", desc: "List berisi 2 node." },
-                                            { step: "Buat Node Baru (10)", nodes: ["20", "30"], newNode: "10", head: "20", desc: "new_node = Node(10), new_node.next masih NULL." },
-                                            { step: "new_node.next = head", nodes: ["20", "30"], newNode: "10→", head: "20", desc: "Pointer next dari node baru diarahkan ke HEAD lama (node 20)." },
-                                            { step: "head = new_node", nodes: ["20", "30"], newNode: null, head: "10", desc: "HEAD sekarang menunjuk ke node 10. Selesai! O(1).", final: ["10", "20", "30"] },
-                                        ].map((s, si) => (
-                                            <div key={si} className="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
-                                                <span className="text-xs font-black text-blue-600 dark:text-blue-400 w-36 shrink-0 pt-1">{s.step}</span>
-                                                <div className="flex-1">
-                                                    {s.final ? (
-                                                        <div className="flex items-center gap-1 flex-wrap mb-1">
-                                                            <span className="text-[10px] font-black text-primary">HEAD</span>
-                                                            <span className="text-slate-400 text-xs">→</span>
-                                                            {s.final.map((v, vi) => (
-                                                                <React.Fragment key={vi}>
-                                                                    <div className="border-2 border-emerald-500 rounded overflow-hidden flex font-mono text-[10px]">
-                                                                        <span className={`px-2 py-1 font-black ${vi === 0 ? "bg-emerald-500/30 text-emerald-700 dark:text-emerald-300" : "bg-blue-500/10 text-slate-800 dark:text-slate-100"}`}>{v}</span>
-                                                                        <span className="border-l-2 border-emerald-500 px-1 py-1 text-emerald-400">{vi === s.final.length - 1 ? "∅" : "→"}</span>
-                                                                    </div>
-                                                                    {vi < s.final.length - 1 && <span className="text-slate-400 text-xs">→</span>}
-                                                                </React.Fragment>
-                                                            ))}
-                                                        </div>
-                                                    ) : (
-                                                        <div className="flex items-center gap-1 flex-wrap mb-1">
-                                                            {s.newNode && (
-                                                                <>
-                                                                    <div className="border-2 border-amber-500 rounded overflow-hidden flex font-mono text-[10px]">
-                                                                        <span className="bg-amber-500/20 px-2 py-1 font-black text-amber-700 dark:text-amber-300">{s.newNode.replace("→", "")}</span>
-                                                                        <span className="border-l-2 border-amber-500 px-1 py-1 text-amber-400">{s.newNode.includes("→") ? "→" : "∅"}</span>
-                                                                    </div>
-                                                                    <span className="text-xs text-amber-500 font-bold">new</span>
-                                                                    <span className="text-slate-400 text-xs">|</span>
-                                                                </>
-                                                            )}
-                                                            <span className="text-[10px] font-black text-primary">HEAD({s.head})</span>
-                                                            <span className="text-slate-400 text-xs">→</span>
-                                                            {s.nodes.map((v, vi) => (
-                                                                <React.Fragment key={vi}>
-                                                                    <div className="border-2 border-blue-500 rounded overflow-hidden flex font-mono text-[10px]">
-                                                                        <span className="bg-blue-500/10 px-2 py-1 font-black text-slate-800 dark:text-slate-100">{v}</span>
-                                                                        <span className="border-l-2 border-blue-500 px-1 py-1 text-blue-400">{vi === s.nodes.length - 1 ? "∅" : "→"}</span>
-                                                                    </div>
-                                                                    {vi < s.nodes.length - 1 && <span className="text-slate-400 text-xs">→</span>}
-                                                                </React.Fragment>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                    <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">{s.desc}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Delete visualization */}
-                                <div className="bg-white dark:bg-surface border-2 border-red-500/20 rounded-2xl p-6 shadow-sm">
-                                    <h5 className="font-black text-base text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                                        <span className="bg-red-500 text-white text-xs font-black px-2 py-0.5 rounded">DELETE</span>
-                                        Hapus Node di Tengah — O(n)
-                                    </h5>
-                                    <div className="space-y-3">
-                                        {[
-                                            { step: "State Awal", arr: ["10", "20", "30"], del: -1, prev: -1, desc: "Ingin hapus node 20." },
-                                            { step: "cur = head (10)", arr: ["10", "20", "30"], del: 1, prev: 0, desc: "cur.next.data == 20? Ya! Simpan posisi prev (cur = node 10)." },
-                                            { step: "Bypass node 20", arr: ["10", "30"], del: -1, prev: -1, desc: "prev.next = cur.next.next → node 10 kini langsung ke node 30.", final: true },
-                                        ].map((s, si) => (
-                                            <div key={si} className="flex items-start gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700">
-                                                <span className="text-xs font-black text-red-600 dark:text-red-400 w-36 shrink-0 pt-1">{s.step}</span>
-                                                <div className="flex-1">
-                                                    <div className="flex items-center gap-1 flex-wrap mb-1">
-                                                        {s.arr.map((v, vi) => (
-                                                            <React.Fragment key={vi}>
-                                                                <div className={`border-2 rounded overflow-hidden flex font-mono text-[10px] ${vi === s.del ? "border-red-500 line-through opacity-50" : s.final && vi === 0 ? "border-emerald-500" : "border-blue-500"}`}>
-                                                                    <span className={`px-2 py-1 font-black ${vi === s.del ? "bg-red-500/20 text-red-600 dark:text-red-400" : s.final && vi === 0 ? "bg-emerald-500/20 text-slate-800 dark:text-slate-100" : vi === s.prev ? "bg-amber-500/20 text-slate-800 dark:text-slate-100" : "bg-blue-500/10 text-slate-800 dark:text-slate-100"}`}>{v}</span>
-                                                                    <span className={`border-l-2 px-1 py-1 ${vi === s.del ? "border-red-500 text-red-400" : s.final && vi === 0 ? "border-emerald-500 text-emerald-400" : "border-blue-500 text-blue-400"}`}>{vi === s.arr.length - 1 ? "∅" : "→"}</span>
-                                                                </div>
-                                                                {vi < s.arr.length - 1 && <span className="text-slate-400 text-xs">→</span>}
-                                                            </React.Fragment>
-                                                        ))}
-                                                    </div>
-                                                    <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">{s.desc}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                <LinkedListVisualizer initialMode="SINGLY" />
                             </div>
                         </section>
                     </FocusSection>
@@ -450,46 +358,7 @@ export default function Module4Content() {
                                 <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Tracing: Append 3 Node ke Doubly LL</h3>
                             </div>
 
-                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
-                                <div className="p-4 border-b-2 border-primary/20 bg-primary/5 flex items-center gap-2">
-                                    <span className="material-symbols-outlined text-primary text-sm">table_chart</span>
-                                    <h5 className="font-black text-sm text-slate-900 dark:text-white">Tracing Table — append(10), append(20), append(30)</h5>
-                                </div>
-                                <div className="overflow-x-auto">
-                                    <table className="w-full text-sm text-left">
-                                        <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-200 border-b-2 border-primary/10 font-black">
-                                            <tr>
-                                                <th className="px-4 py-3">Aksi</th>
-                                                <th className="px-4 py-3">HEAD</th>
-                                                <th className="px-4 py-3">TAIL</th>
-                                                <th className="px-4 py-3">Pointer Baru</th>
-                                                <th className="px-4 py-3 text-primary">State List</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="divide-y-2 divide-primary/5">
-                                            {[
-                                                { aksi: "Inisialisasi", head: "NULL", tail: "NULL", ptr: "—", state: "List kosong" },
-                                                { aksi: "append(10)", head: "Node(10)", tail: "Node(10)", ptr: "10.prev = NULL, 10.next = NULL", state: "NULL ← [10] → NULL" },
-                                                { aksi: "append(20)", head: "Node(10)", tail: "Node(20)", ptr: "10.next = 20, 20.prev = 10", state: "NULL ← [10] ⇄ [20] → NULL" },
-                                                { aksi: "append(30)", head: "Node(10)", tail: "Node(30)", ptr: "20.next = 30, 30.prev = 20", state: "NULL ← [10] ⇄ [20] ⇄ [30] → NULL" },
-                                            ].map((row, idx) => (
-                                                <tr key={idx} className={idx === 3 ? "bg-emerald-500/10" : ""}>
-                                                    <td className="px-4 py-3 font-black text-slate-800 dark:text-slate-100">{row.aksi}</td>
-                                                    <td className="px-4 py-3 text-blue-600 dark:text-blue-400 font-bold font-mono text-xs">{row.head}</td>
-                                                    <td className="px-4 py-3 text-violet-600 dark:text-violet-400 font-bold font-mono text-xs">{row.tail}</td>
-                                                    <td className="px-4 py-3 text-amber-600 dark:text-amber-400 font-medium text-xs">{row.ptr}</td>
-                                                    <td className="px-4 py-3 font-mono font-bold text-emerald-600 dark:text-emerald-400 text-xs">{row.state}</td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="p-4 bg-slate-100 dark:bg-slate-900/80 border-t-2 border-primary/10">
-                                    <p className="text-sm text-slate-700 dark:text-slate-200 font-medium italic">
-                                        * Karena Doubly LL memiliki pointer TAIL, operasi <strong className="text-slate-900 dark:text-white">append selalu O(1)</strong> — tidak perlu scan ke akhir seperti Singly LL.
-                                    </p>
-                                </div>
-                            </div>
+                            <LinkedListVisualizer initialMode="DOUBLY" />
                         </section>
                     </FocusSection>
                 </ScrollReveal>

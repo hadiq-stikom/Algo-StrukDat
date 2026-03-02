@@ -3,6 +3,8 @@
 import React from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import FocusSection from "@/components/FocusSection";
+import BubbleSortVisualizer from "./BubbleSortVisualizer";
+import SelectionSortVisualizer from "./SelectionSortVisualizer";
 
 export default function Module3Content() {
     const bubbleTraceData = [
@@ -180,44 +182,14 @@ export default function Module3Content() {
                                 <div className="bg-blue-500/30 p-2 rounded-lg text-blue-500">
                                     <span className="material-symbols-outlined text-xl">edit_square</span>
                                 </div>
-                                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Manual Tracing: Array [64, 34, 25, 12, 22]</h3>
+                                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Tracing Animasi: Array [64, 34, 25, 12, 22]</h3>
                             </div>
 
-                            {/* Visual Array Step */}
-                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm mb-6">
-                                <p className="text-sm font-black text-slate-900 dark:text-white mb-4">Visualisasi Swap Per-Langkah (Pass 1):</p>
-                                <div className="space-y-4">
-                                    {[
-                                        { label: "Awal", arr: ["64", "34", "25", "12", "22"], highlight: [], sorted: [] },
-                                        { label: "Step 1: 64↔34", arr: ["34", "64", "25", "12", "22"], highlight: [0, 1], sorted: [] },
-                                        { label: "Step 2: 64↔25", arr: ["34", "25", "64", "12", "22"], highlight: [1, 2], sorted: [] },
-                                        { label: "Step 3: 64↔12", arr: ["34", "25", "12", "64", "22"], highlight: [2, 3], sorted: [] },
-                                        { label: "Step 4: 64↔22", arr: ["34", "25", "12", "22", "64"], highlight: [3, 4], sorted: [4] },
-                                    ].map((step, si) => (
-                                        <div key={si} className="flex items-center gap-4">
-                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 w-28 shrink-0">{step.label}</span>
-                                            <div className="flex gap-1.5">
-                                                {step.arr.map((val, vi) => (
-                                                    <div key={vi} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-black border-2 transition-colors ${step.sorted.includes(vi)
-                                                        ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
-                                                        : step.highlight.includes(vi)
-                                                            ? "bg-blue-500/20 border-blue-500 text-blue-600 dark:text-blue-400"
-                                                            : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
-                                                        }`}>
-                                                        {val}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            {step.sorted.length > 0 && (
-                                                <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">✓ Terurut!</span>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            {/* Visual Array Step Replacement */}
+                            <BubbleSortVisualizer />
 
                             {/* Tracing Table */}
-                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm mt-8">
                                 <div className="p-4 border-b-2 border-primary/20 bg-primary/5 flex items-center gap-2">
                                     <span className="material-symbols-outlined text-primary text-sm">table_chart</span>
                                     <h5 className="font-black text-sm text-slate-900 dark:text-white">Tracing Table — Semua Pass</h5>
@@ -367,50 +339,12 @@ export default function Module3Content() {
                                 <div className="bg-amber-500/30 p-2 rounded-lg text-amber-500">
                                     <span className="material-symbols-outlined text-xl">edit_square</span>
                                 </div>
-                                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Manual Tracing: Array [64, 25, 12, 22, 11]</h3>
+                                <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Tracing Animasi: Cari Min & Swap per Pass</h3>
                             </div>
 
-                            {/* Visual Steps */}
-                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm mb-6">
-                                <p className="text-sm font-black text-slate-900 dark:text-white mb-4">Visualisasi Posisi Min &amp; Swap per Pass:</p>
-                                <div className="space-y-4">
-                                    {[
-                                        { label: "Awal", arr: ["64", "25", "12", "22", "11"], min: 4, sorted: [] },
-                                        { label: "Pass 1: 11↔64", arr: ["11", "25", "12", "22", "64"], min: 2, sorted: [0] },
-                                        { label: "Pass 2: 12↔25", arr: ["11", "12", "25", "22", "64"], min: 3, sorted: [0, 1] },
-                                        { label: "Pass 3: 22↔25", arr: ["11", "12", "22", "25", "64"], min: 3, sorted: [0, 1, 2] },
-                                        { label: "Pass 4: Sudah ✓", arr: ["11", "12", "22", "25", "64"], min: -1, sorted: [0, 1, 2, 3, 4] },
-                                    ].map((step, si) => (
-                                        <div key={si} className="flex items-center gap-4">
-                                            <span className="text-xs font-black text-slate-600 dark:text-slate-300 w-28 shrink-0">{step.label}</span>
-                                            <div className="flex gap-1.5">
-                                                {step.arr.map((val, vi) => (
-                                                    <div key={vi} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-black border-2 transition-colors ${step.sorted.includes(vi) && step.sorted.length === 5
-                                                        ? "bg-emerald-500/20 border-emerald-500 text-emerald-600 dark:text-emerald-400"
-                                                        : step.sorted.includes(vi)
-                                                            ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-700 dark:text-emerald-300"
-                                                            : vi === step.min
-                                                                ? "bg-amber-500/20 border-amber-500 text-amber-600 dark:text-amber-400"
-                                                                : "bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100"
-                                                        }`}>
-                                                        {val}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            {step.min >= 0 && !step.sorted.includes(step.min) && (
-                                                <span className="text-xs font-black text-amber-600 dark:text-amber-400">↑ min</span>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="mt-4 flex gap-4 text-xs font-bold">
-                                    <div className="flex items-center gap-1"><div className="w-4 h-4 rounded bg-amber-500/30 border-2 border-amber-500"></div><span className="text-slate-700 dark:text-slate-200">Nilai Minimum</span></div>
-                                    <div className="flex items-center gap-1"><div className="w-4 h-4 rounded bg-emerald-500/20 border-2 border-emerald-500/50"></div><span className="text-slate-700 dark:text-slate-200">Sudah Terurut</span></div>
-                                </div>
-                            </div>
+                            <SelectionSortVisualizer />
 
-                            {/* Tracing Table */}
-                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <div className="mt-8 bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
                                 <div className="p-4 border-b-2 border-primary/20 bg-primary/5 flex items-center gap-2">
                                     <span className="material-symbols-outlined text-primary text-sm">table_chart</span>
                                     <h5 className="font-black text-sm text-slate-900 dark:text-white">Tracing Table — Selection Sort</h5>
@@ -616,7 +550,7 @@ export default function Module3Content() {
                             soal: "Algoritma mana yang lebih tepat dipilih untuk array [1, 2, 3, 5, 4] yang hampir terurut? Jelaskan!",
                             hint: "Pikirkan apa yang terjadi pada Bubble Sort saat array hampir terurut!",
                             jawaban: "Bubble Sort (dengan optimasi flag)",
-                            penjelasan: "Untuk array hampir terurut, Bubble Sort dengan flag 'swapped' akan mendeteksi bahwa tidak ada swap di pass kedua dan langsung berhenti → O(n). Selection Sort tetap O(n²) karena selalu menscan seluruh sisa array.",
+                            penjelasan: "Untuk array hampir terurut, Bubble Sort dengan flag 'swapped' akan mendeteksi bahwa tidak ada swap di pass kedua and langsung berhenti → O(n). Selection Sort tetap O(n²) karena selalu menscan seluruh sisa array.",
                             color: "emerald"
                         },
                     ].map((latihan) => (
