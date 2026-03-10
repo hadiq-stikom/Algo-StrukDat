@@ -1,13 +1,279 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import FocusSection from '@/components/FocusSection';
 import BigOVisualizer from './BigOVisualizer';
+import PresentationMode from '@/components/PresentationMode';
 
 export default function Module2Content() {
+    const [isPresentationOpen, setIsPresentationOpen] = useState(false);
+    const [startSlideIndex, setStartSlideIndex] = useState(0);
+
+    const openPresentation = (index: number = 0) => {
+        setStartSlideIndex(index);
+        setIsPresentationOpen(true);
+    };
+
+    const slides = [
+        // Slide 1: Urgensi & Analogi
+        <div key="s1" className="space-y-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="bg-amber-500/30 p-2 rounded-lg text-amber-500">
+                    <span className="material-symbols-outlined text-2xl">speed</span>
+                </div>
+                <h3 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">Kenapa Efisiensi Penting?</h3>
+            </div>
+            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5">
+                    <span className="material-symbols-outlined text-8xl">local_shipping</span>
+                </div>
+                <p className="text-xl text-slate-700 dark:text-slate-200 leading-relaxed mb-8 font-medium italic text-center">
+                    "Bayangkan mengirim 1 Terabyte data..."
+                </p>
+                <div className="grid md:grid-cols-2 gap-8 relative z-10">
+                    <div className="p-6 bg-blue-500/10 border-2 border-blue-500/30 rounded-2xl">
+                        <h4 className="font-black text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-2 text-xl">
+                            <span className="material-symbols-outlined">cloud_upload</span>
+                            Internet
+                        </h4>
+                        <p className="text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-bold">
+                            Waktu sebanding dengan N (Ukuran File).
+                        </p>
+                    </div>
+                    <div className="p-6 bg-emerald-500/10 border-2 border-emerald-500/30 rounded-2xl">
+                        <h4 className="font-black text-emerald-600 dark:text-emerald-400 mb-4 flex items-center gap-2 text-xl">
+                            <span className="material-symbols-outlined">directions_bike</span>
+                            Kurir
+                        </h4>
+                        <p className="text-lg text-slate-700 dark:text-slate-200 leading-relaxed font-bold">
+                            Waktu Konstan (Tetap).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>,
+
+        // Slide 2: Big O Comparison Table
+        <div key="s2" className="space-y-8">
+            <h4 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-8">Data 1 Terabyte: Siapa Menang?</h4>
+            <div className="overflow-hidden rounded-3xl border-4 border-primary/20 shadow-2xl bg-white dark:bg-surface">
+                <table className="w-full text-xl text-left">
+                    <thead className="bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-100 uppercase font-black tracking-tighter">
+                        <tr>
+                            <th className="px-8 py-6">Data (N)</th>
+                            <th className="px-8 py-6">Internet O(n)</th>
+                            <th className="px-8 py-6">Kurir O(1)</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y-4 divide-primary/5 font-bold">
+                        <tr>
+                            <td className="px-8 py-6 font-mono">1 Megabyte</td>
+                            <td className="px-8 py-6 text-blue-600">2 Detik</td>
+                            <td className="px-8 py-6 text-emerald-600">1 Jam</td>
+                        </tr>
+                        <tr>
+                            <td className="px-8 py-6 font-mono">1 Gigabyte</td>
+                            <td className="px-8 py-6 text-blue-600">30 Menit</td>
+                            <td className="px-8 py-6 text-emerald-600">1 Jam</td>
+                        </tr>
+                        <tr className="bg-primary/10">
+                            <td className="px-8 py-6 font-black text-slate-900 dark:text-white">1 Terabyte</td>
+                            <td className="px-8 py-6 text-red-600 font-black">20 Hari (!)</td>
+                            <td className="px-8 py-6 text-emerald-600 font-black">1 Jam ✅</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>,
+
+        // Slide 3: Complexity Chart
+        <div key="s3" className="space-y-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="bg-primary/20 p-2 rounded-lg text-primary">
+                    <span className="material-symbols-outlined text-2xl">show_chart</span>
+                </div>
+                <h3 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">Big O Complexity Chart</h3>
+            </div>
+            <div className="bg-white dark:bg-surface border-4 border-primary/20 rounded-3xl p-10 shadow-2xl">
+                <div className="relative h-80 w-full border-l-4 border-b-4 border-slate-400 dark:border-slate-500 mb-8">
+                    <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+                        <line x1="0" y1="90%" x2="100%" y2="90%" stroke="#10b981" strokeWidth="4" />
+                        <path d="M 0 250 Q 50 200, 700 180" fill="none" stroke="#06b6d4" strokeWidth="4" />
+                        <line x1="0" y1="100%" x2="100%" y2="0%" stroke="#3b82f6" strokeWidth="4" />
+                        <path d="M 0 320 Q 20 200, 150 0" fill="none" stroke="#ef4444" strokeWidth="4" />
+                        <text x="100%" y="85%" className="text-sm fill-emerald-500 font-black" textAnchor="end">O(1)</text>
+                        <text x="100%" y="70%" className="text-sm fill-cyan-500 font-black" textAnchor="end">O(log n)</text>
+                        <text x="100%" y="10%" className="text-sm fill-blue-500 font-black" textAnchor="end">O(n)</text>
+                        <text x="20%" y="10%" className="text-sm fill-red-500 font-black">O(n²)</text>
+                    </svg>
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-sm text-slate-600 font-black uppercase tracking-widest">
+                        Data (N) →
+                    </div>
+                </div>
+                <div className="grid grid-cols-4 gap-4 pt-4">
+                    <div className="flex items-center justify-center gap-2 p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/30">
+                        <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
+                        <span className="text-sm font-black text-emerald-600">O(1)</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 p-3 bg-cyan-500/10 rounded-xl border border-cyan-500/30">
+                        <div className="w-4 h-4 bg-cyan-500 rounded-full"></div>
+                        <span className="text-sm font-black text-cyan-600">O(log n)</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 p-3 bg-blue-500/10 rounded-xl border border-blue-500/30">
+                        <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                        <span className="text-sm font-black text-blue-600">O(n)</span>
+                    </div>
+                    <div className="flex items-center justify-center gap-2 p-3 bg-red-500/10 rounded-xl border border-red-500/30">
+                        <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+                        <span className="text-sm font-black text-red-600">O(n²)</span>
+                    </div>
+                </div>
+            </div>
+        </div>,
+
+        // Slide 4: O(1) Constant
+        <div key="s4" className="space-y-8">
+            <div className="bg-emerald-500/10 p-10 border-4 border-emerald-500/30 rounded-3xl shadow-xl">
+                <div className="flex items-center gap-4 mb-8">
+                    <span className="bg-emerald-500 text-white font-black px-4 py-2 rounded-xl shadow-lg">EXCELLENT</span>
+                    <h4 className="text-5xl font-black text-emerald-600 italic">O(1)</h4>
+                </div>
+                <h5 className="font-black text-3xl text-slate-900 dark:text-white mb-6 uppercase">Constant Time</h5>
+                <p className="text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-10">
+                    Waktu eksekusi <strong className="text-emerald-500 underline decoration-4 underline-offset-8">TETAP</strong> berapapun jumlah datanya.
+                </p>
+                <div className="bg-slate-900 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
+                    <div className="bg-slate-800 px-6 py-4 flex justify-between border-b border-white/5">
+                        <span className="text-sm text-slate-300 font-mono font-black italic">def get_item(list): return list[0]</span>
+                    </div>
+                    <div className="p-10 flex justify-center items-center gap-4">
+                        {[1, 2, 3, 4, 5].map(i => (
+                            <div key={i} className={`w-16 h-16 rounded-2xl border-4 flex items-center justify-center text-2xl font-black ${i === 1 ? 'bg-emerald-500 border-emerald-400 text-white scale-125 z-10 shadow-2xl' : 'bg-surface border-white/5 text-slate-600'}`}>
+                                {i}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>,
+
+        // Slide 5: O(log n) Logarithmic
+        <div key="s5" className="space-y-8">
+            <div className="bg-cyan-500/10 p-10 border-4 border-cyan-500/30 rounded-3xl shadow-xl">
+                <div className="flex items-center gap-4 mb-8">
+                    <span className="bg-cyan-500 text-white font-black px-4 py-2 rounded-xl shadow-lg">GOOD</span>
+                    <h4 className="text-5xl font-black text-cyan-600 italic">O(log n)</h4>
+                </div>
+                <h5 className="font-black text-3xl text-slate-900 dark:text-white mb-6 uppercase">Logarithmic Time</h5>
+                <p className="text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-10">
+                    Membuang <strong className="text-cyan-500">SETENGAH</strong> data di setiap langkah.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4 font-mono">
+                    {[1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1].map((n, i) => (
+                        <div key={n} className="flex items-center gap-3">
+                            <span className={`text-2xl font-black ${i === 0 ? 'text-primary' : 'text-slate-400'}`}>{n}</span>
+                            {n !== 1 && <span className="material-symbols-outlined text-slate-600">arrow_forward</span>}
+                        </div>
+                    ))}
+                </div>
+                <p className="text-center mt-10 text-xl font-black text-primary italic">"Hanya 10 langkah untuk 1024 data!"</p>
+            </div>
+        </div>,
+
+        // Slide 6: O(n) Linear
+        <div key="s6" className="space-y-8">
+            <div className="bg-blue-500/10 p-10 border-4 border-blue-500/30 rounded-3xl shadow-xl">
+                <div className="flex items-center gap-4 mb-8">
+                    <span className="bg-blue-500 text-white font-black px-4 py-2 rounded-xl shadow-lg">FAIR</span>
+                    <h4 className="text-5xl font-black text-blue-600 italic">O(n)</h4>
+                </div>
+                <h5 className="font-black text-3xl text-slate-900 dark:text-white mb-6 uppercase">Linear Time</h5>
+                <p className="text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-10">
+                    Waktu <strong className="text-blue-500 underline decoration-4">SEBANDING</strong> dengan jumlah data.
+                </p>
+                <div className="flex flex-col gap-3 font-mono">
+                    <div className="h-6 bg-blue-500 w-[20%] rounded-full shadow-lg"></div>
+                    <div className="h-6 bg-blue-500 w-[40%] rounded-full shadow-lg"></div>
+                    <div className="h-6 bg-blue-500 w-[60%] rounded-full shadow-lg"></div>
+                    <div className="h-6 bg-blue-500 w-[80%] rounded-full shadow-lg"></div>
+                    <div className="h-6 bg-blue-500 w-full rounded-full shadow-lg"></div>
+                </div>
+            </div>
+        </div>,
+
+        // Slide 7: O(n^2) Quadratic
+        <div key="s7" className="space-y-8">
+            <div className="bg-red-500/10 p-10 border-4 border-red-500/30 rounded-3xl shadow-xl">
+                <div className="flex items-center gap-4 mb-8">
+                    <span className="bg-red-500 text-white font-black px-4 py-2 rounded-xl shadow-lg">HORRIBLE</span>
+                    <h4 className="text-5xl font-black text-red-600 italic">O(n²)</h4>
+                </div>
+                <h5 className="font-black text-3xl text-slate-900 dark:text-white mb-6 uppercase">Quadratic Time</h5>
+                <p className="text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-10">
+                    <strong className="text-red-500 uppercase tracking-widest text-3xl">Berbahaya!</strong> Data bertambah sedikit, waktu MELEDAK.
+                </p>
+                <div className="grid grid-cols-5 gap-2 w-48 mx-auto">
+                    {Array.from({ length: 25 }).map((_, i) => (
+                        <div key={i} className="w-8 h-8 bg-red-500 rounded-lg shadow-lg border-2 border-red-400/30"></div>
+                    ))}
+                </div>
+                <p className="text-center mt-10 text-2xl font-black text-red-500">N=5 → 25 Langkah!</p>
+            </div>
+        </div>,
+
+        // Slide 8: Best vs Worst Case
+        <div key="s8" className="space-y-8">
+            <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-8">Batas Performa (Scenario)</h3>
+            <div className="grid sm:grid-cols-3 gap-6">
+                <div className="p-8 rounded-3xl bg-emerald-500/10 border-4 border-emerald-500/30 text-center shadow-xl">
+                    <div className="text-emerald-600 font-black text-5xl mb-4 italic">Ω</div>
+                    <div className="text-xl font-black text-slate-700 dark:text-slate-200 uppercase mb-4 tracking-tighter">Best Case</div>
+                    <p className="text-lg text-slate-600 font-medium italic">"Beruntung"</p>
+                </div>
+                <div className="p-8 rounded-3xl bg-amber-500/10 border-4 border-amber-500/30 text-center shadow-xl scale-110 z-10">
+                    <div className="text-amber-600 font-black text-5xl mb-4 italic">θ</div>
+                    <div className="text-xl font-black text-slate-700 dark:text-slate-200 uppercase mb-4 tracking-tighter">Average Case</div>
+                    <p className="text-lg text-slate-600 font-medium italic">"Dunia Nyata"</p>
+                </div>
+                <div className="p-8 rounded-3xl bg-red-500/10 border-4 border-red-500/30 text-center shadow-xl">
+                    <div className="text-red-600 font-black text-5xl mb-4 italic">O</div>
+                    <div className="text-xl font-black text-slate-700 dark:text-slate-200 uppercase mb-4 tracking-tighter">Worst Case</div>
+                    <p className="text-lg text-slate-900 dark:text-white font-black italic uppercase">Batas Atas ✅</p>
+                </div>
+            </div>
+            <p className="text-center text-xl font-black text-primary mt-10 italic">
+                "Big O memberikan JAMINAN KEAMANAN bagi Engineer."
+            </p>
+        </div>,
+
+        // Slide 9: Big O Visualizer
+        <div key="s9" className="space-y-8 h-full flex flex-col items-center justify-center">
+            <div className="flex items-center gap-3 mb-6">
+                <div className="bg-primary/20 p-2 rounded-lg text-primary">
+                    <span className="material-symbols-outlined text-2xl">science</span>
+                </div>
+                <h3 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">Interactive Visualizer</h3>
+            </div>
+            <div className="w-full max-w-4xl bg-white dark:bg-slate-950 p-8 rounded-3xl border-2 border-primary/20 shadow-2xl">
+                <BigOVisualizer />
+            </div>
+        </div>
+    ];
+
     return (
         <div className="space-y-16 pb-12">
+            {/* Presentation Mode Header */}
+            <div className="flex justify-center mb-12">
+                <button
+                    onClick={() => openPresentation(0)}
+                    className="flex items-center gap-3 px-8 py-4 bg-primary text-white rounded-2xl font-black text-lg shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all group border-b-4 border-primary-dark"
+                >
+                    <span className="material-symbols-outlined group-hover:rotate-12 transition-transform text-2xl">present_to_all</span>
+                    MULAI MODE PRESENTASI
+                </button>
+            </div>
+
             {/* --- BAGIAN 1: URGENSI EFISIENSI --- */}
             <div className="space-y-10">
                 <ScrollReveal>
@@ -16,14 +282,29 @@ export default function Module2Content() {
                             <div className="w-full border-t-2 border-primary/40"></div>
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 1: Urgensi &amp; Analogi</span>
+                            <div className="bg-bg-base px-6 flex items-center gap-3 border-x-2 border-primary/40">
+                                <span className="text-sm font-black uppercase tracking-[0.4em] text-primary">Bagian 1: Urgensi &amp; Analogi</span>
+                                <button
+                                    onClick={() => openPresentation(0)}
+                                    className="p-1 px-3 text-[10px] font-black bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1 border border-primary/20"
+                                >
+                                    <span className="material-symbols-outlined text-xs">slideshow</span> Slide
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </ScrollReveal>
 
                 <ScrollReveal>
                     <FocusSection>
-                        <section>
+                        <section className="relative group">
+                            <button
+                                onClick={() => openPresentation(0)}
+                                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 bg-primary/10 text-primary rounded-lg transition-all hover:bg-primary/20 z-10"
+                                title="Presentasikan bagian ini"
+                            >
+                                <span className="material-symbols-outlined text-sm">slideshow</span>
+                            </button>
                             <div className="flex items-center gap-3 mb-6">
                                 <div className="bg-amber-500/30 p-2 rounded-lg text-amber-500">
                                     <span className="material-symbols-outlined text-xl">speed</span>
@@ -69,29 +350,24 @@ export default function Module2Content() {
                                                 <th className="px-4 py-3">Opsi B (Kurir - O(1))</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y-2 divide-slate-200 dark:divide-slate-700">
+                                        <tbody className="divide-y-2 divide-slate-200 dark:divide-slate-700 font-bold">
                                             <tr>
-                                                <td className="px-4 py-3 font-mono font-bold text-slate-800 dark:text-slate-100">1 Megabyte</td>
-                                                <td className="px-4 py-3 text-blue-600 dark:text-blue-400 font-bold">2 Detik</td>
-                                                <td className="px-4 py-3 text-emerald-600 dark:text-emerald-400 font-bold">1 Jam</td>
+                                                <td className="px-4 py-3 font-mono">1 Megabyte</td>
+                                                <td className="px-4 py-3 text-blue-600">2 Detik</td>
+                                                <td className="px-4 py-3 text-emerald-600">1 Jam</td>
                                             </tr>
                                             <tr>
-                                                <td className="px-4 py-3 font-mono font-bold text-slate-800 dark:text-slate-100">1 Gigabyte</td>
-                                                <td className="px-4 py-3 text-blue-600 dark:text-blue-400 font-bold">30 Menit</td>
-                                                <td className="px-4 py-3 text-emerald-600 dark:text-emerald-400 font-black">1 Jam (Tetap)</td>
+                                                <td className="px-4 py-3 font-mono">1 Gigabyte</td>
+                                                <td className="px-4 py-3 text-blue-600">30 Menit</td>
+                                                <td className="px-4 py-3 text-emerald-600">1 Jam</td>
                                             </tr>
                                             <tr className="bg-primary/10">
-                                                <td className="px-4 py-3 font-mono font-black text-slate-900 dark:text-white">1 Terabyte</td>
-                                                <td className="px-4 py-3 text-red-600 dark:text-red-400 font-black">20 Hari (!)</td>
-                                                <td className="px-4 py-3 text-emerald-600 dark:text-emerald-300 font-black">1 Jam (Menang!)</td>
+                                                <td className="px-4 py-3 font-black text-slate-900 dark:text-white">1 Terabyte</td>
+                                                <td className="px-4 py-3 text-red-600 font-black">20 Hari (!)</td>
+                                                <td className="px-4 py-3 text-emerald-600 font-black">1 Jam (Menang!)</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div className="mt-4 p-4 bg-slate-900 rounded-xl border border-white/10">
-                                    <p className="text-sm text-slate-100 italic text-center leading-relaxed font-medium">
-                                        "Big O Notation adalah bahasa standar untuk mengukur bagaimana performa algoritma berubah seiring bertambahnya jumlah input (N)."
-                                    </p>
                                 </div>
                             </div>
                         </section>
@@ -107,14 +383,28 @@ export default function Module2Content() {
                             <div className="w-full border-t-2 border-primary/40"></div>
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 2: Kurva Pertumbuhan Big O</span>
+                            <div className="bg-bg-base px-6 flex items-center gap-3 border-x-2 border-primary/40">
+                                <span className="text-sm font-black uppercase tracking-[0.4em] text-primary">Bagian 2: Kurva Pertumbuhan Big O</span>
+                                <button
+                                    onClick={() => openPresentation(2)}
+                                    className="p-1 px-3 text-[10px] font-black bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1 border border-primary/20"
+                                >
+                                    <span className="material-symbols-outlined text-xs">slideshow</span> Slide
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </ScrollReveal>
 
                 <ScrollReveal>
                     <FocusSection>
-                        <section>
+                        <section className="relative group">
+                            <button
+                                onClick={() => openPresentation(2)}
+                                className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 bg-primary/10 text-primary rounded-lg transition-all hover:bg-primary/20 z-10"
+                            >
+                                <span className="material-symbols-outlined text-sm">slideshow</span>
+                            </button>
                             <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm">
                                 <h4 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2 text-lg">
                                     <span className="material-symbols-outlined text-primary">show_chart</span>
@@ -122,49 +412,33 @@ export default function Module2Content() {
                                 </h4>
 
                                 <div className="relative h-64 w-full border-l-2 border-b-2 border-slate-400 dark:border-slate-500 mb-4">
-                                    {/* SVG Chart Visualization */}
                                     <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
-                                        {/* O(1) - Constant */}
                                         <line x1="0" y1="90%" x2="100%" y2="90%" stroke="#10b981" strokeWidth="3" />
-                                        <text x="100%" y="85%" className="text-[12px] fill-emerald-500 font-bold" textAnchor="end">O(1)</text>
-
-                                        {/* O(log n) - Logarithmic */}
                                         <path d="M 0 250 Q 50 200, 400 180" fill="none" stroke="#06b6d4" strokeWidth="3" />
-                                        <text x="100%" y="70%" className="text-[12px] fill-cyan-500 font-bold" textAnchor="end">O(log n)</text>
-
-                                        {/* O(n) - Linear */}
                                         <line x1="0" y1="100%" x2="100%" y2="0%" stroke="#3b82f6" strokeWidth="3" />
-                                        <text x="100%" y="10%" className="text-[12px] fill-blue-500 font-bold" textAnchor="end">O(n)</text>
-
-                                        {/* O(n^2) - Quadratic */}
                                         <path d="M 0 256 Q 20 200, 100 0" fill="none" stroke="#ef4444" strokeWidth="3" />
+                                        <text x="100%" y="85%" className="text-[12px] fill-emerald-500 font-bold" textAnchor="end">O(1)</text>
+                                        <text x="100%" y="70%" className="text-[12px] fill-cyan-500 font-bold" textAnchor="end">O(log n)</text>
+                                        <text x="100%" y="10%" className="text-[12px] fill-blue-500 font-bold" textAnchor="end">O(n)</text>
                                         <text x="25%" y="10%" className="text-[12px] fill-red-500 font-bold">O(n²)</text>
                                     </svg>
-
-                                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-slate-600 dark:text-slate-300 uppercase tracking-widest font-black">
-                                        Jumlah Data (N) →
-                                    </div>
-                                    <div className="absolute top-1/2 -left-12 -translate-y-1/2 -rotate-90 text-xs text-slate-600 dark:text-slate-300 uppercase tracking-widest font-black">
-                                        Waktu / Step →
-                                    </div>
                                 </div>
-
                                 <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 bg-emerald-500 rounded-full shadow-lg shadow-emerald-500/50"></div>
-                                        <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">Amazing</span>
+                                    <div className="flex items-center gap-2 p-2 bg-emerald-500/5 rounded-lg border border-emerald-500/20">
+                                        <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                                        <span className="text-xs font-black text-emerald-600 uppercase">Amazing</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 bg-cyan-500 rounded-full shadow-lg shadow-cyan-500/50"></div>
-                                        <span className="text-sm font-black text-cyan-600 dark:text-cyan-400">Good</span>
+                                    <div className="flex items-center gap-2 p-2 bg-cyan-500/5 rounded-lg border border-cyan-500/20">
+                                        <div className="w-3 h-3 bg-cyan-500 rounded-full"></div>
+                                        <span className="text-xs font-black text-cyan-600 uppercase">Good</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 bg-blue-500 rounded-full shadow-lg shadow-blue-500/50"></div>
-                                        <span className="text-sm font-black text-blue-600 dark:text-blue-400">Fair</span>
+                                    <div className="flex items-center gap-2 p-2 bg-blue-500/5 rounded-lg border border-blue-500/20">
+                                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                        <span className="text-xs font-black text-blue-600 uppercase">Fair</span>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-4 h-4 bg-red-500 rounded-full shadow-lg shadow-red-500/50"></div>
-                                        <span className="text-sm font-black text-red-600 dark:text-red-400">Horrible</span>
+                                    <div className="flex items-center gap-2 p-2 bg-red-500/5 rounded-lg border border-red-500/20">
+                                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <span className="text-xs font-black text-red-600 uppercase">Horrible</span>
                                     </div>
                                 </div>
 
@@ -185,7 +459,15 @@ export default function Module2Content() {
                             <div className="w-full border-t-2 border-primary/40"></div>
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 3: Katalog Kompleksitas</span>
+                            <div className="bg-bg-base px-6 flex items-center gap-3 border-x-2 border-primary/40">
+                                <span className="text-sm font-black uppercase tracking-[0.4em] text-primary">Bagian 3: Katalog Kompleksitas</span>
+                                <button
+                                    onClick={() => openPresentation(3)}
+                                    className="p-1 px-3 text-[10px] font-black bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1 border border-primary/20"
+                                >
+                                    <span className="material-symbols-outlined text-xs">slideshow</span> Slide
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </ScrollReveal>
@@ -194,28 +476,22 @@ export default function Module2Content() {
                     {/* O(1) */}
                     <ScrollReveal>
                         <FocusSection>
-                            <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <section className="relative group bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                                <button onClick={() => openPresentation(3)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 text-primary z-10"><span className="material-symbols-outlined text-sm">slideshow</span></button>
                                 <div className="flex flex-col md:flex-row">
                                     <div className="md:w-1/3 bg-emerald-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-emerald-500/20">
                                         <div className="flex items-center gap-2 mb-4">
-                                            <span className="bg-emerald-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">EXCELLENT</span>
+                                            <span className="bg-emerald-500 text-white text-xs font-black px-3 py-1 rounded-lg">EXCELLENT</span>
                                             <h4 className="text-2xl font-black text-emerald-600 dark:text-emerald-400 italic">O(1)</h4>
                                         </div>
-                                        <h5 className="font-black text-base text-slate-900 dark:text-white mb-2">Constant Time</h5>
                                         <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                            Waktu eksekusi TIDAK peduli berapa banyak datanya. Langsung ke sasaran.
+                                            Waktu eksekusi TIDAK peduli berapa banyak datanya.
                                         </p>
                                     </div>
-                                    <div className="md:w-2/3 p-0 bg-slate-900">
-                                        <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
-                                            <span className="text-xs text-slate-300 font-mono font-bold">Example: Array Search by Index</span>
-                                        </div>
-                                        <pre className="p-6 text-sm font-mono">
-                                            <code className="text-slate-200">
-                                                <span className="text-purple-400">def</span> <span className="text-blue-400">get_first_item</span>(items):<br />
-                                                &nbsp;&nbsp;<span className="text-purple-400">return</span> items[<span className="text-amber-300">0</span>] <span className="text-slate-400"># Slalu 1 step</span>
-                                            </code>
-                                        </pre>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm">
+                                        <code className="text-slate-200">
+                                            <span className="text-purple-400">def</span> <span className="text-blue-400">get_first</span>(items): <span className="text-purple-400">return</span> items[<span className="text-amber-300">0</span>]
+                                        </code>
                                     </div>
                                 </div>
                             </section>
@@ -225,42 +501,24 @@ export default function Module2Content() {
                     {/* O(log n) */}
                     <ScrollReveal>
                         <FocusSection>
-                            <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <section className="relative group bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                                <button onClick={() => openPresentation(4)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 text-primary z-10"><span className="material-symbols-outlined text-sm">slideshow</span></button>
                                 <div className="flex flex-col md:flex-row">
                                     <div className="md:w-1/3 bg-cyan-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-cyan-500/20">
                                         <div className="flex items-center gap-2 mb-4">
-                                            <span className="bg-cyan-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">GOOD</span>
+                                            <span className="bg-cyan-500 text-white text-xs font-black px-3 py-1 rounded-lg">GOOD</span>
                                             <h4 className="text-2xl font-black text-cyan-600 dark:text-cyan-400 italic">O(log n)</h4>
                                         </div>
-                                        <h5 className="font-black text-base text-slate-900 dark:text-white mb-2">Logarithmic Time</h5>
-                                        <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-4">
-                                            Setiap langkah membuang SETENGAH dari sisa data. Sangat efisien untuk data raksasa.
+                                        <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                                            Setiap langkah membuang SETENGAH dari sisa data.
                                         </p>
-                                        {/* Micro-simulation for O(log n) */}
-                                        <div className="space-y-1 mt-4">
-                                            <div className="text-xs font-black text-slate-600 dark:text-slate-300 uppercase">Proses Eliminasi:</div>
-                                            <div className="flex flex-wrap gap-1">
-                                                {[1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1].map((num, i) => (
-                                                    <div key={num} className="flex items-center gap-1">
-                                                        <span className={`text-xs font-mono font-bold ${i === 0 ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}>{num}</span>
-                                                        {num !== 1 && <span className="text-xs text-slate-500">→</span>}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            <p className="text-xs text-primary font-black">1024 data hanya butuh 10 langkah!</p>
-                                        </div>
                                     </div>
-                                    <div className="md:w-2/3 p-0 bg-slate-900">
-                                        <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
-                                            <span className="text-xs text-slate-300 font-mono font-bold">Example: Binary Search</span>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm">
+                                        <div className="flex flex-wrap gap-2 text-primary font-black">
+                                            {[1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1].map((n, i) => (
+                                                <span key={n} className={i > 2 ? 'opacity-40' : ''}>{n} {n > 1 ? '→' : ''}</span>
+                                            ))}
                                         </div>
-                                        <pre className="p-6 text-sm font-mono">
-                                            <code className="text-slate-200">
-                                                <span className="text-slate-400"># Menebak angka di range 1-100</span><br />
-                                                <span className="text-slate-400"># Tiap langkah range berkurang separuh</span><br />
-                                                <span className="text-cyan-400"># 100 → 50 → 25 → 12 → 6 → 3 → 1</span>
-                                            </code>
-                                        </pre>
                                     </div>
                                 </div>
                             </section>
@@ -270,28 +528,20 @@ export default function Module2Content() {
                     {/* O(n) */}
                     <ScrollReveal>
                         <FocusSection>
-                            <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <section className="relative group bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                                <button onClick={() => openPresentation(5)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 text-primary z-10"><span className="material-symbols-outlined text-sm">slideshow</span></button>
                                 <div className="flex flex-col md:flex-row">
                                     <div className="md:w-1/3 bg-blue-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-blue-500/20">
                                         <div className="flex items-center gap-2 mb-4">
-                                            <span className="bg-blue-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">FAIR</span>
+                                            <span className="bg-blue-500 text-white text-xs font-black px-3 py-1 rounded-lg">FAIR</span>
                                             <h4 className="text-2xl font-black text-blue-600 dark:text-blue-400 italic">O(n)</h4>
                                         </div>
-                                        <h5 className="font-black text-base text-slate-900 dark:text-white mb-2">Linear Time</h5>
                                         <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                            Waktu eksekusi sebanding dengan jumlah data. 10 data = 10 detik, 100 data = 100 detik.
+                                            Waktu eksekusi sebanding dengan jumlah data.
                                         </p>
                                     </div>
-                                    <div className="md:w-2/3 p-0 bg-slate-900">
-                                        <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
-                                            <span className="text-xs text-slate-300 font-mono font-bold">Example: Linear Search</span>
-                                        </div>
-                                        <pre className="p-6 text-sm font-mono">
-                                            <code className="text-slate-200">
-                                                <span className="text-purple-400">for</span> item <span className="text-purple-400">in</span> items:<br />
-                                                &nbsp;&nbsp;<span className="text-blue-400">print</span>(item) <span className="text-slate-400"># N data = N print</span>
-                                            </code>
-                                        </pre>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm text-slate-200">
+                                        <code><span className="text-purple-400">for</span> x <span className="text-purple-400">in</span> items: <span className="text-blue-400">print</span>(x)</code>
                                     </div>
                                 </div>
                             </section>
@@ -301,36 +551,20 @@ export default function Module2Content() {
                     {/* O(n^2) */}
                     <ScrollReveal>
                         <FocusSection>
-                            <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                            <section className="relative group bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
+                                <button onClick={() => openPresentation(6)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 text-primary z-10"><span className="material-symbols-outlined text-sm">slideshow</span></button>
                                 <div className="flex flex-col md:flex-row">
                                     <div className="md:w-1/3 bg-red-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-red-500/20">
                                         <div className="flex items-center gap-2 mb-4">
-                                            <span className="bg-red-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">POOR / HORRIBLE</span>
+                                            <span className="bg-red-500 text-white text-xs font-black px-3 py-1 rounded-lg">HORRIBLE</span>
                                             <h4 className="text-2xl font-black text-red-600 dark:text-red-400 italic">O(n²)</h4>
                                         </div>
-                                        <h5 className="font-black text-base text-slate-900 dark:text-white mb-2">Quadratic Time</h5>
-                                        <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-4">
-                                            Berbahaya! Data bertambah sedikit, waktu meledak. Biasanya terjadi pada nested loop (loop di dalam loop).
+                                        <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+                                            Data bertambah sedikit, waktu meledak (Nested Loop).
                                         </p>
-                                        {/* Micro-simulation for O(n^2) */}
-                                        <div className="grid grid-cols-5 gap-1 w-24 opacity-70">
-                                            {Array.from({ length: 25 }).map((_, i) => (
-                                                <div key={i} className="w-3.5 h-3.5 bg-red-500/60 rounded-sm border border-red-500/40"></div>
-                                            ))}
-                                        </div>
-                                        <p className="text-sm text-red-500 dark:text-red-400 mt-2 font-black">N=5 data → 25 Operasi</p>
                                     </div>
-                                    <div className="md:w-2/3 p-0 bg-slate-900">
-                                        <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
-                                            <span className="text-xs text-slate-300 font-mono font-bold">Example: Nested Loop</span>
-                                        </div>
-                                        <pre className="p-6 text-sm font-mono">
-                                            <code className="text-slate-200">
-                                                <span className="text-purple-400">for</span> x <span className="text-purple-400">in</span> data:<br />
-                                                &nbsp;&nbsp;<span className="text-purple-400">for</span> y <span className="text-purple-400">in</span> data:<br />
-                                                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-400">print</span>(x, y) <span className="text-slate-400"># N * N operation</span>
-                                            </code>
-                                        </pre>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm text-slate-200">
+                                        <code><span className="text-purple-400">for</span> x <span className="text-purple-400">in</span> d: <span className="text-purple-400">for</span> y <span className="text-purple-400">in</span> d: <span className="text-blue-400">print</span>(x,y)</code>
                                     </div>
                                 </div>
                             </section>
@@ -339,7 +573,7 @@ export default function Module2Content() {
                 </div>
             </div>
 
-            {/* --- BAGIAN 4: ATURAN MAIN --- */}
+            {/* --- BAGIAN 4: SCENARIO --- */}
             <div className="space-y-10">
                 <ScrollReveal>
                     <div className="relative">
@@ -347,336 +581,50 @@ export default function Module2Content() {
                             <div className="w-full border-t-2 border-primary/40"></div>
                         </div>
                         <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 4: Rule of Thumb</span>
-                        </div>
-                    </div>
-                </ScrollReveal>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                    <ScrollReveal>
-                        <FocusSection>
-                            <div className="bg-indigo-500/10 border-2 border-indigo-500/30 p-6 rounded-2xl shadow-xs h-full">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-2xl">filter_list</span>
-                                    <h4 className="font-black text-lg text-slate-900 dark:text-white">Drop the Constants</h4>
-                                </div>
-                                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed mb-4 font-medium">
-                                    Kita hanya peduli pada skala besar. O(2n) atau O(50n) tetap ditulis sebagai <strong className="text-slate-900 dark:text-white">O(n)</strong>.
-                                </p>
-                                <div className="bg-slate-900 p-3 rounded-lg font-mono text-sm text-center border border-white/10">
-                                    <span className="text-slate-400 line-through">O(2n)</span>
-                                    <span className="text-emerald-400 font-bold"> → O(n)</span>
-                                </div>
+                            <div className="bg-bg-base px-6 flex items-center gap-3 border-x-2 border-primary/40">
+                                <span className="text-sm font-black uppercase tracking-[0.4em] text-primary">Bagian 4: Best vs Worst Case</span>
+                                <button
+                                    onClick={() => openPresentation(7)}
+                                    className="p-1 px-3 text-[10px] font-black bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1 border border-primary/20"
+                                >
+                                    <span className="material-symbols-outlined text-xs">slideshow</span> Slide
+                                </button>
                             </div>
-                        </FocusSection>
-                    </ScrollReveal>
-
-                    <ScrollReveal>
-                        <FocusSection>
-                            <div className="bg-amber-500/10 border-2 border-amber-500/30 p-6 rounded-2xl shadow-xs h-full">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <span className="material-symbols-outlined text-amber-600 dark:text-amber-400 text-2xl">vertical_align_top</span>
-                                    <h4 className="font-black text-lg text-slate-900 dark:text-white">Keep Highest Order</h4>
-                                </div>
-                                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed mb-4 font-medium">
-                                    Ambil suku yang paling mendominasi. Jika ada O(n² + n + 1), maka kita ambil yang terberat: <strong className="text-slate-900 dark:text-white">O(n²)</strong>.
-                                </p>
-                                <div className="bg-slate-900 p-3 rounded-lg font-mono text-sm text-center relative overflow-hidden border border-white/10">
-                                    <span className="text-emerald-400 font-bold">O(n² + n) → O(n²)</span>
-                                </div>
-                            </div>
-                        </FocusSection>
-                    </ScrollReveal>
-                </div>
-            </div>
-
-            {/* --- BAGIAN 5: BEST VS WORST CASE --- */}
-            <div className="space-y-10">
-                <ScrollReveal>
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                            <div className="w-full border-t-2 border-primary/40"></div>
-                        </div>
-                        <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 5: Skenario Performa</span>
                         </div>
                     </div>
                 </ScrollReveal>
 
                 <ScrollReveal>
                     <FocusSection>
-                        <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-3xl p-8 shadow-sm">
-                            <h4 className="text-xl font-black text-slate-900 dark:text-white mb-6">Kapan Algoritma Melambat?</h4>
+                        <section className="relative group bg-white dark:bg-surface border-2 border-primary/20 rounded-3xl p-8 shadow-sm">
+                            <button onClick={() => openPresentation(7)} className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 p-2 text-primary z-10"><span className="material-symbols-outlined text-sm">slideshow</span></button>
+                            <h4 className="text-xl font-black text-slate-900 dark:text-white mb-6">Scenario Performa</h4>
                             <div className="grid sm:grid-cols-3 gap-4 mb-8">
-                                <div className="p-5 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/30 text-center">
-                                    <div className="text-emerald-600 dark:text-emerald-400 font-black text-2xl mb-1">Ω Omega</div>
-                                    <div className="text-sm font-black text-slate-700 dark:text-slate-200 uppercase tracking-tighter mb-2">Best Case</div>
-                                    <p className="text-sm text-slate-700 dark:text-slate-200 leading-tight font-medium">Keberuntungan maksimal. Misalnya mencari 'A' dan 'A' ada di index pertama.</p>
+                                <div className="p-4 rounded-xl bg-emerald-500/10 border-2 border-emerald-500/30 text-center">
+                                    <div className="text-emerald-600 font-black text-xl italic mb-1">Ω Omega</div>
+                                    <p className="text-xs font-bold text-slate-600 uppercase">Best Case</p>
                                 </div>
-                                <div className="p-5 rounded-2xl bg-amber-500/10 border-2 border-amber-500/30 text-center">
-                                    <div className="text-amber-600 dark:text-amber-400 font-black text-2xl mb-1">θ Theta</div>
-                                    <div className="text-sm font-black text-slate-700 dark:text-slate-200 uppercase tracking-tighter mb-2">Average Case</div>
-                                    <p className="text-sm text-slate-700 dark:text-slate-200 leading-tight font-medium">Kondisi rata-rata yang paling sering dihadapi di dunia nyata.</p>
+                                <div className="p-4 rounded-xl bg-amber-500/10 border-2 border-amber-500/30 text-center">
+                                    <div className="text-amber-600 font-black text-xl italic mb-1">θ Theta</div>
+                                    <p className="text-xs font-bold text-slate-600 uppercase">Average Case</p>
                                 </div>
-                                <div className="p-5 rounded-2xl bg-red-500/10 border-2 border-red-500/30 text-center scale-105 shadow-lg shadow-red-500/10 ring-2 ring-red-500/40">
-                                    <div className="text-red-600 dark:text-red-400 font-black text-2xl mb-1">O Big O</div>
-                                    <div className="text-sm font-black text-slate-700 dark:text-slate-200 uppercase tracking-tighter mb-2">Worst Case</div>
-                                    <p className="text-sm text-slate-700 dark:text-slate-200 leading-tight font-black italic">Batas atas (Upper Bound). Fokus utama kita karena ini adalah "Jaminan Keamanan".</p>
+                                <div className="p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30 text-center ring-2 ring-red-500/40">
+                                    <div className="text-red-600 font-black text-xl italic mb-1">O Big O</div>
+                                    <p className="text-xs font-black text-red-600 uppercase italic">Worst Case ✅</p>
                                 </div>
-                            </div>
-
-                            {/* Code Scenario for Linear Search */}
-                            <div className="bg-slate-900 rounded-2xl overflow-hidden border border-white/10">
-                                <div className="bg-slate-800 px-4 py-3 border-b border-white/10">
-                                    <span className="text-xs font-black text-slate-200 uppercase tracking-widest">Contoh Realistis: Linear Search</span>
-                                </div>
-                                <pre className="p-6 text-sm font-mono">
-                                    <code className="text-slate-200">
-                                        <span className="text-purple-400">def</span> <span className="text-blue-400">find_box</span>(boxes, target_color):<br />
-                                        &nbsp;&nbsp;<span className="text-purple-400">for</span> box <span className="text-purple-400">in</span> boxes:<br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> box.color == target_color:<br />
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-amber-300">True</span> <span className="text-emerald-400"># Ω: Box pertama!</span><br />
-                                        &nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-amber-300">False</span> <span className="text-red-400"># Big O: Cek SEMUA data</span>
-                                    </code>
-                                </pre>
                             </div>
                         </section>
                     </FocusSection>
                 </ScrollReveal>
             </div>
 
-            {/* --- BAGIAN 6: SIMULASI PERBANDINGAN --- */}
-            <div className="space-y-10">
-                <ScrollReveal>
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                            <div className="w-full border-t-2 border-primary/40"></div>
-                        </div>
-                        <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 6: Simulasi Nyata</span>
-                        </div>
-                    </div>
-                </ScrollReveal>
-
-                <section className="space-y-6">
-                    <ScrollReveal>
-                        <FocusSection>
-                            <div className="bg-slate-900 rounded-3xl p-8 overflow-hidden relative group border border-white/10">
-                                <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all"></div>
-
-                                <div className="flex flex-col md:flex-row gap-8 items-center mb-8">
-                                    <div className="flex-1 space-y-4">
-                                        <h4 className="text-xl font-black text-white flex items-center gap-2">
-                                            <span className="material-symbols-outlined text-amber-400">compare_arrows</span>
-                                            Mencari Duplikat dalam List
-                                        </h4>
-                                        <p className="text-base text-slate-300 leading-relaxed italic font-medium">
-                                            "Kita punya 10.000 data. Mana yang lebih baik?"
-                                        </p>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <div className="px-4 py-2 rounded-xl bg-white/10 border border-white/20 text-center">
-                                            <div className="text-white font-black text-lg">10k</div>
-                                            <div className="text-xs text-slate-400 uppercase font-bold">Input (N)</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-end px-2">
-                                            <span className="text-sm font-black text-red-400">Metode: Brute Force</span>
-                                            <span className="text-sm font-mono text-red-400/80 font-bold">O(n²)</span>
-                                        </div>
-                                        <div className="bg-black/40 rounded-2xl p-4 border-2 border-red-500/40">
-                                            <div className="text-sm text-slate-300 mb-2 font-medium">Nested Loop: Cek setiap pasang data satu per satu.</div>
-                                            <div className="text-2xl font-black text-white">100.000.000</div>
-                                            <div className="text-xs text-slate-400 uppercase tracking-tighter font-bold">Operasi Langkah</div>
-                                        </div>
-                                        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                                            <div className="h-full bg-red-500 w-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-end px-2">
-                                            <span className="text-sm font-black text-emerald-400">Metode: Hash Set</span>
-                                            <span className="text-sm font-mono text-emerald-400/80 font-bold">O(n)</span>
-                                        </div>
-                                        <div className="bg-black/40 rounded-2xl p-4 border-2 border-emerald-500/40">
-                                            <div className="text-sm text-slate-300 mb-2 font-medium">Single Loop: Langsung simpan data unik di memori.</div>
-                                            <div className="text-2xl font-black text-white">10.000</div>
-                                            <div className="text-xs text-slate-400 uppercase tracking-tighter font-bold">Operasi Langkah</div>
-                                        </div>
-                                        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                                            <div className="h-full bg-emerald-500 w-[5%] shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="mt-8 pt-6 border-t border-white/10 flex flex-col gap-4">
-                                    <div className="flex items-center gap-4 text-slate-200">
-                                        <span className="material-symbols-outlined text-primary text-xl">info</span>
-                                        <p className="text-sm leading-relaxed font-medium">
-                                            <strong className="text-white">Kesimpulan:</strong> Menggunakan algoritma yang tepat (O(n)) membuat komputer bekerja <strong className="text-emerald-400">10.000x lebih santai</strong> dibanding Brute Force (O(n²)).
-                                        </p>
-                                    </div>
-                                    <div className="p-4 rounded-xl bg-blue-500/15 border-2 border-blue-500/30">
-                                        <h5 className="text-sm font-black text-blue-300 uppercase mb-1">💡 Pro-Tip: Kapan O(n²) Boleh Digunakan?</h5>
-                                        <p className="text-sm text-slate-200 leading-relaxed font-medium">
-                                            O(n²) tidak selalu buruk jika <strong className="text-white">jumlah data sangat sedikit</strong> (misal N &lt; 10). Terkadang kode O(n²) lebih mudah dibaca dan dipelihara daripada algoritma O(n) yang sangat kompleks. Konteks itu penting!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </FocusSection>
-                    </ScrollReveal>
-                </section>
-            </div>
-
-            {/* --- SPACE VS TIME --- */}
-            <ScrollReveal threshold={0.5}>
-                <FocusSection>
-                    <div className="mt-16 bg-linear-to-r from-primary/15 to-indigo-500/15 border-2 border-primary/30 p-8 rounded-3xl">
-                        <div className="max-w-xl mx-auto text-center">
-                            <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Space vs Time Complexity ⚖️</h4>
-                            <p className="text-base text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                Kadang kita bisa membuat algoritma lebih cepat (Save Time) dengan menggunakan memori lebih banyak (Extra Space).
-                                Ini dikenal dengan sebutan <strong className="text-slate-900 dark:text-white">Time-Space Tradeoff</strong>.
-                            </p>
-                            <div className="mt-6 flex justify-center gap-8">
-                                <div className="flex flex-col items-center">
-                                    <span className="material-symbols-outlined text-primary mb-2 text-3xl">schedule</span>
-                                    <span className="text-sm uppercase font-black text-slate-700 dark:text-slate-200">Time Complexity</span>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <span className="material-symbols-outlined text-primary mb-2 text-3xl">database</span>
-                                    <span className="text-sm uppercase font-black text-slate-700 dark:text-slate-200">Space Complexity</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </FocusSection>
-            </ScrollReveal>
-
-            {/* --- BAGIAN 7: LATIHAN MANDIRI --- */}
-            <div className="space-y-10">
-                <ScrollReveal>
-                    <div className="relative">
-                        <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                            <div className="w-full border-t-2 border-primary/40"></div>
-                        </div>
-                        <div className="relative flex justify-center">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 7: Latihan Mandiri</span>
-                        </div>
-                    </div>
-                </ScrollReveal>
-
-                <section className="space-y-8">
-                    <ScrollReveal>
-                        <div className="text-center max-w-lg mx-auto mb-8">
-                            <h4 className="text-xl font-black text-slate-900 dark:text-white mb-2">Uji Pemahamanmu! 🧠</h4>
-                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                Coba tebak kompleksitas waktu (Big O) dari potongan kode di bawah ini sebelum melihat jawabannya.
-                            </p>
-                        </div>
-                    </ScrollReveal>
-
-                    <div className="grid gap-6">
-                        {/* Latihan 1 */}
-                        <ScrollReveal>
-                            <FocusSection>
-                                <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm hover:border-primary/40 transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <span className="bg-primary/20 text-primary text-xs font-black px-3 py-1 rounded-lg">LATIHAN #1</span>
-                                    </div>
-                                    <pre className="p-4 bg-slate-900 rounded-xl text-sm font-mono mb-6 border border-white/10">
-                                        <code className="text-slate-200">
-                                            <span className="text-purple-400">def</span> <span className="text-blue-400">print_triple</span>(data):<br />
-                                            &nbsp;&nbsp;<span className="text-blue-400">print</span>(data[<span className="text-amber-300">0</span>])<br />
-                                            &nbsp;&nbsp;<span className="text-blue-400">print</span>(data[<span className="text-amber-300">0</span>])<br />
-                                            &nbsp;&nbsp;<span className="text-blue-400">print</span>(data[<span className="text-amber-300">0</span>])
-                                        </code>
-                                    </pre>
-                                    <details className="group cursor-pointer">
-                                        <summary className="flex items-center gap-2 text-sm font-black text-primary hover:text-primary/70 transition-colors list-none">
-                                            <span className="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
-                                            Lihat Jawaban
-                                        </summary>
-                                        <div className="mt-4 p-4 bg-emerald-500/10 border-2 border-emerald-500/30 rounded-xl animate-in slide-in-from-top-2 duration-300">
-                                            <div className="text-emerald-600 dark:text-emerald-400 font-black text-base mb-1">O(1) - Constant</div>
-                                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                                Meskipun ada 3 kali print, langkahnya tetap sama berapapun ukuran data (N). Di Big O, O(3) disederhanakan menjadi <strong className="text-slate-900 dark:text-white">O(1)</strong>.
-                                            </p>
-                                        </div>
-                                    </details>
-                                </div>
-                            </FocusSection>
-                        </ScrollReveal>
-
-                        {/* Latihan 2 */}
-                        <ScrollReveal>
-                            <FocusSection>
-                                <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm hover:border-primary/40 transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <span className="bg-primary/20 text-primary text-xs font-black px-3 py-1 rounded-lg">LATIHAN #2</span>
-                                    </div>
-                                    <pre className="p-4 bg-slate-900 rounded-xl text-sm font-mono mb-6 border border-white/10">
-                                        <code className="text-slate-200">
-                                            <span className="text-purple-400">for</span> item <span className="text-purple-400">in</span> data:<br />
-                                            &nbsp;&nbsp;<span className="text-blue-400">print</span>(item)<br />
-                                            <span className="text-purple-400">for</span> item <span className="text-purple-400">in</span> data:<br />
-                                            &nbsp;&nbsp;<span className="text-blue-400">print</span>(item)
-                                        </code>
-                                    </pre>
-                                    <details className="group cursor-pointer">
-                                        <summary className="flex items-center gap-2 text-sm font-black text-primary hover:text-primary/70 transition-colors list-none">
-                                            <span className="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
-                                            Lihat Jawaban
-                                        </summary>
-                                        <div className="mt-4 p-4 bg-emerald-500/10 border-2 border-emerald-500/30 rounded-xl animate-in slide-in-from-top-2 duration-300">
-                                            <div className="text-emerald-600 dark:text-emerald-400 font-black text-base mb-1">O(n) - Linear</div>
-                                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                                Ini adalah O(n + n) = O(2n). Ingat aturan <strong className="text-slate-900 dark:text-white">Drop the Constants</strong>, maka kita sederhanakan menjadi <strong className="text-slate-900 dark:text-white">O(n)</strong>.
-                                            </p>
-                                        </div>
-                                    </details>
-                                </div>
-                            </FocusSection>
-                        </ScrollReveal>
-
-                        {/* Latihan 3 */}
-                        <ScrollReveal>
-                            <FocusSection>
-                                <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm hover:border-primary/40 transition-all">
-                                    <div className="flex justify-between items-start mb-4">
-                                        <span className="bg-primary/20 text-primary text-xs font-black px-3 py-1 rounded-lg">LATIHAN #3</span>
-                                    </div>
-                                    <pre className="p-4 bg-slate-900 rounded-xl text-sm font-mono mb-6 border border-white/10">
-                                        <code className="text-slate-200">
-                                            <span className="text-purple-400">for</span> i <span className="text-purple-400">in</span> range(len(data)):<br />
-                                            &nbsp;&nbsp;<span className="text-purple-400">for</span> j <span className="text-purple-400">in</span> range(<span className="text-amber-300">10</span>):<br />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-400">print</span>(data[i])
-                                        </code>
-                                    </pre>
-                                    <details className="group cursor-pointer">
-                                        <summary className="flex items-center gap-2 text-sm font-black text-primary hover:text-primary/70 transition-colors list-none">
-                                            <span className="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">expand_more</span>
-                                            Lihat Jawaban
-                                        </summary>
-                                        <div className="mt-4 p-4 bg-emerald-500/10 border-2 border-emerald-500/30 rounded-xl animate-in slide-in-from-top-2 duration-300">
-                                            <div className="text-emerald-600 dark:text-emerald-400 font-black text-base mb-1">O(n) - Linear</div>
-                                            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
-                                                Hati-hati! Meskipun nested, loop dalam hanya berjalan <strong className="text-slate-900 dark:text-white">10 kali (Konstan)</strong>, bukan N kali. Maka O(n * 10) = <strong className="text-slate-900 dark:text-white">O(n)</strong>.
-                                            </p>
-                                        </div>
-                                    </details>
-                                </div>
-                            </FocusSection>
-                        </ScrollReveal>
-                    </div>
-                </section>
-            </div>
+            {/* Presentation Overlay */}
+            <PresentationMode
+                slides={slides}
+                initialSlide={startSlideIndex}
+                onExit={() => setIsPresentationOpen(false)}
+                isOpen={isPresentationOpen}
+            />
         </div>
     );
 }

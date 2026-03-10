@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface StackFrame {
@@ -18,12 +18,57 @@ export default function RecursionVisualizer() {
     const [stepInfo, setStepInfo] = useState("Klik 'Mulai' untuk melihat simulasi Rekursi.");
     const [inputVal, setInputVal] = useState(4);
     const [finalResult, setFinalResult] = useState<number | null>(null);
+    const [speed, setSpeed] = useState<number>(1);
+    const [isManualMode, setIsManualMode] = useState<boolean>(false);
+    const [waitingForStep, setWaitingForStep] = useState<boolean>(false);
+
+    const speedRef = useRef(1);
+    const manualModeRef = useRef(false);
+    const stepResolverRef = useRef<((value?: unknown) => void) | null>(null);
+
+    useEffect(() => {
+        speedRef.current = speed;
+    }, [speed]);
+
+    useEffect(() => {
+        manualModeRef.current = isManualMode;
+        // If we switch to auto mode while waiting, release the lock automatically
+        if (!isManualMode && waitingForStep && stepResolverRef.current) {
+            handleNextStep();
+        }
+    }, [isManualMode, waitingForStep]);
+
+    const handleNextStep = () => {
+        if (stepResolverRef.current) {
+            setWaitingForStep(false);
+            stepResolverRef.current();
+            stepResolverRef.current = null;
+        }
+    };
+
+    const delay = async (ms: number) => {
+        if (manualModeRef.current) {
+            // Manual Mode: wait infinitely until Step button is clicked
+            setWaitingForStep(true);
+            return new Promise(resolve => {
+                stepResolverRef.current = resolve;
+            });
+        }
+        // Auto Mode
+        return new Promise(r => setTimeout(r, ms / speedRef.current));
+    };
 
     const reset = () => {
         setStack([]);
         setIsExecuting(false);
         setStepInfo("Simulator direset.");
         setFinalResult(null);
+        setWaitingForStep(false);
+        if (stepResolverRef.current) {
+            // resolve pending promise just in case so old executions finish fast
+            stepResolverRef.current();
+            stepResolverRef.current = null;
+        }
     };
 
     const runFactorial = async (n: number) => {
@@ -43,25 +88,25 @@ export default function RecursionVisualizer() {
 
             setStack(prev => prev.map(f => ({ ...f, isCurrent: false })).concat(newFrame));
             setStepInfo(`Memanggil factorial(${num})...`);
-            await new Promise(r => setTimeout(r, 800));
+            await delay(800);
 
             if (num <= 1) {
                 setStepInfo(`Base Case tercapai: n=1. Mengembalikan 1.`);
-                await new Promise(r => setTimeout(r, 600));
+                await delay(600);
                 setStack(prev => prev.map(f => f.id === frameId ? { ...f, returnValue: 1, isCurrent: false } : f));
-                await new Promise(r => setTimeout(r, 600));
+                await delay(600);
                 setStack(prev => prev.filter(f => f.id !== frameId));
                 return 1;
             }
 
             setStepInfo(`Belum mencapai Base Case. Menghitung ${num} * factorial(${num - 1})...`);
-            await new Promise(r => setTimeout(r, 800));
+            await delay(800);
 
             const result = num * (await factorial(num - 1, depth + 1));
 
             setStepInfo(`Factorial(${num}) selesai. Mengembalikan ${result}.`);
             setStack(prev => prev.map(f => f.id === frameId ? { ...f, returnValue: result, isCurrent: true } : f));
-            await new Promise(r => setTimeout(r, 800));
+            await delay(800);
             setStack(prev => prev.filter(f => f.id !== frameId));
 
             return result;
@@ -89,11 +134,17 @@ export default function RecursionVisualizer() {
                     </div>
 
                     {/* Step Description */}
-                    <div className="w-full bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-primary/10 mb-8 min-h-[70px]">
+                    <div className="w-full bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-primary/10 mb-8 min-h-[70px] relative">
                         <p className="text-sm text-slate-800 dark:text-slate-100 font-bold leading-relaxed flex items-center gap-2">
                             <span className="material-symbols-outlined text-primary text-base">info</span>
                             {stepInfo}
                         </p>
+                        {waitingForStep && (
+                            <div className="absolute top-1/2 -translate-y-1/2 right-4 flex items-center gap-2 text-amber-500 bg-amber-500/10 px-3 py-1 rounded-lg animate-pulse">
+                                <span className="material-symbols-outlined text-sm">front_hand</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest">Tertunda</span>
+                            </div>
+                        )}
                     </div>
 
                     {/* Stack Body */}
@@ -107,8 +158,8 @@ export default function RecursionVisualizer() {
                                     animate={{ y: 0, opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.8, x: 50 }}
                                     className={`w-full p-4 rounded-xl border-2 shadow-lg relative transition-all ${frame.isCurrent
-                                            ? "bg-primary border-primary text-white scale-[1.02] z-10"
-                                            : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
+                                        ? "bg-primary border-primary text-white scale-[1.02] z-10"
+                                        : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                                         }`}
                                 >
                                     <div className="flex justify-between items-center">
@@ -183,6 +234,51 @@ export default function RecursionVisualizer() {
                                 </button>
                             </div>
                             <p className="text-[9px] text-slate-400 italic font-medium px-1">Maksimal n=7 untuk visualisator ini agar tidak terjadi stack overflow di memori browser.</p>
+                        </div>
+
+                        <div className="flex flex-col gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                            <div className="flex items-center justify-between px-1">
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">Mode Tracing Manual</label>
+                                <button
+                                    onClick={() => setIsManualMode(!isManualMode)}
+                                    className={`relative w-10 h-5 rounded-full transition-colors ${isManualMode ? "bg-amber-500" : "bg-slate-300 dark:bg-slate-700"}`}
+                                >
+                                    <div className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-transform ${isManualMode ? "translate-x-5" : ""}`}></div>
+                                </button>
+                            </div>
+
+                            {!isManualMode ? (
+                                <div className="flex flex-col gap-2">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest pl-1">Kecepatan Animasi</label>
+                                    <div className="flex gap-1 bg-slate-50 dark:bg-slate-900/50 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+                                        {[
+                                            { label: "Lambat", val: 0.5 },
+                                            { label: "Normal", val: 1 },
+                                            { label: "Cepat", val: 2 }
+                                        ].map(s => (
+                                            <button
+                                                key={s.label}
+                                                onClick={() => setSpeed(s.val)}
+                                                className={`flex-1 py-1.5 text-[9px] font-black uppercase rounded-lg transition-all ${speed === s.val ? "bg-white dark:bg-slate-700 shadow-sm text-primary" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
+                                            >
+                                                {s.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={handleNextStep}
+                                    disabled={!waitingForStep || !isExecuting}
+                                    className={`w-full py-3 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${waitingForStep && isExecuting
+                                        ? "bg-amber-500 hover:bg-amber-400 text-white shadow-lg shadow-amber-500/30 ring-2 ring-amber-500 ring-offset-2 ring-offset-white dark:ring-offset-surface"
+                                        : "bg-slate-100 dark:bg-slate-800 text-slate-400 opacity-50 cursor-not-allowed"
+                                        }`}
+                                >
+                                    <span>Langkah Berikutnya</span>
+                                    <span className="material-symbols-outlined text-sm">step_into</span>
+                                </button>
+                            )}
                         </div>
                     </div>
 
