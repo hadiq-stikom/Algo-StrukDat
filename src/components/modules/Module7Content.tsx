@@ -140,7 +140,7 @@ export default function Module7Content() {
         // Slide 5: Stack Overflow
         // Slide 5: Stack Overflow
         <div key="s5" className="space-y-8 h-full flex flex-col justify-center">
-            <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 uppercase italic text-center text-rose-500">Bahaya Rekursi</h3>
+            <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 uppercase italic text-center">Bahaya Rekursi</h3>
             <div className="bg-rose-950 p-12 rounded-3xl border-4 border-rose-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)] relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 blur-[120px] -mr-32 -mt-32 pointer-events-none"></div>
                 <div className="flex-1 space-y-6 z-10">
@@ -160,7 +160,7 @@ export default function Module7Content() {
                 <div className="w-full md:w-1/3 p-6 bg-rose-900/30 rounded-3xl border-4 border-dashed border-rose-500/40 relative z-10 flex flex-col gap-2 items-center justify-center">
                     <p className="text-sm font-black text-rose-400 uppercase tracking-widest">Stack Limit (Browser API / OS)</p>
                     <div className="w-full h-48 bg-black/60 rounded-xl border-4 border-rose-900 flex flex-col-reverse p-2 gap-2 overflow-hidden relative shadow-inner">
-                        <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-rose-500/30 to-transparent"></div>
+                        <div className="absolute top-0 left-0 w-full h-8 bg-linear-to-b from-rose-500/30 to-transparent"></div>
                         {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
                             <div key={i} className={`h-full w-full rounded-md ${i > 5 ? 'bg-rose-500 animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.8)]' : 'bg-rose-800'}`}></div>
                         ))}

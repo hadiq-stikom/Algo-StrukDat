@@ -391,15 +391,15 @@ export default function Module3Content() {
         </div>,
 
         // Slide 11: Comparison Head-to-Head
-        <div key="s11_compare" className="space-y-8">
-            <h3 className="text-4xl font-black text-center text-slate-900 dark:text-white mb-10 uppercase italic">Bubble vs Selection</h3>
-            <div className="overflow-hidden rounded-3xl border-4 border-primary/20 shadow-2xl bg-slate-900 text-white">
-                <table className="w-full text-xl text-left">
+        <div key="s11_compare" className="space-y-4 h-full flex flex-col justify-center">
+            <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-2 uppercase italic">Bubble vs Selection</h3>
+            <div className="overflow-hidden rounded-2xl border-4 border-primary/20 shadow-xl bg-slate-900 text-white mb-4">
+                <table className="w-full text-sm text-left">
                     <thead className="bg-white/10 font-black border-b border-white/10">
                         <tr>
-                            <th className="px-8 py-6">Aspek</th>
-                            <th className="px-8 py-6 text-blue-400">Bubble Sort</th>
-                            <th className="px-8 py-6 text-amber-400">Selection Sort</th>
+                            <th className="px-5 py-3">Aspek</th>
+                            <th className="px-5 py-3 text-blue-400">Bubble Sort</th>
+                            <th className="px-5 py-3 text-amber-400">Selection Sort</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/10 font-bold">
@@ -410,13 +410,69 @@ export default function Module3Content() {
                             { aspect: "Worst Case", b: "O(n²)", s: "O(n²)" }
                         ].map((row, i) => (
                             <tr key={i}>
-                                <td className="px-8 py-6 text-slate-400">{row.aspect}</td>
-                                <td className="px-8 py-6 text-blue-300 font-mono italic">{row.b}</td>
-                                <td className="px-8 py-6 text-amber-300 font-mono italic">{row.s}</td>
+                                <td className="px-5 py-3 text-slate-400">{row.aspect}</td>
+                                <td className="px-5 py-3 text-blue-300 font-mono italic">{row.b}</td>
+                                <td className="px-5 py-3 text-amber-300 font-mono italic">{row.s}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+                <div className="bg-emerald-500/10 border border-emerald-500/20 p-3 rounded-xl flex items-start gap-2">
+                    <span className="material-symbols-outlined text-emerald-500 text-lg shrink-0">timer</span>
+                    <div>
+                        <h4 className="text-xs font-black text-emerald-600 dark:text-emerald-400 mb-1">Best Case</h4>
+                        <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-tight">Bubble pintar berhenti jika data sudah terurut. Selection memaksa cek semua.</p>
+                    </div>
+                </div>
+                <div className="bg-purple-500/10 border border-purple-500/20 p-3 rounded-xl flex items-start gap-2">
+                    <span className="material-symbols-outlined text-purple-500 text-lg shrink-0">swap_horiz</span>
+                    <div>
+                        <h4 className="text-xs font-black text-purple-600 dark:text-purple-400 mb-1">Swap</h4>
+                        <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-tight">Bubble menukar banyak data bersebelahan. Selection irit, max (N-1) kali.</p>
+                    </div>
+                </div>
+                <div className="bg-blue-500/10 border border-blue-500/20 p-3 rounded-xl flex items-start gap-2">
+                    <span className="material-symbols-outlined text-blue-500 text-lg shrink-0">balance</span>
+                    <div>
+                        <h4 className="text-xs font-black text-blue-600 dark:text-blue-400 mb-1">Stability</h4>
+                        <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-tight">Bubble aman (Stable). Selection rawan merusak data identik (Unstable).</p>
+                    </div>
+                </div>
+            </div>
+        </div>,
+
+        // Slide 11b: Kapan Menggunakan
+        <div key="s11_choose" className="space-y-8 h-full flex flex-col justify-center">
+            <h3 className="text-4xl font-black text-center text-slate-900 dark:text-white mb-8 uppercase italic">Kapan Menggunakannya?</h3>
+            <div className="grid grid-cols-2 gap-8">
+                <div className="bg-blue-500/10 border-4 border-blue-500/20 p-8 rounded-3xl shadow-xl flex flex-col gap-4">
+                    <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-3xl font-black text-blue-600">Bubble Sort</h4>
+                        <span className="material-symbols-outlined text-4xl text-blue-500">water_drop</span>
+                    </div>
+                    <ul className="space-y-4 text-xl text-slate-700 dark:text-slate-200 font-bold">
+                        <li className="flex gap-3"><span className="text-blue-500">✔</span> Data hampir terurut (Kecepatan O(n))</li>
+                        <li className="flex gap-3"><span className="text-blue-500">✔</span> Butuh stabilitas (pengurutan ganda tidak rusak)</li>
+                    </ul>
+                </div>
+                <div className="bg-amber-500/10 border-4 border-amber-500/20 p-8 rounded-3xl shadow-xl flex flex-col gap-4">
+                    <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-3xl font-black text-amber-600">Selection Sort</h4>
+                        <span className="material-symbols-outlined text-4xl text-amber-500">ads_click</span>
+                    </div>
+                    <ul className="space-y-4 text-xl text-slate-700 dark:text-slate-200 font-bold">
+                        <li className="flex gap-3"><span className="text-amber-500">✔</span> Membatasi operasi SWAP (Disk/Write terbatas)</li>
+                        <li className="flex gap-3"><span className="text-amber-500">✔</span> Maksimal hanya butuh (N-1) kali Swap</li>
+                    </ul>
+                </div>
+            </div>
+            <div className="mt-8 bg-rose-500/10 border-2 border-rose-500/20 p-6 rounded-2xl shadow-sm">
+                <p className="text-lg font-bold text-rose-600 italic text-center">
+                    "Salah pilih algoritma bisa berakibat pemborosan resource O(n²) atau merusak urutan asli data (Unstable)."
+                </p>
             </div>
         </div>,
 
@@ -777,6 +833,7 @@ export default function Module3Content() {
                                     <tbody className="divide-y divide-white/10 font-bold italic">
                                         {[
                                             { aspect: "Best Case", bubble: "O(n) — Flag", selection: "O(n²) — Selalu" },
+                                            { aspect: "Jumlah Swap", bubble: "Sangat Banyak", selection: "Minim (N-1)" },
                                             { aspect: "Stability", bubble: "✅ Stable", selection: "❌ Unstable" },
                                             { aspect: "Worst Case", bubble: "O(n²)", selection: "O(n²)" }
                                         ].map((row, i) => (
@@ -788,6 +845,68 @@ export default function Module3Content() {
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+
+                            {/* Penjelasan Tambahan */}
+                            <div className="mt-8 space-y-6">
+                                <div>
+                                    <h5 className="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2">
+                                        <span className="material-symbols-outlined">insights</span>
+                                        Implikasi & Maksud Komparasi
+                                    </h5>
+                                    <ul className="space-y-4 text-sm text-slate-300">
+                                        <li className="flex items-start gap-4">
+                                            <div className="bg-emerald-500/20 p-2 rounded-lg text-emerald-400 shrink-0 mt-0.5">
+                                                <span className="material-symbols-outlined text-xl">timer</span>
+                                            </div>
+                                            <div>
+                                                <strong className="text-white block mb-1 text-base">Adaptasi Kasus Terbaik (Best Case)</strong>
+                                                <em>Bubble Sort</em> (dengan <i>flag</i> optimasi) cerdas mengenali array yang sudah hampir terurut dan bisa langsung berhenti dalam hitungan <code className="text-emerald-400 font-mono">O(n)</code>. Sebaliknya, <em>Selection Sort</em> tetap "kaku" dan memaksa memindai (scan) penuh seluruh sisa array meskipun data dijamin sudah terurut sehingga bebannya tetap <code className="text-rose-400 font-mono bg-rose-400/10 px-1 rounded">O(n²)</code>. Salah pilih di sini berakibat pemborosan resource CPU yang drastis.
+                                            </div>
+                                        </li>
+                                        <li className="flex items-start gap-4">
+                                            <div className="bg-purple-500/20 p-2 rounded-lg text-purple-400 shrink-0 mt-0.5">
+                                                <span className="material-symbols-outlined text-xl">swap_horiz</span>
+                                            </div>
+                                            <div>
+                                                <strong className="text-white block mb-1 text-base">Jumlah Operasi Penulisan / Swap</strong>
+                                                Aksi Write (swap memori) merupakan operasi yang cukup membebani resource. <em>Bubble Sort</em> mengalirkan data dengan melakukan iterasi pertukaran hingga puluhan-ratusan kali. Sementara <em>Selection Sort</em> membatasi aksi Write maksimal hanya <code className="text-white font-mono break-all">(N - 1)</code> kali saja seburuk apapun data berantakan (hanya ada Write saat pindah indeks target).
+                                            </div>
+                                        </li>
+                                        <li className="flex items-start gap-4">
+                                            <div className="bg-blue-500/20 p-2 rounded-lg text-blue-400 shrink-0 mt-0.5">
+                                                <span className="material-symbols-outlined text-xl">balance</span>
+                                            </div>
+                                            <div>
+                                                <strong className="text-white block mb-1 text-base">Stabilitas Urutan (Stability)</strong>
+                                                Algoritma <em>Stable</em> menjamin dua identitas berbeda tapi bernilai komparasi sama tidak akan bertukar urutan aslinya. <em>Bubble Sort</em> sangat aman untuk ini karena pertukarannya murni bersebelahan perlahan-lahan. Sebaliknya, lompatan panjang pertukaran ala <em>Selection Sort</em> dapat merusak susunan data duplikat yang sebelumnya terbentuk (<em>Unstable</em>).
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div className="grid lg:grid-cols-2 gap-6 pt-6 border-t border-white/10 mt-6">
+                                    <div className="bg-blue-500/10 border border-blue-500/20 p-6 rounded-2xl relative overflow-hidden">
+                                        <div className="absolute -bottom-4 right-0 p-4 opacity-10 pointer-events-none"><span className="material-symbols-outlined text-8xl text-blue-400">water_drop</span></div>
+                                        <h6 className="font-black text-blue-400 mb-4 flex items-center gap-2 relative z-10">
+                                            <span className="material-symbols-outlined">thumb_up</span> Kapan Bubble Sort Ideal?
+                                        </h6>
+                                        <ul className="list-disc list-inside space-y-3 text-sm text-blue-100/80 relative z-10">
+                                            <li>Data masukan diyakini mayoritas <strong>hampir terurut</strong> (Memaksimalkan efisiensi *O(n)* best-case).</li>
+                                            <li><strong>Kestabilan ganda</strong> (Stability/Multi-Level Sort) mutlak dibutuhkan dalam pemrosesan data (Contoh sorting prioritas yang ditumpuk).</li>
+                                        </ul>
+                                    </div>
+                                    <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-2xl relative overflow-hidden">
+                                        <div className="absolute -bottom-4 right-0 p-4 opacity-10 pointer-events-none"><span className="material-symbols-outlined text-8xl text-amber-400">touch_app</span></div>
+                                        <h6 className="font-black text-amber-400 mb-4 flex items-center gap-2 relative z-10">
+                                            <span className="material-symbols-outlined">thumb_up</span> Kapan Selection Sort Ideal?
+                                        </h6>
+                                        <ul className="list-disc list-inside space-y-3 text-sm text-amber-100/80 relative z-10">
+                                            <li>Tindakan/Aksi tulis (*Write/Swap*) ke database/disk <strong>sangat memakan waktu lama & dibatasi</strong>.</li>
+                                            <li>Pengoperasian dalam EEPROM mikro/Sistem tertanam (*Embedded Systems*) yang rawan <em>wear & tear</em> karena aksi tulis memori (*Write Endurance Limit*).</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </section>
                     </FocusSection>

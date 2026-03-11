@@ -252,7 +252,7 @@ export default function Module6Content() {
         <div key="s5" className="space-y-8 h-full flex flex-col justify-center">
             <div className="bg-slate-900 p-12 rounded-3xl border-4 border-primary/30 shadow-2xl relative overflow-hidden">
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
-                <h4 className="text-4xl font-black text-white mb-10 uppercase italic flex items-center gap-4 text-primary">
+                <h4 className="text-4xl font-black text-white mb-10 uppercase italic flex items-center gap-4">
                     <span className="material-symbols-outlined text-5xl">analytics</span>
                     Bagian 4: Circular Queue 🔄
                 </h4>
@@ -458,7 +458,7 @@ export default function Module6Content() {
                 <div className="bg-white dark:bg-surface border-4 border-primary/20 rounded-3xl p-8 shadow-2xl flex flex-col justify-between">
                     <div>
                         <h4 className="text-lg font-black text-primary uppercase mb-4 italic tracking-widest">Uji Pemahaman #2</h4>
-                        <p className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6 font-medium">
+                        <p className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-6">
                             Apa perbedaan utama prinsip <br />
                             <strong className="text-primary italic">Queue vs Stack</strong>?
                         </p>
