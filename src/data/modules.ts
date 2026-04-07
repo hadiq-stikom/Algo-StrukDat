@@ -15,7 +15,7 @@ export const modules: Module[] = [
         description: "Introduction to logic and memory",
         learningOutcome: "Students will be able to explain the core principles of data logic and how data is managed within computer memory.",
         icon: "menu_book",
-        color: "indigo",
+        color: "teal",
         progress: 100,
     },
     {
@@ -69,7 +69,7 @@ export const modules: Module[] = [
         description: "Base cases and Stack memory",
         learningOutcome: "Students will be able to design recursive algorithms, identify base cases, and understand the role of the call stack.",
         icon: "refresh",
-        color: "violet",
+        color: "teal",
         progress: 0,
     },
     {
@@ -96,7 +96,7 @@ export const modules: Module[] = [
         description: "Merge Sort and Quick Sort",
         learningOutcome: "Students will be able to implement divide-and-conquer sorting algorithms such as Merge Sort and Quick Sort.",
         icon: "auto_awesome_motion",
-        color: "purple",
+        color: "cyan",
         progress: 0,
     },
     {

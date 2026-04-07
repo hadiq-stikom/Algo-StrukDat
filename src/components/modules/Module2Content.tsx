@@ -489,9 +489,9 @@ export default function Module2Content() {
                                         </p>
                                     </div>
                                     <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm">
-                                        <code className="text-slate-200">
-                                            <span className="text-purple-400">def</span> <span className="text-blue-400">get_first</span>(items): <span className="text-purple-400">return</span> items[<span className="text-amber-300">0</span>]
-                                        </code>
+                                        <p className="text-[11px] text-slate-300 font-mono leading-relaxed">
+                                            <span className="text-cyan-400">def</span> <span className="text-blue-400">get_first</span>(items): <span className="text-cyan-400">return</span> items[<span className="text-amber-300">0</span>]
+                                        </p>
                                     </div>
                                 </div>
                             </section>
@@ -540,8 +540,8 @@ export default function Module2Content() {
                                             Waktu eksekusi sebanding dengan jumlah data.
                                         </p>
                                     </div>
-                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm text-slate-200">
-                                        <code><span className="text-purple-400">for</span> x <span className="text-purple-400">in</span> items: <span className="text-blue-400">print</span>(x)</code>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm leading-relaxed">
+                                        <code><span className="text-cyan-400">for</span> x <span className="text-cyan-400">in</span> items: <span className="text-blue-400">print</span>(x)</code>
                                     </div>
                                 </div>
                             </section>
@@ -563,8 +563,8 @@ export default function Module2Content() {
                                             Data bertambah sedikit, waktu meledak (Nested Loop).
                                         </p>
                                     </div>
-                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm text-slate-200">
-                                        <code><span className="text-purple-400">for</span> x <span className="text-purple-400">in</span> d: <span className="text-purple-400">for</span> y <span className="text-purple-400">in</span> d: <span className="text-blue-400">print</span>(x,y)</code>
+                                    <div className="md:w-2/3 p-6 bg-slate-900 font-mono text-sm leading-relaxed">
+                                        <code><span className="text-cyan-400">for</span> x <span className="text-cyan-400">in</span> d: <span className="text-cyan-400">for</span> y <span className="text-cyan-400">in</span> d: <span className="text-blue-400">print</span>(x,y)</code>
                                     </div>
                                 </div>
                             </section>

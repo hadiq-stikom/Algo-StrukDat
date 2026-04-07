@@ -38,7 +38,7 @@ export default function BigOVisualizer() {
                     exit={{ scale: 0, opacity: 0 }}
                     className={`w-4 h-4 rounded-sm shadow-sm ${complexity === "O(1)" ? "bg-emerald-500" :
                             complexity === "O(log n)" ? "bg-cyan-500" :
-                                complexity === "O(n)" ? "bg-blue-500" : "bg-red-500"
+                                complexity === "O(n)" ? "bg-teal-500" : "bg-red-500"
                         }`}
                 />
             );
@@ -96,12 +96,12 @@ export default function BigOVisualizer() {
 
                     <div className={`p-4 rounded-xl border-2 transition-colors ${complexity === "O(1)" ? "bg-emerald-500/10 border-emerald-500/30" :
                             complexity === "O(log n)" ? "bg-cyan-500/10 border-cyan-500/30" :
-                                complexity === "O(n)" ? "bg-blue-500/10 border-blue-500/30" : "bg-red-500/10 border-red-500/30"
+                                complexity === "O(n)" ? "bg-teal-500/10 border-teal-500/30" : "bg-red-500/10 border-red-500/30"
                         }`}>
                         <div className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1">Total Operasi</div>
                         <div className={`text-4xl font-black italic ${complexity === "O(1)" ? "text-emerald-600" :
                                 complexity === "O(log n)" ? "text-cyan-600" :
-                                    complexity === "O(n)" ? "text-blue-600" : "text-red-600"
+                                    complexity === "O(n)" ? "text-teal-600" : "text-red-600"
                             }`}>
                             {opCount.toLocaleString()}
                             <span className="text-xs ml-1 font-bold text-slate-400 italic">langkah</span>

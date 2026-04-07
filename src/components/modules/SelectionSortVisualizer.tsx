@@ -185,7 +185,7 @@ export default function SelectionSortVisualizer() {
                                 className={`w-12 sm:w-16 rounded-xl border-2 flex items-center justify-center font-black transition-colors shadow-sm ${isSwapping
                                     ? "bg-red-500 border-red-600 text-white"
                                     : isMin
-                                        ? "bg-fuchsia-500 border-fuchsia-600 text-white"
+                                        ? "bg-cyan-500 border-cyan-600 text-white"
                                         : isComparing
                                             ? "bg-amber-500 border-amber-600 text-white"
                                             : isSorted
@@ -227,7 +227,7 @@ export default function SelectionSortVisualizer() {
                         <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400">Scan</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <div className="w-3 h-3 rounded bg-fuchsia-500"></div>
+                        <div className="w-3 h-3 rounded bg-cyan-500"></div>
                         <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400">Min</span>
                     </div>
                     <div className="flex items-center gap-1.5">

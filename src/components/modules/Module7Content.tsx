@@ -22,19 +22,19 @@ export default function Module7Content() {
         // Slide 1: Concept
         <div key="s1" className="space-y-6">
             <div className="text-center">
-                <div className="bg-violet-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border-4 border-violet-500/20 shadow-xl text-violet-600">
+                <div className="bg-teal-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border-4 border-teal-500/20 shadow-xl text-teal-600">
                     <span className="material-symbols-outlined text-4xl">refresh</span>
                 </div>
                 <h2 className="text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tighter italic">Rekursi (Recursion)</h2>
                 <p className="text-lg text-slate-600 dark:text-slate-300 font-medium italic mt-2">
-                    Fungsi yang <strong className="text-violet-600 underline decoration-violet-500/30">memanggil dirinya sendiri</strong>.
+                    Fungsi yang <strong className="text-teal-600 underline decoration-teal-500/30">memanggil dirinya sendiri</strong>.
                 </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
                 {/* Analogy + Use Cases */}
                 <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-5 shadow-lg flex flex-col gap-4">
-                    <p className="text-sm font-black text-violet-700 dark:text-violet-400 uppercase">Analogi: Boneka Matryoshka 🪆</p>
+                    <p className="text-sm font-black text-teal-700 dark:text-teal-400 uppercase">Analogi: Boneka Matryoshka 🪆</p>
                     <div className="flex items-end gap-2 justify-center py-2">
                         {[36, 28, 22, 16].map((h, i) => (
                             <motion.div
@@ -42,7 +42,7 @@ export default function Module7Content() {
                                 animate={{ y: [0, -8, 0] }}
                                 transition={{ repeat: Infinity, duration: 2, delay: i * 0.2 }}
                                 style={{ height: h, width: h * 0.8 }}
-                                className="bg-violet-400 rounded-t-full border-4 border-violet-600 shadow-xl"
+                                className="bg-teal-400 rounded-t-full border-4 border-teal-600 shadow-xl"
                             />
                         ))}
                     </div>
@@ -52,19 +52,19 @@ export default function Module7Content() {
                 </div>
 
                 {/* Code Block */}
-                <div className="bg-slate-900 rounded-2xl overflow-hidden border-2 border-violet-500/20 shadow-lg">
+                <div className="bg-slate-900 rounded-2xl overflow-hidden border-2 border-teal-500/20 shadow-lg">
                     <div className="bg-slate-800 px-4 py-2 flex justify-between items-center border-b border-white/10">
                         <span className="text-slate-400 font-mono text-[10px] font-bold">factorial.py</span>
-                        <span className="text-violet-400 font-black text-[9px] uppercase tracking-widest">Kode Dasar</span>
+                        <span className="text-teal-400 font-black text-[9px] uppercase tracking-widest">Kode Dasar</span>
                     </div>
                     <pre className="p-4 text-sm font-mono leading-relaxed">
                         <code>
-                            <span className="text-purple-400">def</span>{" "}<span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
+                            <span className="text-cyan-400">def</span>{" "}<span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
                             {"    "}<span className="text-slate-400"># ① Base Case</span>{"\n"}
-                            {"    "}<span className="text-purple-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
-                            {"        "}<span className="text-purple-400">return</span> <span className="bg-rose-500/20 text-rose-300 px-1 rounded">1</span>{"\n"}{"\n"}
+                            {"    "}<span className="text-cyan-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
+                            {"        "}<span className="text-cyan-400">return</span> <span className="bg-rose-500/20 text-rose-300 px-1 rounded">1</span>{"\n"}{"\n"}
                             {"    "}<span className="text-slate-400"># ② Recursive Case</span>{"\n"}
-                            {"    "}<span className="text-purple-400">return</span> <span className="text-orange-300">n</span> * <span className="bg-violet-500/20 text-violet-300 px-1 rounded">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
+                            {"    "}<span className="text-cyan-400">return</span> <span className="text-orange-300">n</span> * <span className="bg-teal-500/20 text-teal-300 px-1 rounded">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
                         </code>
                     </pre>
                     <div className="px-4 pb-4 grid grid-cols-2 gap-2">
@@ -72,8 +72,8 @@ export default function Module7Content() {
                             <p className="text-[10px] font-black text-rose-400 mb-0.5">① Base Case</p>
                             <p className="text-[9px] text-slate-400">Titik berhenti rekursi.</p>
                         </div>
-                        <div className="bg-violet-500/10 border border-violet-500/20 p-2 rounded-lg">
-                            <p className="text-[10px] font-black text-violet-400 mb-0.5">② Recursive Case</p>
+                        <div className="bg-teal-500/10 border border-teal-500/20 p-2 rounded-lg">
+                            <p className="text-[10px] font-black text-teal-400 mb-0.5">② Recursive Case</p>
                             <p className="text-[9px] text-slate-400">Memanggil diri, makin kecil.</p>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ export default function Module7Content() {
         // Slide 3: Code Structure
         <div key="s3" className="space-y-6">
             <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-6 uppercase italic tracking-widest">Blueprint Rekursi</h3>
-            <div className="bg-slate-900 rounded-3xl overflow-hidden border-4 border-violet-500/20 shadow-2xl max-w-4xl mx-auto">
+            <div className="bg-slate-900 rounded-3xl overflow-hidden border-4 border-teal-500/20 shadow-2xl max-w-4xl mx-auto">
                 <div className="bg-slate-800 px-6 py-3 flex justify-between border-b-2 border-white/10">
                     <span className="text-lg text-slate-300 font-mono font-bold italic">recursive_pattern.py</span>
                     <div className="flex gap-2">
@@ -118,12 +118,12 @@ export default function Module7Content() {
                 </div>
                 <pre className="p-10 text-2xl font-mono leading-relaxed">
                     <code>
-                        <span className="text-purple-400">def</span> <span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
+                        <span className="text-cyan-400">def</span> <span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
                         {"    "}<span className="text-slate-400 italic"># 1. Base Case</span>{"\n"}
-                        {"    "}<span className="text-purple-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
-                        {"        "}<span className="text-purple-400">return</span> <span className="text-amber-300">1</span>{"\n"}{"\n"}
+                        {"    "}<span className="text-cyan-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
+                        {"        "}<span className="text-cyan-400">return</span> <span className="text-amber-300">1</span>{"\n"}{"\n"}
                         {"    "}<span className="text-slate-400 italic"># 2. Recursive Case</span>{"\n"}
-                        {"    "}<span className="text-purple-400">return</span> <span className="text-orange-300">n</span> * <span className="text-violet-400">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
+                        {"    "}<span className="text-cyan-400">return</span> <span className="text-orange-300">n</span> * <span className="text-teal-400">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
                     </code>
                 </pre>
             </div>
@@ -132,7 +132,7 @@ export default function Module7Content() {
         // Slide 4: Visualizer
         <div key="s4" className="space-y-8 h-full flex flex-col items-center justify-center">
             <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 uppercase italic text-center">Tracing Factorial (4!)</h3>
-            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-10 rounded-3xl border-4 border-violet-500/30 shadow-[0_35px_60px_-15px_rgba(139,92,246,0.3)]">
+            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-10 rounded-3xl border-4 border-teal-500/30 shadow-[0_35px_60px_-15px_rgba(13,148,136,0.3)]">
                 <RecursionVisualizer />
             </div>
         </div>,
@@ -230,12 +230,12 @@ export default function Module7Content() {
                         <li className="flex gap-4 items-start"><span className="bg-emerald-500 text-white rounded-full w-8 h-8 flex items-center justify-center shrink-0">3</span> Jadikan <span className="text-emerald-500 px-2 bg-white/5 rounded mx-1">Langkah Update (i++)</span> sbg argumen saat memanggil diri sendiri.</li>
                     </ul>
                 </div>
-                <div className="bg-violet-500/10 border-4 border-violet-500/30 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 p-6 opacity-20"><span className="material-symbols-outlined text-8xl text-violet-500">arrow_back</span></div>
-                    <h4 className="text-3xl font-black text-violet-500 mb-8 uppercase italic relative z-10">Rekursi ➔ Looping</h4>
+                <div className="bg-teal-500/10 border-4 border-teal-500/30 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-6 opacity-20"><span className="material-symbols-outlined text-8xl text-teal-500">arrow_back</span></div>
+                    <h4 className="text-3xl font-black text-teal-500 mb-8 uppercase italic relative z-10">Rekursi ➔ Looping</h4>
                     <ul className="space-y-8 text-xl text-slate-700 dark:text-slate-300 font-bold relative z-10">
-                        <li className="flex gap-4 items-start"><span className="text-violet-500 text-3xl">✦</span> <strong>Tail Recursion:</strong> Ubah langsung pakai <code className="bg-white/10 px-2 rounded font-mono text-violet-400">while(true)</code> dan update variabel. Simple!</li>
-                        <li className="flex gap-4 items-start"><span className="text-violet-500 text-3xl">✦</span> <strong>Tree Recursion:</strong> WAJIB simulasi Call Stack! Buat array <code className="bg-white/10 px-2 rounded font-mono text-violet-400">[]</code> dan gunakan <code className="bg-white/10 px-2 py-1 rounded font-mono text-violet-400 text-sm">push() / pop()</code> untuk menyimpan state yang tertunda.</li>
+                        <li className="flex gap-4 items-start"><span className="text-teal-500 text-3xl">✦</span> <strong>Tail Recursion:</strong> Ubah langsung pakai <code className="bg-white/10 px-2 rounded font-mono text-teal-400">while(true)</code> and update variabel. Simple!</li>
+                        <li className="flex gap-4 items-start"><span className="text-teal-500 text-3xl">✦</span> <strong>Tree Recursion:</strong> WAJIB simulasi Call Stack! Buat array <code className="bg-white/10 px-2 rounded font-mono text-teal-400">[]</code> dan gunakan <code className="bg-white/10 px-2 py-1 rounded font-mono text-teal-400 text-sm">push() / pop()</code> untuk menyimpan state yang tertunda.</li>
                     </ul>
                 </div>
             </div>
@@ -257,13 +257,13 @@ export default function Module7Content() {
                 </div>
 
                 {/* RECURSION RULES */}
-                <div className="bg-slate-900 border-4 border-violet-500/30 rounded-3xl p-10 shadow-2xl relative z-0 overflow-hidden group hover:border-violet-500 transition-colors">
-                    <div className="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity"><span className="material-symbols-outlined text-[250px] text-violet-500">account_tree</span></div>
-                    <div className="bg-violet-500 text-white text-xl font-black uppercase tracking-widest px-6 py-2 rounded-full inline-block mb-8 relative z-10 shadow-lg shadow-violet-500/30">PILIH REKURSI JIKA</div>
+                <div className="bg-slate-900 border-4 border-teal-500/30 rounded-3xl p-10 shadow-2xl relative z-0 overflow-hidden group hover:border-teal-500 transition-colors">
+                    <div className="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity"><span className="material-symbols-outlined text-[250px] text-teal-500">account_tree</span></div>
+                    <div className="bg-teal-500 text-white text-xl font-black uppercase tracking-widest px-6 py-2 rounded-full inline-block mb-8 relative z-10 shadow-lg shadow-teal-500/30">PILIH REKURSI JIKA</div>
                     <ul className="space-y-6 text-2xl font-bold text-slate-300 relative z-10">
-                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-violet-400 text-3xl shrink-0 mt-1">park</span> Data terstruktur spt Pohon / Hirarki (Tree, Graph, File System).</li>
-                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-violet-400 text-3xl shrink-0 mt-1">call_split</span> Menggunakan Divide & Conquer (Merge/Quick Sort, DFS Traversal).</li>
-                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-violet-400 text-3xl shrink-0 mt-1">auto_awesome</span> Keterbacaan, keindahan, & keamanan logika &gt; sedikit overhead memory.</li>
+                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-teal-400 text-3xl shrink-0 mt-1">park</span> Data terstruktur spt Pohon / Hirarki (Tree, Graph, File System).</li>
+                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-teal-400 text-3xl shrink-0 mt-1">call_split</span> Menggunakan Divide & Conquer (Merge/Quick Sort, DFS Traversal).</li>
+                        <li className="flex gap-4 items-start"><span className="material-symbols-outlined text-teal-400 text-3xl shrink-0 mt-1">auto_awesome</span> Keterbacaan, keindahan, & keamanan logika &gt; sedikit overhead memory.</li>
                     </ul>
                 </div>
             </div>
@@ -271,9 +271,9 @@ export default function Module7Content() {
 
         // Slide 9: Summary
         <div key="s9" className="space-y-8 h-full flex flex-col justify-center text-center">
-            <div className="bg-linear-to-br from-violet-500/20 to-primary/20 p-12 rounded-3xl border-4 border-violet-500/30 shadow-2xl relative overflow-hidden">
-                <div className="absolute -left-20 -top-20 w-64 h-64 bg-violet-500/20 rounded-full blur-[80px]"></div>
-                <h4 className="text-5xl font-black text-slate-900 dark:text-white mb-10 uppercase italic tracking-tighter decoration-violet-500 decoration-8 underline-offset-8">Ringkasan Materi</h4>
+            <div className="bg-linear-to-br from-teal-500/20 to-primary/20 p-12 rounded-3xl border-4 border-teal-500/30 shadow-2xl relative overflow-hidden">
+                <div className="absolute -left-20 -top-20 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]"></div>
+                <h4 className="text-5xl font-black text-slate-900 dark:text-white mb-10 uppercase italic tracking-tighter decoration-teal-500 decoration-8 underline-offset-8">Ringkasan Materi</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
                     {[
                         { label: "Base Case", desc: "Kunci pintu keluar." },
@@ -281,8 +281,8 @@ export default function Module7Content() {
                         { label: "Call Stack", desc: "Tumpukan memori sistem." },
                         { label: "Tree Recursion", desc: "Pola Fibonacci/Hanoi." },
                     ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-5 p-6 bg-white/60 dark:bg-white/10 rounded-2xl border-2 border-violet-500/20 hover:scale-105 transition-transform group">
-                            <span className="material-symbols-outlined text-4xl text-violet-500 font-black group-hover:rotate-180 transition-transform duration-500">sync</span>
+                        <div key={i} className="flex items-center gap-5 p-6 bg-white/60 dark:bg-white/10 rounded-2xl border-2 border-teal-500/20 hover:scale-105 transition-transform group">
+                            <span className="material-symbols-outlined text-4xl text-teal-500 font-black group-hover:rotate-180 transition-transform duration-500">sync</span>
                             <div>
                                 <p className="font-black text-xl text-slate-900 dark:text-white">{item.label}</p>
                                 <p className="text-slate-600 dark:text-slate-400 font-bold italic">{item.desc}</p>
@@ -290,7 +290,7 @@ export default function Module7Content() {
                         </div>
                     ))}
                 </div>
-                <p className="mt-12 text-2xl font-black text-violet-500 uppercase tracking-[0.3em] font-mono">Module 7 Complete</p>
+                <p className="mt-12 text-2xl font-black text-teal-500 uppercase tracking-[0.3em] font-mono">Module 7 Complete</p>
             </div>
         </div>
     ];
@@ -335,7 +335,7 @@ export default function Module7Content() {
                     <FocusSection>
                         <section>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-violet-500/30 p-2 rounded-lg text-violet-600">
+                                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-600">
                                     <span className="material-symbols-outlined text-xl">refresh</span>
                                 </div>
                                 <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Fungsi yang Memanggil Dirinya Sendiri</h3>
@@ -347,8 +347,8 @@ export default function Module7Content() {
 
                                 {/* Analogy Grid */}
                                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                                    <div className="p-5 bg-violet-500/10 border-2 border-violet-500/30 rounded-xl flex flex-col items-center justify-center">
-                                        <p className="text-sm font-black text-violet-700 dark:text-violet-400 uppercase mb-4 text-center">Analogi: Boneka Matryoshka 🪆</p>
+                                    <div className="p-5 bg-teal-500/10 border-2 border-teal-500/30 rounded-xl flex flex-col items-center justify-center">
+                                        <p className="text-sm font-black text-teal-700 dark:text-teal-400 uppercase mb-4 text-center">Analogi: Boneka Matryoshka 🪆</p>
                                         <div className="flex items-end gap-1 mb-4">
                                             {[32, 28, 24, 20].map((size, i) => (
                                                 <motion.div
@@ -356,7 +356,7 @@ export default function Module7Content() {
                                                     animate={{ scale: [1, 1.1, 1] }}
                                                     transition={{ repeat: Infinity, duration: 2, delay: i * 0.2 }}
                                                     style={{ height: size, width: size * 0.8 }}
-                                                    className="bg-violet-400 rounded-t-full border-2 border-violet-600 opacity-80"
+                                                    className="bg-teal-400 rounded-t-full border-2 border-teal-600 opacity-80"
                                                 ></motion.div>
                                             ))}
                                         </div>
@@ -395,22 +395,22 @@ export default function Module7Content() {
                                 {/* Basic Code Example */}
                                 <div className="mt-6 border-t-2 border-dashed border-primary/10 pt-6">
                                     <p className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-sm text-violet-500">code</span>
+                                        <span className="material-symbols-outlined text-sm text-teal-500">code</span>
                                         Kode Dasar Rekursi — Contoh: Faktorial (n!)
                                     </p>
-                                    <div className="bg-slate-900 rounded-2xl overflow-hidden border-2 border-violet-500/20 shadow-lg">
+                                    <div className="bg-slate-900 rounded-2xl overflow-hidden border-2 border-teal-500/20 shadow-lg">
                                         <div className="bg-slate-800 px-4 py-2 flex justify-between items-center border-b border-white/10">
                                             <span className="text-slate-400 font-mono text-[10px] font-bold">factorial.py</span>
-                                            <span className="text-violet-400 font-black text-[9px] uppercase tracking-widest">Python</span>
+                                            <span className="text-teal-400 font-black text-[9px] uppercase tracking-widest">Python</span>
                                         </div>
                                         <pre className="p-4 text-sm font-mono overflow-auto leading-relaxed">
                                             <code>
-                                                <span className="text-purple-400">def</span>{" "}<span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
+                                                <span className="text-cyan-400">def</span>{" "}<span className="text-blue-400">factorial</span>(<span className="text-orange-300">n</span>):{"\n"}
                                                 {"    "}<span className="text-slate-400"># ① Base Case — titik berhenti</span>{"\n"}
-                                                {"    "}<span className="text-purple-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
-                                                {"        "}<span className="text-purple-400">return</span> <span className="bg-rose-500/20 text-rose-300 px-1 rounded">1</span>{"\n"}{"\n"}
+                                                {"    "}<span className="text-cyan-400">if</span> <span className="text-orange-300">n</span> {"<="} <span className="text-amber-300">1</span>:{"\n"}
+                                                {"        "}<span className="text-cyan-400">return</span> <span className="bg-rose-500/20 text-rose-300 px-1 rounded">1</span>{"\n"}{"\n"}
                                                 {"    "}<span className="text-slate-400"># ② Recursive Case — memanggil diri sendiri</span>{"\n"}
-                                                {"    "}<span className="text-purple-400">return</span> <span className="text-orange-300">n</span> * <span className="bg-violet-500/20 text-violet-300 px-1 rounded">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
+                                                {"    "}<span className="text-cyan-400">return</span> <span className="text-orange-300">n</span> * <span className="bg-teal-500/20 text-teal-300 px-1 rounded">factorial</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>)
                                             </code>
                                         </pre>
                                     </div>
@@ -422,11 +422,11 @@ export default function Module7Content() {
                                                 <p className="text-[10px] text-slate-500">Ketika <code className="text-rose-400">n &lt;= 1</code>, kembalikan <code className="text-rose-400">1</code>. Rekursi berhenti di sini.</p>
                                             </div>
                                         </div>
-                                        <div className="flex items-start gap-2 bg-violet-500/5 border border-violet-500/20 p-3 rounded-xl">
-                                            <span className="text-violet-500 font-black text-sm shrink-0">②</span>
+                                        <div className="flex items-start gap-2 bg-teal-500/5 border border-teal-500/20 p-3 rounded-xl">
+                                            <span className="text-teal-500 font-black text-sm shrink-0">②</span>
                                             <div>
-                                                <p className="text-[10px] font-black text-violet-600 dark:text-violet-400 uppercase mb-0.5">Recursive Case</p>
-                                                <p className="text-[10px] text-slate-500"><code className="text-violet-400">factorial(n-1)</code> memanggil dirinya sendiri dengan nilai <em>lebih kecil</em>, menuju Base Case.</p>
+                                                <p className="text-[10px] font-black text-teal-600 dark:text-teal-400 uppercase mb-0.5">Recursive Case</p>
+                                                <p className="text-[10px] text-slate-500"><code className="text-teal-400">factorial(n-1)</code> memanggil dirinya sendiri dengan nilai <em>lebih kecil</em>, menuju Base Case.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -450,7 +450,7 @@ export default function Module7Content() {
                                 <button onClick={() => openPresentation(1)} className="bg-primary/20 hover:bg-primary/30 text-primary text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                     <span className="material-symbols-outlined text-xs">info</span> 2 SYARAT
                                 </button>
-                                <button onClick={() => openPresentation(2)} className="bg-violet-500/20 hover:bg-violet-500/30 text-violet-600 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
+                                <button onClick={() => openPresentation(2)} className="bg-teal-500/20 hover:bg-teal-500/30 text-teal-600 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                     <span className="material-symbols-outlined text-xs">code</span> CODE
                                 </button>
                             </div>
@@ -492,17 +492,17 @@ export default function Module7Content() {
                             </div>
 
                             <div className="mt-10 p-6 bg-slate-900 rounded-2xl border-2 border-primary/10">
-                                <p className="text-xs font-mono text-violet-400 mb-4 flex items-center gap-2">
+                                <p className="text-xs font-mono text-teal-400 mb-4 flex items-center gap-2">
                                     <span className="material-symbols-outlined text-sm">code</span>
                                     Struktur Template Rekursi:
                                 </p>
                                 <pre className="text-xs font-mono">
                                     <code>
-                                        <span className="text-purple-400">def</span> <span className="text-blue-400">fungsi_rekursif</span>(<span className="text-orange-300">input</span>):{"\n"}
-                                        {"    "}<span className="text-purple-400">if</span> (<span className="text-cyan-400">kondisi_base_case</span>):  <span className="text-slate-400 italic"># Syarat 1: Berhenti</span>{"\n"}
-                                        {"        "}<span className="text-purple-400">return</span> <span className="text-amber-300">hasil_dasar</span>{"\n"}{"\n"}
+                                        <span className="text-cyan-400">def</span> <span className="text-blue-400">fungsi_rekursif</span>(<span className="text-orange-300">input</span>):{"\n"}
+                                        {"    "}<span className="text-cyan-400">if</span> (<span className="text-cyan-400">kondisi_base_case</span>):  <span className="text-slate-400 italic"># Syarat 1: Berhenti</span>{"\n"}
+                                        {"        "}<span className="text-cyan-400">return</span> <span className="text-amber-300">hasil_dasar</span>{"\n"}{"\n"}
                                         {"    "}<span className="text-slate-400 italic"># Syarat 2: Memanggil diri dengan input lebih kecil</span>{"\n"}
-                                        {"    "}<span className="text-purple-400">return</span> <span className="text-orange-300">process</span> <span className="text-rose-400">+</span> <span className="text-violet-400">fungsi_rekursif</span>(<span className="text-orange-300">input_baru</span>)
+                                        {"    "}<span className="text-cyan-400">return</span> <span className="text-orange-300">process</span> <span className="text-rose-400">+</span> <span className="text-teal-400">fungsi_rekursif</span>(<span className="text-orange-300">input_baru</span>)
                                     </code>
                                 </pre>
                             </div>
@@ -626,7 +626,7 @@ export default function Module7Content() {
                         <FocusSection>
                             <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm h-full">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="bg-amber-500/20 p-2 rounded-lg text-amber-600">
+                                    <div className="bg-cyan-500/20 p-2 rounded-lg text-cyan-600">
                                         <span className="material-symbols-outlined text-xl">account_tree</span>
                                     </div>
                                     <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase italic">Tree Recursion</h4>
@@ -634,8 +634,8 @@ export default function Module7Content() {
                                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                                     Fungsi memanggil dirinya sendiri <strong>lebih dari satu kali</strong>. Ini menciptakan struktur pohon (seperti deret Fibonacci).
                                 </p>
-                                <div className="p-3 bg-amber-500/5 border border-amber-500/20 rounded-xl">
-                                    <p className="text-[10px] font-black text-amber-600 uppercase mb-1">Bahaya: Kompleksitas O(2^n)</p>
+                                <div className="p-3 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
+                                    <p className="text-[10px] font-black text-cyan-600 uppercase mb-1">Bahaya: Kompleksitas O(2^n)</p>
                                     <p className="text-[10px] text-slate-500 italic">Data bertambah sedikit, waktu eksekusi meledak secara eksponensial.</p>
                                 </div>
                             </div>
@@ -684,8 +684,8 @@ export default function Module7Content() {
                                 </div>
                             </div>
 
-                            <div className="bg-violet-500/10 border-2 border-violet-500/20 rounded-2xl p-6">
-                                <h5 className="text-xs font-black text-violet-600 uppercase mb-3 leading-none">Penyelamat: Memoization</h5>
+                            <div className="bg-teal-500/10 border-2 border-teal-500/20 rounded-2xl p-6">
+                                <h5 className="text-xs font-black text-teal-600 uppercase mb-3 leading-none">Penyelamat: Memoization</h5>
                                 <p className="text-[10px] text-slate-500 leading-relaxed font-medium">
                                     Untuk mencegah perhitungan berulang pada Tree Recursion, kita menggunakan <strong>Memoization</strong>: teknik menyimpan hasil perhitungan sebelumnya ke dalam tabel/cache.
                                 </p>
@@ -741,13 +741,13 @@ export default function Module7Content() {
                                     </ul>
                                 </div>
                                 <div className="space-y-4">
-                                    <h5 className="font-black text-violet-400 uppercase tracking-widest text-xs flex items-center gap-2">
+                                    <h5 className="font-black text-teal-400 uppercase tracking-widest text-xs flex items-center gap-2">
                                         <span className="material-symbols-outlined text-sm">arrow_back</span>
                                         Rekursi ➔ Looping
                                     </h5>
                                     <ul className="text-xs text-slate-400 space-y-3 font-medium">
                                         <li>Jika <strong>Tail Recursion</strong>: Ubah langsung pakai <code className="text-white">while(true)</code> dan update variabel lokal. Sangat mudah.</li>
-                                        <li>Jika <strong>Tree Recursion</strong> (ada &gt;1 pemanggilan): Anda <strong>WAJIB</strong> menggunakan struktur data <strong className="text-violet-300">Stack</strong> secara manual (Array warna-warni) untuk menyimpan state yang tertunda.</li>
+                                        <li>Jika <strong>Tree Recursion</strong> (ada &gt;1 pemanggilan): Anda <strong>WAJIB</strong> menggunakan struktur data <strong className="text-teal-300">Stack</strong> secara manual (Array warna-warni) untuk menyimpan state yang tertunda.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -769,15 +769,15 @@ export default function Module7Content() {
                                     </ul>
                                 </div>
 
-                                <div className="bg-violet-500/10 border-2 border-violet-500/30 rounded-2xl p-6 relative overflow-hidden">
+                                <div className="bg-teal-500/10 border-2 border-teal-500/30 rounded-2xl p-6 relative overflow-hidden">
                                     <div className="absolute -right-4 -bottom-4 opacity-10">
-                                        <span className="material-symbols-outlined text-[120px] text-violet-500">account_tree</span>
+                                        <span className="material-symbols-outlined text-[120px] text-teal-500">account_tree</span>
                                     </div>
-                                    <div className="bg-violet-500 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full inline-block mb-4">PILIH REKURSI JIKA:</div>
+                                    <div className="bg-teal-500 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full inline-block mb-4">PILIH REKURSI JIKA:</div>
                                     <ul className="space-y-3 relative z-10 text-sm font-bold text-slate-700 dark:text-slate-300">
-                                        <li className="flex gap-2"><span className="text-violet-500">✓</span> Data Strukturnya membentuk Hirarki/Pohon (Tree, Graph, File System).</li>
-                                        <li className="flex gap-2"><span className="text-violet-500">✓</span> Menggunakan paradigma <strong>Divide and Conquer</strong> (Merge Sort, Quick Sort).</li>
-                                        <li className="flex gap-2"><span className="text-violet-500">✓</span> Keterbacaan & Kode yang Elegan & Singkat lebih penting daripada sedikit overhead performa.</li>
+                                        <li className="flex gap-2"><span className="text-teal-500">✓</span> Data Strukturnya membentuk Hirarki/Pohon (Tree, Graph, File System).</li>
+                                        <li className="flex gap-2"><span className="text-teal-500">✓</span> Menggunakan paradigma <strong>Divide and Conquer</strong> (Merge Sort, Quick Sort).</li>
+                                        <li className="flex gap-2"><span className="text-teal-500">✓</span> Keterbacaan & Kode yang Elegan & Singkat lebih penting daripada sedikit overhead performa.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -828,7 +828,7 @@ export default function Module7Content() {
                             <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm h-full flex flex-col">
                                 <h5 className="text-lg font-black text-slate-900 dark:text-white mb-4 italic uppercase">Uji Pemahaman #2</h5>
                                 <div className="space-y-2 mb-6">
-                                    <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">Berapa hasil dari <code className="bg-violet-500/10 px-2 rounded font-black text-violet-500">mystery(3)</code>?</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">Berapa hasil dari <code className="bg-teal-500/10 px-2 rounded font-black text-teal-500">mystery(3)</code>?</p>
                                     <pre className="text-[10px] bg-slate-900 p-3 rounded-xl border border-white/5 font-mono">
                                         <code className="text-slate-300">
                                             {`def mystery(n):

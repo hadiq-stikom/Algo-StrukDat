@@ -203,24 +203,24 @@ export default function Module5Content() {
                 </div>
                 <pre className="p-8 text-xl font-mono overflow-x-auto leading-relaxed max-h-[60vh]">
                     <code>
-                        <span className="text-purple-400">class</span> <span className="text-blue-400">Stack</span>:<br />
-                        &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):<br />
+                        <span className="text-cyan-400">class</span> <span className="text-blue-400">Stack</span>:<br />
+                        &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):<br />
                         &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.items = []<br /><br />
-                        &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">is_empty</span>(<span className="text-orange-300">self</span>):<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-blue-400">len</span>(<span className="text-orange-300">self</span>.items) == <span className="text-amber-300">0</span><br /><br />
+                        &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">is_empty</span>(<span className="text-orange-300">self</span>):<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">return</span> <span className="text-blue-400">len</span>(<span className="text-orange-300">self</span>.items) == <span className="text-amber-300">0</span><br /><br />
                         &nbsp;&nbsp;<span className="text-slate-400"># PUSH → O(1)</span><br />
-                        &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">push</span>(<span className="text-orange-300">self</span>, data):<br />
+                        &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">push</span>(<span className="text-orange-300">self</span>, data):<br />
                         &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data)<br /><br />
                         &nbsp;&nbsp;<span className="text-slate-400"># POP → O(1)</span><br />
-                        &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>):<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>()<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-green-400">"Empty Stack!"</span><br /><br />
+                        &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>):<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>()<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">return</span> <span className="text-green-400">"Empty Stack!"</span><br /><br />
                         &nbsp;&nbsp;<span className="text-slate-400"># PEEK → O(1)</span><br />
-                        &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">peek</span>(<span className="text-orange-300">self</span>):<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items[-<span className="text-amber-300">1</span>]<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-amber-300">None</span>
+                        &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">peek</span>(<span className="text-orange-300">self</span>):<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items[-<span className="text-amber-300">1</span>]<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">return</span> <span className="text-amber-300">None</span>
                     </code>
                 </pre>
             </div>
@@ -607,28 +607,28 @@ export default function Module5Content() {
                                     <pre className="p-5 text-xs font-mono overflow-x-auto leading-relaxed">
                                         <code className="text-slate-200">
                                             {`\
-`}<span className="text-purple-400">class</span> <span className="text-blue-400">Stack</span>:{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
+`}<span className="text-cyan-400">class</span> <span className="text-blue-400">Stack</span>:{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
     `}        <span className="text-orange-300">self</span>.items = []{`
     
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">is_empty</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-purple-400">return</span> <span className="text-blue-400">len</span>(<span className="text-orange-300">self</span>.items) == <span className="text-amber-300">0</span>{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">is_empty</span>(<span className="text-orange-300">self</span>):{`
+    `}        <span className="text-cyan-400">return</span> <span className="text-blue-400">len</span>(<span className="text-orange-300">self</span>.items) == <span className="text-amber-300">0</span>{`
     
     `}    <span className="text-slate-400"># PUSH → O(1)</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">push</span>(<span className="text-orange-300">self</span>, data):{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">push</span>(<span className="text-orange-300">self</span>, data):{`
     `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data){`
     
     `}    <span className="text-slate-400"># POP → O(1)</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():{`
-    `}            <span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(){`
-    `}        <span className="text-purple-400">return</span> <span className="text-green-400">"Empty Stack!"</span>{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>):{`
+    `}        <span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():{`
+    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(){`
+    `}        <span className="text-cyan-400">return</span> <span className="text-green-400">"Empty Stack!"</span>{`
     
     `}    <span className="text-slate-400"># PEEK → O(1)</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">peek</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():{`
-    `}            <span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items[-<span className="text-amber-300">1</span>]{`
-    `}        <span className="text-purple-400">return</span> <span className="text-amber-300">None</span>
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">peek</span>(<span className="text-orange-300">self</span>):{`
+    `}        <span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.<span className="text-blue-400">is_empty</span>():{`
+    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items[-<span className="text-amber-300">1</span>]{`
+    `}        <span className="text-cyan-400">return</span> <span className="text-amber-300">None</span>
                                         </code>
                                     </pre>
                                 </div>

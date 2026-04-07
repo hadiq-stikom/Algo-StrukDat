@@ -19,7 +19,7 @@ export default function Module4Content() {
         const [showAnswer, setShowAnswer] = useState(false);
         const [inputPassword, setInputPassword] = useState("");
         const [error, setError] = useState(false);
-        const colorClass = item.color === 'blue' ? 'blue' : item.color === 'amber' ? 'amber' : 'violet';
+        const colorClass = item.color === 'blue' ? 'blue' : item.color === 'amber' ? 'amber' : 'teal';
 
         const handleReveal = () => {
             if (password) {
@@ -140,45 +140,45 @@ export default function Module4Content() {
     const SinglyLLCode = () => (
         <code>
             <span className="text-slate-400"># Definisi Node</span><br />
-            <span className="text-purple-400">class</span> <span className="text-blue-400">Node</span>:<br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, data):<br />
+            <span className="text-cyan-400">class</span> <span className="text-blue-400">Node</span>:<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, data):<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.data = data<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.next = <span className="text-amber-300">None</span><br /><br />
-            <span className="text-purple-400">class</span> <span className="text-blue-400">SinglyLinkedList</span>:<br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">prepend</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(1)</span><br />
+            <span className="text-cyan-400">class</span> <span className="text-blue-400">SinglyLinkedList</span>:<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">prepend</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(1)</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;new_node = <span className="text-blue-400">Node</span>(data)<br />
             &nbsp;&nbsp;&nbsp;&nbsp;new_node.next = <span className="text-orange-300">self</span>.head<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.head = new_node<br /><br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">append</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(n)</span><br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">append</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(n)</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;new_node = <span className="text-blue-400">Node</span>(data)<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.head:<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.head = new_node; <span className="text-purple-400">return</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.head:<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.head = new_node; <span className="text-cyan-400">return</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;cur = <span className="text-orange-300">self</span>.head<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">while</span> cur.next: cur = cur.next<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">while</span> cur.next: cur = cur.next<br />
             &nbsp;&nbsp;&nbsp;&nbsp;cur.next = new_node
         </code>
     );
 
     const DoublyLLCode = () => (
         <code>
-            <span className="text-purple-400">class</span> <span className="text-blue-400">Node</span>:<br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, data):<br />
+            <span className="text-cyan-400">class</span> <span className="text-blue-400">Node</span>:<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, data):<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.data = data<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.prev = <span className="text-amber-300">None</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.next = <span className="text-amber-300">None</span><br /><br />
-            <span className="text-purple-400">class</span> <span className="text-blue-400">DoublyLinkedList</span>:<br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">append</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(1) with TAIL</span><br />
+            <span className="text-cyan-400">class</span> <span className="text-blue-400">DoublyLinkedList</span>:<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">append</span>(<span className="text-orange-300">self</span>, data): <span className="text-slate-400"># O(1) with TAIL</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;new_node = <span className="text-blue-400">Node</span>(data)<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.tail:<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.head = <span className="text-orange-300">self</span>.tail = new_node; <span className="text-purple-400">return</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.tail:<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.head = <span className="text-orange-300">self</span>.tail = new_node; <span className="text-cyan-400">return</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;new_node.prev = <span className="text-orange-300">self</span>.tail<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.tail.next = new_node<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.tail = new_node<br /><br />
-            &nbsp;&nbsp;<span className="text-purple-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>): <span className="text-slate-400"># O(1) delete TAIL</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> <span className="text-orange-300">self</span>.tail: <span className="text-purple-400">return</span><br />
+            &nbsp;&nbsp;<span className="text-cyan-400">def</span> <span className="text-blue-400">pop</span>(<span className="text-orange-300">self</span>): <span className="text-slate-400"># O(1) delete TAIL</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.tail: <span className="text-cyan-400">return</span><br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-orange-300">self</span>.tail = <span className="text-orange-300">self</span>.tail.prev<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-orange-300">self</span>.tail: <span className="text-orange-300">self</span>.tail.next = <span className="text-amber-300">None</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">else</span>: <span className="text-orange-300">self</span>.head = <span className="text-amber-300">None</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if</span> <span className="text-orange-300">self</span>.tail: <span className="text-orange-300">self</span>.tail.next = <span className="text-amber-300">None</span><br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">else</span>: <span className="text-orange-300">self</span>.head = <span className="text-amber-300">None</span>
         </code>
     );
 
@@ -193,7 +193,7 @@ export default function Module4Content() {
             question: "Mengapa Doubly LL bisa delete TAIL dalam O(1) sedangkan Singly LL membutuhkan O(n)?",
             answer: "Karena pointer PREV",
             explanation: "Singly LL harus traverse dari HEAD ke node sebelum TAIL (O(n)). Doubly LL langsung akses self.tail.prev (O(1)) untuk memutus rantai.",
-            color: "violet"
+            color: "teal"
         },
         {
             question: "Anda membangun fitur 'Undo/Redo' di teks editor. Struktur data mana yang paling tepat dan mengapa?",
@@ -207,7 +207,7 @@ export default function Module4Content() {
         question: "Skenario: Playlist Lagu Modern (Doubly Linked List)\nImplementasikan sistem playlist lagu dengan urutan operasi berikut:\n1. Append('Lagu A')\n2. Append('Lagu B')\n3. Prepend('Lagu C')\n4. Delete('Lagu B')\n\nInstruksi Kelompok:\n- Lakukan tracing manual (gambar node & pointer).\n- Sebutkan status HEAD dan TAIL setelah langkah ke-4.\n- Jelaskan Time Complexity total untuk seluruh urutan operasi di atas.\n- Mengapa Doubly LL lebih efisien untuk fitur 'Previous' daripada Singly LL?",
         answer: "HEAD: Lagu C, TAIL: Lagu A, Total O(n)",
         explanation: "Tracing:\n1. [A]\n2. [A ↔ B]\n3. [C ↔ A ↔ B]\n4. [C ↔ A].\nHEAD menunjuk ke C, TAIL menunjuk ke A.\nTime Complexity: Append O(1)*, Prepend O(1), Delete O(n). Total didominasi oleh Delete O(n).\nEfisiensi: Doubly LL punya pointer 'prev', sehingga pindah ke lagu sebelumnya (Previous) adalah O(1). Singly LL harus traverse ulang dari HEAD (O(n)).",
-        color: "violet"
+        color: "teal"
     };
 
     const slides = [
@@ -359,18 +359,18 @@ export default function Module4Content() {
 
         // Slide 5: Doubly Linked List Concept
         <div key="s5" className="space-y-8">
-            <div className="bg-violet-500/10 p-10 border-4 border-violet-500/30 rounded-3xl shadow-xl">
+            <div className="bg-teal-500/10 p-10 border-4 border-teal-500/30 rounded-3xl shadow-xl">
                 <div className="flex items-center gap-6 mb-8">
-                    <span className="bg-violet-500 text-white font-black px-6 py-2 rounded-xl shadow-lg text-2xl uppercase tracking-wider">TIPE 2</span>
-                    <h4 className="text-5xl font-black text-violet-600 italic tracking-tight">Doubly Linked List</h4>
+                    <span className="bg-teal-500 text-white font-black px-6 py-2 rounded-xl shadow-lg text-2xl uppercase tracking-wider">TIPE 2</span>
+                    <h4 className="text-5xl font-black text-teal-600 italic tracking-tight">Doubly Linked List</h4>
                 </div>
 
-                <div className="bg-slate-900/50 p-6 rounded-2xl border-2 border-violet-500/20 mb-8">
+                <div className="bg-slate-900/50 p-6 rounded-2xl border-2 border-teal-500/20 mb-8">
                     <h5 className="font-black text-3xl text-slate-900 dark:text-white mb-4 uppercase flex items-center gap-3">
                         <span className="material-symbols-outlined text-4xl">swap_horiz</span> "Dua Arah ⇄ (prev & next)"
                     </h5>
                     <p className="text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-bold">
-                        Setiap node menyimpan dua pointer: <strong className="text-violet-500 underline decoration-violet-500/30">prev</strong> (sebelumnya) dan <strong className="text-violet-500 underline decoration-violet-500/30">next</strong> (berikutnya).
+                        Setiap node menyimpan dua pointer: <strong className="text-teal-500 underline decoration-teal-500/30">prev</strong> (sebelumnya) dan <strong className="text-teal-500 underline decoration-teal-500/30">next</strong> (berikutnya).
                         Traversal bisa dilakukan dua arah (<span className="text-primary font-black uppercase tracking-widest text-3xl italic">HEAD ⇄ TAIL</span>).
                     </p>
                 </div>
@@ -381,10 +381,10 @@ export default function Module4Content() {
                         <p className="text-2xl font-black text-slate-600 dark:text-slate-300 flex items-center gap-2">
                             <span className="material-symbols-outlined">account_tree</span> Struktur Node:
                         </p>
-                        <div className="flex items-stretch border-4 border-violet-500 rounded-3xl overflow-hidden font-mono text-2xl shadow-2xl">
-                            <div className="bg-violet-500/10 px-6 py-6 flex items-center justify-center text-violet-600 font-black">←PREV</div>
-                            <div className="border-x-4 border-violet-500 bg-violet-500/20 px-8 py-6 flex items-center justify-center flex-1 font-black text-slate-800 dark:text-slate-100 italic">DATA</div>
-                            <div className="bg-violet-500/10 px-6 py-6 flex items-center justify-center text-violet-600 font-black">NEXT→</div>
+                        <div className="flex items-stretch border-4 border-teal-500 rounded-3xl overflow-hidden font-mono text-2xl shadow-2xl">
+                            <div className="bg-teal-500/10 px-6 py-6 flex items-center justify-center text-teal-600 font-black">←PREV</div>
+                            <div className="border-x-4 border-teal-500 bg-teal-500/20 px-8 py-6 flex items-center justify-center flex-1 font-black text-slate-800 dark:text-slate-100 italic">DATA</div>
+                            <div className="bg-teal-500/10 px-6 py-6 flex items-center justify-center text-teal-600 font-black">NEXT→</div>
                         </div>
 
                         {/* Linked Nodes Visual - Ported from Web */}
@@ -406,18 +406,18 @@ export default function Module4Content() {
                     </div>
 
                     {/* Complexity Card */}
-                    <div className="bg-slate-900 p-8 rounded-3xl border-4 border-violet-500/30 shadow-2xl space-y-6">
-                        <h6 className="text-violet-400 font-black text-xl uppercase tracking-widest border-b border-white/10 pb-4 flex items-center gap-2">
+                    <div className="bg-slate-900 p-8 rounded-3xl border-4 border-teal-500/30 shadow-2xl space-y-6">
+                        <h6 className="text-teal-400 font-black text-xl uppercase tracking-widest border-b border-white/10 pb-4 flex items-center gap-2">
                             <span className="material-symbols-outlined">speed</span> Performa Sinkron
                         </h6>
                         <div className="space-y-4">
-                            <div className="flex justify-between items-center p-4 bg-violet-500/10 rounded-xl border border-violet-500/20">
+                            <div className="flex justify-between items-center p-4 bg-teal-500/10 rounded-xl border border-teal-500/20">
                                 <span className="text-slate-200 font-bold text-xl">Insert/Delete Head</span>
-                                <span className="bg-violet-500 text-white px-4 py-1 rounded-lg font-black text-2xl shadow-sm">O(1)</span>
+                                <span className="bg-teal-500 text-white px-4 py-1 rounded-lg font-black text-2xl shadow-sm">O(1)</span>
                             </div>
-                            <div className="flex justify-between items-center p-4 bg-violet-500/10 rounded-xl border border-violet-500/20">
+                            <div className="flex justify-between items-center p-4 bg-teal-500/10 rounded-xl border border-teal-500/20">
                                 <span className="text-slate-200 font-bold text-xl">Insert/Delete Tail</span>
-                                <span className="bg-violet-500 text-white px-4 py-1 rounded-lg font-black text-2xl shadow-sm">O(1)</span>
+                                <span className="bg-teal-500 text-white px-4 py-1 rounded-lg font-black text-2xl shadow-sm">O(1)</span>
                             </div>
                             <div className="flex justify-between items-center p-4 bg-amber-500/10 rounded-xl border border-amber-500/20">
                                 <span className="text-slate-200 font-bold text-xl">Search Data</span>
@@ -432,10 +432,10 @@ export default function Module4Content() {
         // Slide 6: Doubly Linked List Implementation
         <div key="s6" className="space-y-6">
             <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-6 uppercase italic">Implementasi Doubly LL (Python)</h3>
-            <div className="bg-slate-900 rounded-3xl overflow-hidden border-4 border-violet-500/20 shadow-2xl">
+            <div className="bg-slate-900 rounded-3xl overflow-hidden border-4 border-teal-500/20 shadow-2xl">
                 <div className="bg-slate-800 px-6 py-3 flex justify-between border-b-2 border-white/10">
                     <span className="text-lg text-slate-300 font-mono font-bold">doubly_linkedlist.py</span>
-                    <span className="text-lg text-violet-400 font-bold uppercase tracking-widest">Code Snippet</span>
+                    <span className="text-lg text-teal-400 font-bold uppercase tracking-widest">Code Snippet</span>
                 </div>
                 <div className="p-8 text-xl font-mono overflow-x-auto leading-relaxed max-h-[60vh] text-slate-200">
                     <DoublyLLCode />
@@ -446,7 +446,7 @@ export default function Module4Content() {
         // Slide 7: Tracing Doubly LL
         <div key="s7" className="space-y-8 h-full flex flex-col items-center justify-center text-slate-900 dark:text-white">
             <h3 className="text-4xl font-black mb-8 uppercase italic text-center">Tracing Operasi Doubly LL</h3>
-            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-10 rounded-xl border-4 border-violet-500/30 shadow-[0_35px_60px_-15px_rgba(139,92,246,0.3)]">
+            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-10 rounded-xl border-4 border-teal-500/30 shadow-[0_35px_60px_-15px_rgba(13,148,136,0.3)]">
                 <LinkedListVisualizer initialMode="DOUBLY" />
             </div>
         </div>,
@@ -461,7 +461,7 @@ export default function Module4Content() {
                             <th className="px-6 py-4">Operasi</th>
                             <th className="px-6 py-4 text-slate-400">Array</th>
                             <th className="px-6 py-4 text-blue-400">Singly LL</th>
-                            <th className="px-6 py-4 text-violet-400">Doubly LL</th>
+                            <th className="px-6 py-4 text-teal-400">Doubly LL</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/10 text-white font-bold">
@@ -478,7 +478,7 @@ export default function Module4Content() {
                                 <td className="px-6 py-4 font-black">{row.op}</td>
                                 <td className="px-6 py-4 font-mono text-slate-400">{row.arr}</td>
                                 <td className="px-6 py-4 font-mono text-blue-300">{row.sll}</td>
-                                <td className="px-6 py-4 font-mono text-violet-300">{row.dll}</td>
+                                <td className="px-6 py-4 font-mono text-teal-300">{row.dll}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -490,7 +490,7 @@ export default function Module4Content() {
                 {[
                     { title: "Gunakan Array", color: "border-slate-500/30 bg-slate-500/10", titleColor: "text-slate-300", items: ["Akses random by index", "Ukuran data tetap", "Cache locality"] },
                     { title: "Gunakan Singly LL", color: "border-blue-500/30 bg-blue-500/10", titleColor: "text-blue-300", items: ["Insert/Delete di HEAD", "Stack & Queue", "Memori minimal"] },
-                    { title: "Gunakan Doubly LL", color: "border-violet-500/30 bg-violet-500/10", titleColor: "text-violet-300", items: ["Traversal dua arah", "Delete di TAIL: O(1)", "Browser History"] },
+                    { title: "Gunakan Doubly LL", color: "border-teal-500/30 bg-teal-500/10", titleColor: "text-teal-300", items: ["Traversal dua arah", "Delete di TAIL: O(1)", "Browser History"] },
                 ].map((card, i) => (
                     <div key={i} className={`p-6 rounded-2xl border-4 ${card.color} shadow-lg`}>
                         <h5 className={`text-xl font-black mb-3 ${card.titleColor}`}>{card.title}</h5>
@@ -544,7 +544,7 @@ export default function Module4Content() {
         // Slide 11: Group Exercise
         <div key="s11" className="space-y-6 h-full flex flex-col justify-center">
             <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="bg-violet-500/20 p-3 rounded-2xl text-violet-500 shadow-inner">
+                <div className="bg-teal-500/20 p-3 rounded-2xl text-teal-500 shadow-inner">
                     <span className="material-symbols-outlined text-3xl font-black">groups</span>
                 </div>
                 <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase italic tracking-tight">Tugas Kelompok Final</h3>
@@ -783,7 +783,7 @@ export default function Module4Content() {
                                 <button onClick={() => openPresentation(4)} className="bg-primary/20 hover:bg-primary/30 text-primary text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                     <span className="material-symbols-outlined text-xs">info</span> KONSEP
                                 </button>
-                                <button onClick={() => openPresentation(5)} className="bg-violet-500/20 hover:bg-violet-500/30 text-violet-500 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
+                                <button onClick={() => openPresentation(5)} className="bg-teal-500/20 hover:bg-teal-500/30 text-teal-500 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                     <span className="material-symbols-outlined text-xs">code</span> CODE
                                 </button>
                             </div>
@@ -795,10 +795,10 @@ export default function Module4Content() {
                     <FocusSection>
                         <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
                             <div className="flex flex-col md:flex-row">
-                                <div className="md:w-2/5 bg-violet-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-violet-500/20">
+                                <div className="md:w-2/5 bg-teal-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-teal-500/20">
                                     <div className="flex items-center gap-2 mb-4">
-                                        <span className="bg-violet-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">TIPE 2</span>
-                                        <h4 className="text-2xl font-black text-violet-600 dark:text-violet-400 italic">Doubly LL</h4>
+                                        <span className="bg-teal-500 text-white text-xs font-black px-3 py-1 rounded-lg shadow">TIPE 2</span>
+                                        <h4 className="text-2xl font-black text-teal-600 dark:text-teal-400 italic">Doubly LL</h4>
                                     </div>
                                     <h5 className="font-black text-base text-slate-900 dark:text-white mb-3">Dua Arah ⇄ (prev & next)</h5>
                                     <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-4">
@@ -807,10 +807,10 @@ export default function Module4Content() {
                                     {/* Node Visual */}
                                     <div className="mb-4">
                                         <p className="text-xs font-black text-slate-600 dark:text-slate-300 mb-2">Struktur 1 Node:</p>
-                                        <div className="flex items-stretch border-2 border-violet-500 rounded-xl overflow-hidden font-mono text-xs">
-                                            <div className="bg-violet-500/10 px-2 py-2 flex items-center justify-center text-violet-600 dark:text-violet-400 font-black">←PREV</div>
-                                            <div className="border-x-2 border-violet-500 bg-violet-500/20 px-3 py-2 flex items-center justify-center flex-1 font-black text-slate-800 dark:text-slate-100">DATA</div>
-                                            <div className="bg-violet-500/10 px-2 py-2 flex items-center justify-center text-violet-600 dark:text-violet-400 font-black">NEXT→</div>
+                                        <div className="flex items-stretch border-2 border-teal-500 rounded-xl overflow-hidden font-mono text-xs">
+                                            <div className="bg-teal-500/10 px-2 py-2 flex items-center justify-center text-teal-600 dark:text-teal-400 font-black">←PREV</div>
+                                            <div className="border-x-2 border-teal-500 bg-teal-500/20 px-3 py-2 flex items-center justify-center flex-1 font-black text-slate-800 dark:text-slate-100">DATA</div>
+                                            <div className="bg-teal-500/10 px-2 py-2 flex items-center justify-center text-teal-600 dark:text-teal-400 font-black">NEXT→</div>
                                         </div>
                                     </div>
                                     {/* Linked Node Visual */}
@@ -831,7 +831,7 @@ export default function Module4Content() {
                                     </div>
                                     <div className="mt-4 p-3 bg-slate-900 rounded-xl border border-white/10">
                                         <div className="text-xs font-black text-center">
-                                            <span className="text-violet-400">Insert/Delete Head & Tail: O(1)</span>
+                                            <span className="text-teal-400">Insert/Delete Head & Tail: O(1)</span>
                                             <span className="text-slate-500 mx-2">|</span>
                                             <span className="text-amber-400">Search: O(n)</span>
                                         </div>
@@ -840,7 +840,7 @@ export default function Module4Content() {
                                 <div className="md:w-3/5 p-0 bg-slate-900">
                                     <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
                                         <span className="text-xs text-slate-300 font-mono font-bold">doubly_linkedlist.py</span>
-                                        <span className="text-xs text-violet-400 font-bold uppercase tracking-widest">Code Snippet</span>
+                                        <span className="text-xs text-teal-400 font-bold uppercase tracking-widest">Code Snippet</span>
                                     </div>
                                     <pre className="p-5 text-xs font-mono overflow-x-auto leading-relaxed text-slate-200">
                                         <DoublyLLCode />
@@ -872,7 +872,7 @@ export default function Module4Content() {
                     <FocusSection>
                         <section>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-violet-500/30 p-2 rounded-lg text-violet-500">
+                                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-500">
                                     <span className="material-symbols-outlined text-xl">edit_square</span>
                                 </div>
                                 <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Tracing: Append 3 Node ke Doubly LL</h3>
@@ -916,7 +916,7 @@ export default function Module4Content() {
                                             <th className="px-5 py-3">Operasi</th>
                                             <th className="px-5 py-3 text-slate-300">Array</th>
                                             <th className="px-5 py-3 text-blue-400">Singly LL</th>
-                                            <th className="px-5 py-3 text-violet-400">Doubly LL</th>
+                                            <th className="px-5 py-3 text-teal-400">Doubly LL</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-white/5">
@@ -935,7 +935,7 @@ export default function Module4Content() {
                                                 <td className="px-5 py-3 font-black text-slate-200">{row.op}</td>
                                                 <td className="px-5 py-3 font-mono font-medium text-slate-300">{row.arr}</td>
                                                 <td className="px-5 py-3 font-mono font-medium text-blue-300">{row.sll}</td>
-                                                <td className="px-5 py-3 font-mono font-medium text-violet-300">{row.dll}</td>
+                                                <td className="px-5 py-3 font-mono font-medium text-teal-300">{row.dll}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -946,7 +946,7 @@ export default function Module4Content() {
                                 {[
                                     { title: "Gunakan Array jika...", color: "border-slate-500/30 bg-slate-500/10", titleColor: "text-slate-300", items: ["Perlu akses random by index", "Ukuran data sudah diketahui", "Cache locality penting (performa CPU)"] },
                                     { title: "Gunakan Singly LL jika...", color: "border-blue-500/30 bg-blue-500/10", titleColor: "text-blue-300", items: ["Banyak insert/delete di HEAD", "Implementasi Stack & Queue", "Memori minimal (1 pointer/node)"] },
-                                    { title: "Gunakan Doubly LL jika...", color: "border-violet-500/30 bg-violet-500/10", titleColor: "text-violet-300", items: ["Perlu traversal dua arah", "Banyak delete di TAIL: O(1)", "Implementasi browser history, LRU Cache"] },
+                                    { title: "Gunakan Doubly LL jika...", color: "border-teal-500/30 bg-teal-500/10", titleColor: "text-teal-300", items: ["Perlu traversal dua arah", "Banyak delete di TAIL: O(1)", "Implementasi browser history, LRU Cache"] },
                                 ].map((card, i) => (
                                     <div key={i} className={`p-4 rounded-xl border-2 ${card.color}`}>
                                         <h5 className={`text-sm font-black mb-2 ${card.titleColor}`}>{card.title}</h5>
@@ -1006,11 +1006,11 @@ export default function Module4Content() {
                 <ScrollReveal>
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                            <div className="w-full border-t-2 border-violet-500/40"></div>
+                            <div className="w-full border-t-2 border-teal-500/40"></div>
                         </div>
                         <div className="relative flex justify-center gap-4">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-violet-500 border-x-2 border-violet-500/40">Bagian 8: Tugas Kelompok Komprehensif</span>
-                            <button onClick={() => openPresentation(10)} className="bg-violet-500/20 hover:bg-violet-500/30 text-violet-500 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
+                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-teal-500 border-x-2 border-teal-500/40">Bagian 8: Tugas Kelompok Komprehensif</span>
+                            <button onClick={() => openPresentation(10)} className="bg-teal-500/20 hover:bg-teal-500/30 text-teal-500 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                 <span className="material-symbols-outlined text-xs">play_arrow</span> SLIDE
                             </button>
                         </div>
@@ -1021,7 +1021,7 @@ export default function Module4Content() {
                     <div className="max-w-4xl mx-auto">
                         <FocusSection>
                             <div className="relative overflow-hidden group">
-                                <div className="absolute -right-20 -top-20 w-64 h-64 bg-violet-500/5 rounded-full blur-[80px] group-hover:bg-violet-500/10 transition-colors"></div>
+                                <div className="absolute -right-20 -top-20 w-64 h-64 bg-teal-500/5 rounded-full blur-[80px] group-hover:bg-teal-500/10 transition-colors"></div>
                                 <ExerciseCard item={GroupExerciseData} password="psw_jawaban_Bd@" />
                             </div>
                         </FocusSection>

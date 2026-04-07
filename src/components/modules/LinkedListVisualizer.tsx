@@ -176,7 +176,7 @@ export default function LinkedListVisualizer({ initialMode = "SINGLY" }: { initi
                                 >
                                     <div className="flex items-stretch border-2 border-primary rounded-xl overflow-hidden shadow-sm bg-white dark:bg-slate-900 min-w-[80px]">
                                         {mode === "DOUBLY" && (
-                                            <div className="bg-violet-500/10 border-r border-violet-500/30 px-2 py-3 flex items-center justify-center text-[10px] font-black text-violet-500 italic">
+                                            <div className="bg-teal-500/10 border-r border-teal-500/30 px-2 py-3 flex items-center justify-center text-[10px] font-black text-teal-500 italic">
                                                 ←
                                             </div>
                                         )}

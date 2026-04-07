@@ -217,19 +217,19 @@ export default function Module6Content() {
                 <pre className="p-8 text-2xl font-mono overflow-x-auto leading-relaxed max-h-[60vh]">
                     <code className="text-slate-200">
                         {`\
-`}<span className="text-purple-400">class</span> <span className="text-blue-400">Queue</span>:{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
+`}<span className="text-cyan-400">class</span> <span className="text-blue-400">Queue</span>:{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
     `}        <span className="text-orange-300">self</span>.items = []{`
 
     `}    <span className="text-slate-400"># ENQUEUE → O(1)</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
     `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data){`
 
     `}    <span className="text-slate-400"># DEQUEUE → O(1)*</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-purple-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
-    `}            <span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
-    `}        <span className="text-purple-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
+    `}        <span className="text-cyan-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
+    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
+    `}        <span className="text-cyan-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
                     </code>
                 </pre>
                 <div className="p-6 bg-black/40 border-t-2 border-white/10">
@@ -319,7 +319,7 @@ export default function Module6Content() {
                     </div>
                     <pre className="p-6 text-sm md:text-base font-mono overflow-auto flex-1">
                         <code className="text-slate-200">
-                            {`\\\n`}<span className="text-purple-400">class</span> <span className="text-blue-400">CircularQueue</span>:{`\n    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, size):{`\n    `}        <span className="text-orange-300">self</span>.size = size{`\n    `}        <span className="text-orange-300">self</span>.queue = [<span className="text-amber-300">None</span>] * size{`\n    `}        <span className="text-orange-300">self</span>.front = <span className="text-orange-300">self</span>.rear = <span className="text-amber-300">-1</span>{`\n\n    `}    <span className="text-slate-400"># ENQUEUE → Circular</span>{`\n    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`\n    `}        <span className="text-purple-400">if</span> (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size == <span className="text-orange-300">self</span>.front:{`\n    `}            <span className="text-blue-400">print</span>(<span className="text-green-400">"Penuh!"</span>); <span className="text-purple-400">return</span>{`\n    `}        <span className="text-purple-400">if</span> <span className="text-orange-300">self</span>.front == <span className="text-amber-300">-1</span>: <span className="text-orange-300">self</span>.front = <span className="text-amber-300">0</span>{`\n    `}        <span className="bg-amber-500/20 text-amber-300 px-1 rounded"><span className="text-orange-300">self</span>.rear = (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size</span>{`\n    `}        <span className="text-orange-300">self</span>.queue[<span className="text-orange-300">self</span>.rear] = data
+                            {`\\\n`}<span className="text-cyan-400">class</span> <span className="text-blue-400">CircularQueue</span>:{`\n    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, size):{`\n    `}        <span className="text-orange-300">self</span>.size = size{`\n    `}        <span className="text-orange-300">self</span>.queue = [<span className="text-amber-300">None</span>] * size{`\n    `}        <span className="text-orange-300">self</span>.front = <span className="text-orange-300">self</span>.rear = <span className="text-amber-300">-1</span>{`\n\n    `}    <span className="text-slate-400"># ENQUEUE → Circular</span>{`\n    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`\n    `}        <span className="text-cyan-400">if</span> (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size == <span className="text-orange-300">self</span>.front:{`\n    `}            <span className="text-blue-400">print</span>(<span className="text-green-400">"Penuh!"</span>); <span className="text-cyan-400">return</span>{`\n    `}        <span className="text-cyan-400">if</span> <span className="text-orange-300">self</span>.front == <span className="text-amber-300">-1</span>: <span className="text-orange-300">self</span>.front = <span className="text-amber-300">0</span>{`\n    `}        <span className="bg-amber-500/20 text-amber-300 px-1 rounded"><span className="text-orange-300">self</span>.rear = (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size</span>{`\n    `}        <span className="text-orange-300">self</span>.queue[<span className="text-orange-300">self</span>.rear] = data
                         </code>
                     </pre>
                 </div>
@@ -352,7 +352,7 @@ export default function Module6Content() {
                         <p className="text-slate-500 font-medium text-xs">Pasien kritis ditangani sebelum pasien batuk-pilek.</p>
                     </div>
                     <div className="text-[10px] font-mono bg-slate-900 p-2 rounded-xl border border-slate-700 text-slate-200">
-                        <span className="text-purple-400">import</span> heapq<br />
+                        <span className="text-cyan-400">import</span> heapq<br />
                         pq = []<br />
                         heapq.heappush(pq, (<span className="text-amber-300">1</span>, <span className="text-green-400">"Kritis"</span>))<br />
                         heapq.heappush(pq, (<span className="text-amber-300">3</span>, <span className="text-green-400">"Batuk"</span>))
@@ -371,7 +371,7 @@ export default function Module6Content() {
                         <p className="text-slate-500 font-medium text-xs">Menyeimbangkan beban kerja antar core pada prosesor modern.</p>
                     </div>
                     <div className="text-[10px] font-mono bg-slate-900 p-2 rounded-xl border border-slate-700 text-slate-200">
-                        <span className="text-purple-400">from</span> collections <span className="text-purple-400">import</span> deque<br />
+                        <span className="text-cyan-400">from</span> collections <span className="text-cyan-400">import</span> deque<br />
                         d = deque([<span className="text-amber-300">1, 2, 3</span>])<br />
                         d.appendleft(<span className="text-amber-300">0</span>) <span className="text-slate-400"># Masuk depan</span>
                     </div>
@@ -691,19 +691,19 @@ export default function Module6Content() {
                                     <pre className="p-5 text-xs font-mono overflow-x-auto leading-relaxed">
                                         <code className="text-slate-200">
                                             {`\
-`}<span className="text-purple-400">class</span> <span className="text-blue-400">Queue</span>:{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
+`}<span className="text-cyan-400">class</span> <span className="text-blue-400">Queue</span>:{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>):{`
     `}        <span className="text-orange-300">self</span>.items = []{`
 
     `}    <span className="text-slate-400"># ENQUEUE → O(1)</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
     `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data){`
 
     `}    <span className="text-slate-400"># DEQUEUE → O(1)*</span>{`
-    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-purple-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
-    `}            <span className="text-purple-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
-    `}        <span className="text-purple-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
+    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
+    `}        <span className="text-cyan-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
+    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
+    `}        <span className="text-cyan-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
                                         </code>
                                     </pre>
                                     <p className="p-4 text-[9px] text-slate-500 italic bg-black/20 font-bold tracking-tight">
@@ -846,7 +846,7 @@ export default function Module6Content() {
                                     </div>
                                     <pre className="p-5 text-xs font-mono overflow-x-auto leading-relaxed">
                                         <code className="text-slate-200">
-                                            {`\\\n`}<span className="text-purple-400">class</span> <span className="text-blue-400">CircularQueue</span>:{`\n    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, size):{`\n    `}        <span className="text-orange-300">self</span>.size = size{`\n    `}        <span className="text-orange-300">self</span>.queue = [<span className="text-amber-300">None</span>] * size{`\n    `}        <span className="text-orange-300">self</span>.front = <span className="text-orange-300">self</span>.rear = <span className="text-amber-300">-1</span>{`\n\n    `}    <span className="text-slate-400"># ENQUEUE → Circular</span>{`\n    `}    <span className="text-purple-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`\n    `}        <span className="text-purple-400">if</span> (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size == <span className="text-orange-300">self</span>.front:{`\n    `}            <span className="text-blue-400">print</span>(<span className="text-green-400">"Penuh!"</span>); <span className="text-purple-400">return</span>{`\n    `}        <span className="text-purple-400">if</span> <span className="text-orange-300">self</span>.front == <span className="text-amber-300">-1</span>: <span className="text-orange-300">self</span>.front = <span className="text-amber-300">0</span>{`\n    `}        <span className="bg-amber-500/20 text-amber-300 px-1 rounded"><span className="text-orange-300">self</span>.rear = (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size</span>{`\n    `}        <span className="text-orange-300">self</span>.queue[<span className="text-orange-300">self</span>.rear] = data
+                                            {`\\\n`}<span className="text-cyan-400">class</span> <span className="text-blue-400">CircularQueue</span>:{`\n    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">__init__</span>(<span className="text-orange-300">self</span>, size):{`\n    `}        <span className="text-orange-300">self</span>.size = size{`\n    `}        <span className="text-orange-300">self</span>.queue = [<span className="text-amber-300">None</span>] * size{`\n    `}        <span className="text-orange-300">self</span>.front = <span className="text-orange-300">self</span>.rear = <span className="text-amber-300">-1</span>{`\n\n    `}    <span className="text-slate-400"># ENQUEUE → Circular</span>{`\n    `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`\n    `}        <span className="text-cyan-400">if</span> (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size == <span className="text-orange-300">self</span>.front:{`\n    `}            <span className="text-blue-400">print</span>(<span className="text-green-400">"Penuh!"</span>); <span className="text-cyan-400">return</span>{`\n    `}        <span className="text-cyan-400">if</span> <span className="text-orange-300">self</span>.front == <span className="text-amber-300">-1</span>: <span className="text-orange-300">self</span>.front = <span className="text-amber-300">0</span>{`\n    `}        <span className="bg-amber-500/20 text-amber-300 px-1 rounded"><span className="text-orange-300">self</span>.rear = (<span className="text-orange-300">self</span>.rear + <span className="text-amber-300">1</span>) % <span className="text-orange-300">self</span>.size</span>{`\n    `}        <span className="text-orange-300">self</span>.queue[<span className="text-orange-300">self</span>.rear] = data
                                         </code>
                                     </pre>
                                 </div>
@@ -907,7 +907,7 @@ export default function Module6Content() {
                                     <p className="text-[10px] text-slate-500">Pasien kritis (Prioritas 1) akan ditangani sebelum pasien batuk-pilek (Prioritas 3), tak peduli siapa yang datang duluan.</p>
                                 </div>
                                 <div className="text-[10px] font-mono bg-slate-100 dark:bg-slate-900 p-2 rounded border border-slate-200 dark:border-slate-800">
-                                    <span className="text-purple-400">import</span> heapq<br />
+                                    <span className="text-cyan-400">import</span> heapq<br />
                                     pq = []<br />
                                     heapq.heappush(pq, (<span className="text-amber-300">1</span>, <span className="text-green-400">"Kritis"</span>))<br />
                                     heapq.heappush(pq, (<span className="text-amber-300">3</span>, <span className="text-green-400">"Batuk"</span>))
@@ -932,7 +932,7 @@ export default function Module6Content() {
                                     <p className="text-[10px] text-slate-500">Digunakan pada sistem penjadwalan prosesor modern untuk menyeimbangkan beban kerja antar core.</p>
                                 </div>
                                 <div className="text-[10px] font-mono bg-slate-100 dark:bg-slate-900 p-2 rounded border border-slate-200 dark:border-slate-800">
-                                    <span className="text-purple-400">from</span> collections <span className="text-purple-400">import</span> deque<br />
+                                    <span className="text-cyan-400">from</span> collections <span className="text-cyan-400">import</span> deque<br />
                                     d = deque([<span className="text-amber-300">1, 2, 3</span>])<br />
                                     d.appendleft(<span className="text-amber-300">0</span>) <span className="text-slate-400"># Masuk depan</span><br />
                                     d.pop() <span className="text-slate-400"># Keluar belakang</span>
@@ -945,9 +945,9 @@ export default function Module6Content() {
                 <ScrollReveal>
                     <div className="space-y-4 border-t-2 border-dashed border-slate-200 dark:border-slate-800 pt-8 mt-8">
                         <div className="flex items-center gap-3">
-                            <span className="material-symbols-outlined text-purple-500 text-2xl">play_circle</span>
+                            <span className="material-symbols-outlined text-teal-500 text-2xl">play_circle</span>
                             <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase">Demo Animasi: Variasi Queue</h4>
-                            <button onClick={() => openPresentation(8)} className="ml-auto bg-purple-500/20 hover:bg-purple-500/30 text-purple-600 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
+                            <button onClick={() => openPresentation(8)} className="ml-auto bg-teal-500/20 hover:bg-teal-500/30 text-teal-600 text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
                                 <span className="material-symbols-outlined text-xs">slideshow</span> SLIDE DEMO
                             </button>
                         </div>

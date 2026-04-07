@@ -187,11 +187,11 @@ export default function IterationVsRecursionVisualizer() {
                     </div>
 
                     <div className="p-4 bg-slate-900 border-b border-white/5 font-mono text-xs text-slate-300">
-                        <span className="text-purple-400">let</span> result = <span className="text-amber-300">1</span>;{"\n"}
-                        <span className="text-purple-400">for</span> (<span className="text-purple-400">let</span> i = <span className="text-amber-300">2</span>; i &lt;= <span className="text-orange-300">n</span>; i++) {"{"}{"\n"}
+                        <span className="text-cyan-400">let</span> result = <span className="text-amber-300">1</span>;{"\n"}
+                        <span className="text-cyan-400">for</span> (<span className="text-cyan-400">let</span> i = <span className="text-amber-300">2</span>; i &lt;= <span className="text-orange-300">n</span>; i++) {"{"}{"\n"}
                         {"    "}result *= i;{"\n"}
                         {"}"}{"\n"}
-                        <span className="text-purple-400">return</span> result;
+                        <span className="text-cyan-400">return</span> result;
                     </div>
 
                     <div className="p-6 flex-1 flex flex-col gap-6 relative">
@@ -233,21 +233,21 @@ export default function IterationVsRecursionVisualizer() {
                 </div>
 
                 {/* RIGHT: RECURSION */}
-                <div className="bg-slate-800 rounded-2xl border-2 border-violet-500/20 flex flex-col overflow-hidden">
-                    <div className="bg-violet-500/10 p-4 border-b border-violet-500/20 flex justify-between items-center">
-                        <h4 className="font-black text-violet-400 uppercase tracking-widest flex items-center gap-2">
+                <div className="bg-slate-800 rounded-2xl border-2 border-teal-500/20 flex flex-col overflow-hidden">
+                    <div className="bg-teal-500/10 p-4 border-b border-teal-500/20 flex justify-between items-center">
+                        <h4 className="font-black text-teal-400 uppercase tracking-widest flex items-center gap-2">
                             <span className="material-symbols-outlined">account_tree</span> Rekursi
                         </h4>
                         <div className="flex gap-2">
-                            <span className="text-[9px] font-black bg-violet-500/20 text-violet-300 px-2 py-1 rounded-md">Time: O(n)</span>
+                            <span className="text-[9px] font-black bg-teal-500/20 text-teal-300 px-2 py-1 rounded-md">Time: O(n)</span>
                             <span className="text-[9px] font-black bg-rose-500/20 text-rose-300 px-2 py-1 rounded-md animate-pulse">Space: O(n)</span>
                         </div>
                     </div>
 
                     <div className="p-4 bg-slate-900 border-b border-white/5 font-mono text-xs text-slate-300">
-                        <span className="text-purple-400">function</span> <span className="text-blue-400">fact</span>(<span className="text-orange-300">n</span>) {"{"}{"\n"}
-                        {"    "}<span className="text-purple-400">if</span> (<span className="text-orange-300">n</span> &lt;= <span className="text-amber-300">1</span>) <span className="text-purple-400">return</span> <span className="text-amber-300">1</span>;{"\n"}
-                        {"    "}<span className="text-purple-400">return</span> <span className="text-orange-300">n</span> * <span className="text-blue-400">fact</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>);{"\n"}
+                        <span className="text-cyan-400">function</span> <span className="text-blue-400">fact</span>(<span className="text-orange-300">n</span>) {"{"}{"\n"}
+                        {"    "}<span className="text-cyan-400">if</span> (<span className="text-orange-300">n</span> &lt;= <span className="text-amber-300">1</span>) <span className="text-cyan-400">return</span> <span className="text-amber-300">1</span>;{"\n"}
+                        {"    "}<span className="text-cyan-400">return</span> <span className="text-orange-300">n</span> * <span className="text-blue-400">fact</span>(<span className="text-orange-300">n</span> - <span className="text-amber-300">1</span>);{"\n"}
                         {"}"}
                     </div>
 
@@ -264,7 +264,7 @@ export default function IterationVsRecursionVisualizer() {
                                         exit={{ opacity: 0, scale: 0.8, x: 50 }}
                                         className={`w-full max-w-[200px] px-3 py-2 rounded-lg border-2 shadow-md flex justify-between items-center ${frame.isReturning
                                                 ? "bg-emerald-900/40 border-emerald-500 text-emerald-100"
-                                                : "bg-violet-900/40 border-violet-500 text-violet-100"
+                                                : "bg-teal-900/40 border-teal-500 text-teal-100"
                                             }`}
                                     >
                                         <div>
@@ -282,8 +282,8 @@ export default function IterationVsRecursionVisualizer() {
 
                             {recursiveStack.length === 0 && recursiveResult !== null && (
                                 <div className="text-center animate-bounce mt-4">
-                                    <p className="text-[10px] font-black text-violet-500 uppercase mb-1 flex items-center justify-center gap-1"><span className="material-symbols-outlined text-sm">check_circle</span> Final Stack Unwound</p>
-                                    <p className="text-5xl font-black text-violet-400">{recursiveResult}</p>
+                                    <p className="text-[10px] font-black text-teal-500 uppercase mb-1 flex items-center justify-center gap-1"><span className="material-symbols-outlined text-sm">check_circle</span> Final Stack Unwound</p>
+                                    <p className="text-5xl font-black text-teal-400">{recursiveResult}</p>
                                 </div>
                             )}
 
@@ -295,7 +295,7 @@ export default function IterationVsRecursionVisualizer() {
                         {/* Logs */}
                         <div className="flex-1 bg-black/40 rounded-xl border border-white/5 p-3 overflow-y-auto max-h-[100px] flex flex-col gap-1">
                             {recursiveLogs.map((log, i) => (
-                                <p key={i} className="text-[11px] font-mono text-violet-300/80 m-0 leading-tight">
+                                <p key={i} className="text-[11px] font-mono text-teal-300/80 m-0 leading-tight">
                                     <span className="text-slate-600">&gt;</span> {log}
                                 </p>
                             ))}

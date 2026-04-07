@@ -33,7 +33,7 @@ export default function Module3Content() {
     const SortingIntroSteps = [
         { icon: "search", title: "Binary Search", desc: "Hanya bekerja pada data terurut.", color: "text-blue-500", colorWeb: "text-blue-600 dark:text-blue-400", bg: "bg-blue-500/10 border-blue-500/30" },
         { icon: "database", title: "DB Query", desc: "Sangat krusial untuk index & report.", color: "text-emerald-500", colorWeb: "text-emerald-600 dark:text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/30" },
-        { icon: "display_settings", title: "UI Rendering", desc: "Feed, Leaderboard, Kontak teman.", color: "text-violet-500", colorWeb: "text-violet-600 dark:text-violet-400", bg: "bg-violet-500/10 border-violet-500/30" },
+        { icon: "display_settings", title: "UI Rendering", desc: "Feed, Leaderboard, Kontak teman.", color: "text-teal-500", colorWeb: "text-teal-600 dark:text-teal-400", bg: "bg-teal-500/10 border-teal-500/30" },
     ];
 
     const BubbleSortSteps = [
@@ -67,7 +67,7 @@ export default function Module3Content() {
             question: "Mengapa Selection Sort dikatakan 'Unstable'?",
             answer: "Karena swap jarak jauh",
             explanation: "Selection Sort dapat menukar elemen yang nilainya sama melewati elemen lain, sehingga mengubah urutan relatif elemen tersebut. Contoh: [2a, 2b, 1] → 1 ditukar dengan 2a menjadi [1, 2b, 2a].",
-            color: "violet"
+            color: "teal"
         }
     ];
 
@@ -75,7 +75,7 @@ export default function Module3Content() {
         const [showAnswer, setShowAnswer] = useState(false);
         const [inputPassword, setInputPassword] = useState("");
         const [error, setError] = useState(false);
-        const colorClass = item.color === 'blue' ? 'blue' : item.color === 'amber' ? 'amber' : 'violet';
+        const colorClass = item.color === 'blue' ? 'blue' : item.color === 'amber' ? 'amber' : 'teal';
 
         const handleReveal = () => {
             if (password) {
@@ -195,25 +195,25 @@ export default function Module3Content() {
 
     const BubbleSortCode = () => (
         <code>
-            <span className="text-purple-400">def</span> <span className="text-blue-400">bubble_sort</span>(arr):<br />
+            <span className="text-cyan-400">def</span> <span className="text-blue-400">bubble_sort</span>(arr):<br />
             &nbsp;&nbsp;n = <span className="text-blue-400">len</span>(arr)<br />
-            &nbsp;&nbsp;<span className="text-purple-400">for</span> i <span className="text-purple-400">in</span> <span className="text-blue-400">range</span>(n):<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">for</span> i <span className="text-cyan-400">in</span> <span className="text-blue-400">range</span>(n):<br />
             &nbsp;&nbsp;&nbsp;&nbsp;swapped = <span className="text-amber-300">False</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">for</span> j <span className="text-purple-400">in</span> <span className="text-blue-400">range</span>(<span className="text-amber-300">0</span>, n-i-<span className="text-amber-300">1</span>):<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> arr[j] &gt; arr[j+<span className="text-amber-300">1</span>]:<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">for</span> j <span className="text-cyan-400">in</span> <span className="text-blue-400">range</span>(<span className="text-amber-300">0</span>, n-i-<span className="text-amber-300">1</span>):<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if</span> arr[j] &gt; arr[j+<span className="text-amber-300">1</span>]:<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[j], arr[j+<span className="text-amber-300">1</span>] = arr[j+<span className="text-amber-300">1</span>], arr[j]<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapped = <span className="text-amber-300">True</span><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if not</span> swapped:<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">break</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if not</span> swapped:<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">break</span>
         </code>
     );
 
     const SelectionSortCode = () => (
         <code>
-            <span className="text-purple-400">for</span> i <span className="text-purple-400">in</span> <span className="text-blue-400">range</span>(<span className="text-blue-400">len</span>(arr)):<br />
+            <span className="text-cyan-400">for</span> i <span className="text-cyan-400">in</span> <span className="text-blue-400">range</span>(<span className="text-blue-400">len</span>(arr)):<br />
             &nbsp;&nbsp;min_idx = i<br />
-            &nbsp;&nbsp;<span className="text-purple-400">for</span> j <span className="text-purple-400">in</span> <span className="text-blue-400">range</span>(i+<span className="text-amber-300">1</span>, <span className="text-blue-400">len</span>(arr)):<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> arr[j] &lt; arr[min_idx]:<br />
+            &nbsp;&nbsp;<span className="text-cyan-400">for</span> j <span className="text-cyan-400">in</span> <span className="text-blue-400">range</span>(i+<span className="text-amber-300">1</span>, <span className="text-blue-400">len</span>(arr)):<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">if</span> arr[j] &lt; arr[min_idx]:<br />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_idx = j<br />
             &nbsp;&nbsp;arr[i], arr[min_idx] = arr[min_idx], arr[i]
         </code>
@@ -427,10 +427,10 @@ export default function Module3Content() {
                         <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-tight">Bubble pintar berhenti jika data sudah terurut. Selection memaksa cek semua.</p>
                     </div>
                 </div>
-                <div className="bg-purple-500/10 border border-purple-500/20 p-3 rounded-xl flex items-start gap-2">
-                    <span className="material-symbols-outlined text-purple-500 text-lg shrink-0">swap_horiz</span>
+                <div className="bg-teal-500/10 border border-teal-500/20 p-3 rounded-xl flex items-start gap-2">
+                    <span className="material-symbols-outlined text-teal-500 text-lg shrink-0">swap_horiz</span>
                     <div>
-                        <h4 className="text-xs font-black text-purple-600 dark:text-purple-400 mb-1">Swap</h4>
+                        <h4 className="text-xs font-black text-teal-600 dark:text-teal-400 mb-1">Swap</h4>
                         <p className="text-[10px] text-slate-700 dark:text-slate-300 leading-tight">Bubble menukar banyak data bersebelahan. Selection irit, max (N-1) kali.</p>
                     </div>
                 </div>
@@ -865,7 +865,7 @@ export default function Module3Content() {
                                             </div>
                                         </li>
                                         <li className="flex items-start gap-4">
-                                            <div className="bg-purple-500/20 p-2 rounded-lg text-purple-400 shrink-0 mt-0.5">
+                                            <div className="bg-teal-500/20 p-2 rounded-lg text-teal-400 shrink-0 mt-0.5">
                                                 <span className="material-symbols-outlined text-xl">swap_horiz</span>
                                             </div>
                                             <div>

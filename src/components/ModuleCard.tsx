@@ -10,16 +10,16 @@ interface ModuleCardProps {
 }
 
 const colorVariants: Record<string, string> = {
-    indigo: "bg-indigo-500/20 text-indigo-400",
+    indigo: "bg-teal-500/20 text-teal-400",
     blue: "bg-blue-500/20 text-blue-400",
     amber: "bg-amber-500/20 text-amber-400",
     emerald: "bg-emerald-500/20 text-emerald-400",
     rose: "bg-rose-500/20 text-rose-400",
     cyan: "bg-cyan-500/20 text-cyan-400",
-    violet: "bg-violet-500/20 text-violet-400",
+    teal: "bg-teal-500/20 text-teal-400",
     orange: "bg-orange-500/20 text-orange-400",
     pink: "bg-pink-500/20 text-pink-400",
-    purple: "bg-purple-500/20 text-purple-400",
+    purple: "bg-teal-500/20 text-teal-400",
     lime: "bg-lime-500/20 text-lime-400",
     yellow: "bg-yellow-500/20 text-yellow-400",
     sky: "bg-sky-500/20 text-sky-400",

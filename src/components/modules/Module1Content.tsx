@@ -18,7 +18,7 @@ export default function Module1Content() {
         // Slide 1: Welcome & Roadmap
         <div key="s1" className="space-y-6">
             <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="bg-indigo-500/30 p-2 rounded-lg text-indigo-500">
+                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-500">
                     <span className="material-symbols-outlined text-xl">map</span>
                 </div>
                 <h3 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">1.1 Orientasi & Kontrak Belajar</h3>
@@ -74,7 +74,7 @@ export default function Module1Content() {
             </div>
             <div className="grid grid-cols-1 gap-4">
                 {[
-                    { title: "Fase 1: Konsep 🧠", desc: "Memahami logika di atas kertas tanpa komputer.", color: "bg-indigo-500" },
+                    { title: "Fase 1: Konsep 🧠", desc: "Memahami logika di atas kertas tanpa komputer.", color: "bg-teal-500" },
                     { title: "Fase 2: Eksperimen 💻", desc: "Gunakan AI untuk mencoba berbagai variasi kode.", color: "bg-primary" },
                     { title: "Fase 3: Validasi 📊", desc: "Buktikan secara manual bahwa output AI efisien.", color: "bg-green-500" },
                 ].map((phase, i) => (
@@ -163,7 +163,7 @@ export default function Module1Content() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
                 {[
-                    { t: "Integer", b: 4, cells: 4, color: "bg-indigo-500" },
+                    { t: "Integer", b: 4, cells: 4, color: "bg-teal-500" },
                     { t: "Char", b: 1, cells: 1, color: "bg-emerald-500" },
                     { t: "Double", b: 8, cells: 8, color: "bg-amber-500" }
                 ].map((item, idx) => (
@@ -181,22 +181,22 @@ export default function Module1Content() {
         // Slide 7: Stack vs Heap
         <div key="s7" className="space-y-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="bg-violet-500/30 p-2 rounded-lg text-violet-500">
+                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-500">
                     <span className="material-symbols-outlined text-xl">layers</span>
                 </div>
                 <h3 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">2.4 Stack vs Heap</h3>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-white dark:bg-surface border-2 border-violet-500/30 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-                    <h4 className="font-black text-3xl text-violet-500 uppercase mb-6 flex items-center gap-3">
+                <div className="bg-white dark:bg-surface border-2 border-teal-500/30 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                    <h4 className="font-black text-3xl text-teal-500 uppercase mb-6 flex items-center gap-3">
                         <span className="material-symbols-outlined">vertical_align_bottom</span>
                         The Stack
                     </h4>
                     <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 font-medium">FIXED SIZE: Variabel lokal, sangat cepat.</p>
                     <div className="flex flex-col-reverse gap-2 font-mono text-lg">
-                        <div className="bg-violet-500 text-white p-4 rounded-xl text-center font-black shadow-lg">Current Frame ▼</div>
-                        <div className="bg-violet-100 dark:bg-violet-900/40 p-4 rounded-xl text-center text-slate-500 font-bold border-2 border-violet-200/50">Local B</div>
-                        <div className="bg-violet-50 dark:bg-violet-900/20 p-4 rounded-xl text-center text-slate-400 font-bold border border-dotted border-violet-200/30">Local A</div>
+                        <div className="bg-teal-500 text-white p-4 rounded-xl text-center font-black shadow-lg">Current Frame ▼</div>
+                        <div className="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-xl text-center text-slate-500 font-bold border-2 border-teal-200/50">Local B</div>
+                        <div className="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-xl text-center text-slate-400 font-bold border border-dotted border-teal-200/30">Local A</div>
                     </div>
                 </div>
                 <div className="bg-white dark:bg-surface border-2 border-amber-500/30 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
@@ -291,7 +291,7 @@ for x in data:
                                 <span className="material-symbols-outlined text-sm">slideshow</span>
                             </button>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-indigo-500/30 p-2 rounded-lg text-indigo-500">
+                                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-500">
                                     <span className="material-symbols-outlined text-xl">map</span>
                                 </div>
                                 <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">1.1 Orientasi &amp; Kontrak Belajar</h3>
@@ -355,7 +355,7 @@ for x in data:
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {[
-                                    { title: "Fase 1: Konsep 🧠", desc: "Memahami logika di atas kertas.", color: "bg-indigo-500", border: "border-indigo-500/30" },
+                                    { title: "Fase 1: Konsep 🧠", desc: "Memahami logika di atas kertas.", color: "bg-teal-500", border: "border-teal-500/30" },
                                     { title: "Fase 2: Eksperimen 💻", desc: "Gunakan AI untuk variasi kode.", color: "bg-primary", border: "border-primary/30" },
                                     { title: "Fase 3: Validasi 📊", desc: "Buktikan output AI efisien.", color: "bg-green-500", border: "border-green-500/30" },
                                 ].map((phase, i) => (
@@ -518,13 +518,13 @@ for x in data:
                                 <span className="material-symbols-outlined text-sm">slideshow</span>
                             </button>
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="bg-violet-500/30 p-2 rounded-lg text-violet-500">
-                                    <span className="material-symbols-outlined text-xl">layers</span>
+                                <div className="bg-teal-500/30 p-2 rounded-lg text-teal-500">
+                                    <span className="material-symbols-outlined text-xl">edit_square</span>
                                 </div>
                                 <h3 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">2.4 Di Mana Data Disimpan? (Stack vs Heap)</h3>
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
-                                <div className="bg-white dark:bg-surface border-2 border-violet-500/20 rounded-2xl p-6 shadow-sm">
+                                <div className="bg-white dark:bg-surface border-2 border-teal-500/20 rounded-2xl p-6 shadow-sm">
                                     <h4 className="font-black text-base text-slate-900 dark:text-white mb-4 italic flex items-center gap-2">
                                         <span className="material-symbols-outlined text-xs">vertical_align_bottom</span> The Stack
                                     </h4>

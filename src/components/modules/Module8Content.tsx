@@ -87,7 +87,7 @@ export default function Module8Content() {
                 {[
                     { name: "Pre-order", rule: "Root → L → R", color: "bg-rose-500" },
                     { name: "In-order", rule: "L → Root → R", color: "bg-emerald-500" },
-                    { name: "Post-order", rule: "L → R → Root", color: "bg-violet-500" },
+                    { name: "Post-order", rule: "L → R → Root", color: "bg-cyan-500" },
                 ].map((t, i) => (
                     <div key={i} className="bg-white dark:bg-surface border-4 border-slate-200 dark:border-slate-800 p-6 rounded-3xl shadow-xl text-center group hover:scale-105 transition-transform">
                         <div className={`${t.color} text-white font-black py-2 px-4 rounded-xl mb-4 inline-block`}>{t.name}</div>

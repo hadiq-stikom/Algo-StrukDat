@@ -132,7 +132,7 @@ export default function VariasiQueueVisualizer() {
                     </button>
                     <button
                         onClick={() => reset("deque")}
-                        className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${mode === "deque" ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30" : "text-slate-400 hover:text-white"}`}
+                        className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${mode === "deque" ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/30" : "text-slate-400 hover:text-white"}`}
                     >
                         Deque
                     </button>
@@ -160,7 +160,7 @@ export default function VariasiQueueVisualizer() {
                     <div className="absolute right-2 top-1/2 -translate-y-1/2 border-2 border-dashed border-amber-500/30 text-amber-500/30 font-black text-xs uppercase p-2" style={{ writingMode: 'vertical-rl' }}>IN (Rear)</div>
                     {mode === "deque" && (
                         <>
-                            <div className="absolute left-10 top-1/2 -translate-y-1/2 border-2 border-dashed border-blue-500/30 text-blue-500/30 font-black text-xs uppercase p-2 rotate-180 leading-none h-auto w-auto" style={{ writingMode: 'vertical-rl' }}>IN</div>
+                            <div className="absolute left-10 top-1/2 -translate-y-1/2 border-2 border-dashed border-cyan-500/30 text-cyan-500/30 font-black text-xs uppercase p-2 rotate-180 leading-none h-auto w-auto" style={{ writingMode: 'vertical-rl' }}>IN</div>
                             <div className="absolute right-10 top-1/2 -translate-y-1/2 border-2 border-dashed border-rose-500/30 text-rose-500/30 font-black text-xs uppercase p-2 leading-none h-auto w-auto" style={{ writingMode: 'vertical-rl' }}>OUT</div>
                         </>
                     )}
@@ -244,8 +244,8 @@ export default function VariasiQueueVisualizer() {
                         </div>
                     ) : (
                         <div className="space-y-4">
-                            <div className="bg-slate-800 p-4 rounded-xl border border-blue-500/30 space-y-3">
-                                <label className="text-[10px] font-black text-blue-400 uppercase tracking-widest text-center block">Manipulasi Data</label>
+                            <div className="bg-slate-800 p-4 rounded-xl border border-cyan-500/30 space-y-3">
+                                <label className="text-[10px] font-black text-cyan-400 uppercase tracking-widest text-center block">Manipulasi Data</label>
                                 <input
                                     type="text"
                                     maxLength={3}
@@ -259,7 +259,7 @@ export default function VariasiQueueVisualizer() {
                                     <button
                                         onClick={() => dqEnqueue("front")}
                                         disabled={isExecuting || !dqValue || queue.length >= 5}
-                                        className="bg-blue-600/80 hover:bg-blue-600 text-white font-black text-[9px] py-2 rounded-lg transition-colors uppercase disabled:opacity-50 flex items-center justify-center gap-1"
+                                        className="bg-cyan-600/80 hover:bg-cyan-600 text-white font-black text-[9px] py-2 rounded-lg transition-colors uppercase disabled:opacity-50 flex items-center justify-center gap-1"
                                     >
                                         <span className="material-symbols-outlined text-[10px]">arrow_forward</span> Push Depan
                                     </button>
@@ -283,7 +283,7 @@ export default function VariasiQueueVisualizer() {
                                 <button
                                     onClick={() => dqDequeue("rear")}
                                     disabled={isExecuting || queue.length === 0}
-                                    className="bg-purple-500/80 hover:bg-purple-500 text-white font-black text-[9px] py-3 rounded-xl transition-colors uppercase disabled:opacity-50"
+                                    className="bg-teal-500/80 hover:bg-teal-500 text-white font-black text-[9px] py-3 rounded-xl transition-colors uppercase disabled:opacity-50"
                                 >
                                     Pop Belakang
                                 </button>
