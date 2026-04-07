@@ -227,9 +227,9 @@ export default function Module5Content() {
         </div>,
 
         // Slide 4: Visualizer
-        <div key="s4" className="space-y-8 h-full flex flex-col items-center justify-center">
+        <div key="s4" className="space-y-8 h-full flex flex-col items-center justify-center overflow-hidden">
             <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 uppercase italic text-center">Bagian 3: Tracing Operasi Stack</h3>
-            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-10 rounded-3xl border-4 border-rose-500/30 shadow-[0_35px_60px_-15px_rgba(244,63,94,0.3)]">
+            <div className="w-full max-w-5xl bg-white dark:bg-slate-950 p-6 md:p-8 rounded-3xl border-4 border-rose-500/30 shadow-[0_35px_60px_-15px_rgba(244,63,94,0.3)] overflow-hidden">
                 <StackVisualizer />
             </div>
         </div>,
@@ -257,35 +257,83 @@ export default function Module5Content() {
             </div>
         </div>,
 
-        // Slide 6: Algorithm
+        // Slide 6: Algorithm (Universal Evaluation)
         <div key="s6" className="space-y-8 h-full flex flex-col justify-center">
-            <div className="bg-slate-900 p-12 rounded-3xl border-4 border-primary/30 shadow-2xl relative overflow-hidden">
-                <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
-                <h4 className="text-4xl font-black text-white mb-10 uppercase italic flex items-center gap-4">
-                    <span className="material-symbols-outlined text-5xl text-primary">algorithm</span>
-                    Bagian 4: Algoritma Evaluasi Postfix (Stack)
-                </h4>
-                <div className="space-y-6">
-                    {[
-                        { step: "1", text: "Baca ekspresi dari kiri ke kanan.", color: "emerald" },
-                        { step: "2", text: "Jika ketemu ANGKA → PUSH ke stack.", color: "emerald" },
-                        { step: "3", text: "Jika ketemu OPERATOR → POP 2 angka teratas (A & B).", color: "rose" },
-                        { step: "4", text: "Hitung (A [operator] B) dan PUSH hasilnya kembali ke stack.", color: "amber" },
-                        { step: "5", text: "Hasil akhir adalah elemen tunggal yang tersisa di stack.", color: "primary" },
-                    ].map((s, i) => (
-                        <div key={i} className="flex gap-6 items-center">
-                            <div className="w-12 h-12 rounded-2xl bg-white/10 border-2 border-white/20 flex items-center justify-center font-black text-2xl text-white italic">
-                                {s.step}
+            <h3 className="text-4xl font-black text-center text-slate-900 dark:text-white mb-8 uppercase italic leading-tight">Bagian 4: Evaluasi Ekspresi Matematika</h3>
+            <div className="grid lg:grid-cols-3 gap-6 max-w-[95vw] mx-auto">
+                {/* INFIX ALGO (Slide) */}
+                <div className="bg-slate-900 border-4 border-primary/20 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col">
+                    <h4 className="text-xl font-black text-primary mb-8 uppercase tracking-widest flex items-center gap-2 italic">
+                        <span className="material-symbols-outlined text-3xl">compare_arrows</span>
+                        Infix
+                    </h4>
+                    <div className="space-y-6 flex-1">
+                        {[
+                            { s: "1", t: "Gunakan 2 Stack: Operand & Operator.", c: "primary" },
+                            { s: "2", t: "Operator masuk stack jika prioritas > Top.", c: "primary" },
+                            { s: "3", t: "Jika lebih rendah/setara → Eksekusi Top.", c: "primary" },
+                            { s: "4", t: "Parentheses ')' memicu eksekusi hingga '('.", h: true }
+                        ].map((s, i) => (
+                            <div key={i} className="flex gap-4 items-center">
+                                <div className="w-8 h-8 shrink-0 rounded-xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center font-black text-lg text-primary italic">
+                                    {s.s}
+                                </div>
+                                <p className="text-lg text-slate-300 font-bold leading-tight tracking-tight">{s.t}</p>
                             </div>
-                            <p className="text-2xl text-slate-300 font-bold tracking-tight">{s.text}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-                <div className="mt-10 p-6 bg-white/5 border-2 border-dashed border-white/20 rounded-2xl">
-                    <p className="text-xl text-slate-400 font-bold italic text-center">
-                        💡 Cobalah simulasi Postfix Evaluator pada visualizer di Slide 4 untuk melihat algoritma ini bekerja secara visual!
-                    </p>
+
+                {/* POSTFIX ALGO (Slide) */}
+                <div className="bg-slate-900 border-4 border-emerald-500/20 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col">
+                    <h4 className="text-xl font-black text-emerald-400 mb-8 uppercase tracking-widest flex items-center gap-2 italic">
+                        <span className="material-symbols-outlined text-3xl">east</span>
+                        Postfix
+                    </h4>
+                    <div className="space-y-6 flex-1">
+                        {[
+                            { s: "1", t: "Scan ekspresi dari KIRI ke KANAN.", c: "emerald" },
+                            { s: "2", t: "Oprnd → PUSH ke stack.", c: "emerald" },
+                            { s: "3", t: "Oprtr → POP 2 angka (A & B).", c: "emerald" },
+                            { s: "4", t: "Eksekusi A [op] B, PUSH hasil.", c: "emerald" }
+                        ].map((s, i) => (
+                            <div key={i} className="flex gap-4 items-center">
+                                <div className="w-8 h-8 shrink-0 rounded-xl bg-emerald-500/10 border-2 border-emerald-500/20 flex items-center justify-center font-black text-lg text-emerald-400 italic">
+                                    {s.s}
+                                </div>
+                                <p className="text-lg text-slate-300 font-bold leading-tight tracking-tight">{s.t}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+
+                {/* PREFIX ALGO (Slide) */}
+                <div className="bg-slate-900 border-4 border-blue-500/20 rounded-3xl p-8 shadow-2xl relative overflow-hidden flex flex-col">
+                    <h4 className="text-xl font-black text-blue-400 mb-8 uppercase tracking-widest flex items-center gap-2 italic">
+                        <span className="material-symbols-outlined text-3xl">west</span>
+                        Prefix
+                    </h4>
+                    <div className="space-y-6 flex-1">
+                        {[
+                            { s: "1", t: "Scan ekspresi dari KANAN ke KIRI.", c: "blue" },
+                            { s: "2", t: "Oprnd → PUSH ke stack.", c: "blue" },
+                            { s: "3", t: "Oprtr → POP 2 angka (A & B).", c: "blue" },
+                            { s: "4", t: "Eksekusi A [op] B, PUSH hasil.", c: "blue" }
+                        ].map((s, i) => (
+                            <div key={i} className="flex gap-4 items-center">
+                                <div className="w-8 h-8 shrink-0 rounded-xl bg-blue-500/10 border-2 border-blue-500/20 flex items-center justify-center font-black text-lg text-blue-400 italic">
+                                    {s.s}
+                                </div>
+                                <p className="text-lg text-slate-300 font-bold leading-tight tracking-tight">{s.t}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            <div className="mt-8 text-center bg-primary/5 p-6 rounded-3xl border-4 border-dashed border-primary/10 max-w-4xl mx-auto">
+                <p className="text-2xl text-slate-600 dark:text-slate-400 font-black italic">
+                    💡 Setiap notasi memiliki aturan arah baca dan manajemen stack yang unik!
+                </p>
             </div>
         </div>,
 
@@ -654,9 +702,9 @@ export default function Module5Content() {
                     </div>
                 </ScrollReveal>
 
-                <ScrollReveal>
+                <div className="relative">
                     <StackVisualizer />
-                </ScrollReveal>
+                </div>
             </div>
 
             {/* ─── BAGIAN 4: POLISH NOTATION ─── */}
@@ -731,28 +779,79 @@ export default function Module5Content() {
 
                 {/* Algoritma Evaluasi */}
                 <ScrollReveal>
-                    <div className="bg-slate-900 border-2 border-primary/20 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -mr-32 -mt-32"></div>
-                        <h4 className="text-xl font-black text-white mb-6 flex items-center gap-2">
-                            <span className="material-symbols-outlined text-primary">algorithm</span>
-                            Algoritma Evaluasi Postfix (Stack)
-                        </h4>
-
-                        <div className="space-y-4 relative z-10">
-                            {[
-                                { step: "1", text: "Baca ekspresi dari kiri ke kanan.", color: "slate" },
-                                { step: "2", text: "Jika ketemu ANGKA → PUSH ke stack.", color: "emerald" },
-                                { step: "3", text: "Jika ketemu OPERATOR → POP 2 angka teratas (A & B).", color: "rose" },
-                                { step: "4", text: "Hitung (A [operator] B) dan PUSH hasilnya kembali ke stack.", color: "amber" },
-                                { step: "5", text: "Hasil akhir adalah elemen tunggal yang tersisa di stack.", color: "primary" }
-                            ].map((s, i) => (
-                                <div key={i} className="flex gap-4 items-center group">
-                                    <div className={`w-8 h-8 rounded-full bg-${s.color === "primary" ? "primary" : s.color + "-500/20"} border border-${s.color === "primary" ? "primary" : s.color + "-500/40"} flex items-center justify-center text-xs font-black text-white group-hover:scale-110 transition-transform`}>
-                                        {s.step}
-                                    </div>
-                                    <p className="text-slate-300 text-sm font-medium">{s.text}</p>
+                    <div className="space-y-6">
+                        <div className="grid lg:grid-cols-3 gap-6">
+                            {/* INFIX ALGO */}
+                            <div className="bg-slate-900 border-2 border-primary/20 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col h-full">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-3xl -mr-16 -mt-16"></div>
+                                <h4 className="text-sm font-black text-primary mb-6 flex items-center gap-2 uppercase tracking-tight">
+                                    <span className="material-symbols-outlined text-base">compare_arrows</span>
+                                    Evaluasi Infix
+                                </h4>
+                                <div className="space-y-4 flex-1">
+                                    {[
+                                        { s: "1", t: "Gunakan 2 Stack: Operand & Operator.", c: "primary" },
+                                        { s: "2", t: "Operator masuk stack jika prioritas > Top.", c: "primary" },
+                                        { s: "3", t: "Jika lebih rendah/setara → Eksekusi Top.", c: "primary" },
+                                        { s: "4", t: "Kurung tutup ')' memicu eksekusi hingga '('.", h: true }
+                                    ].map((s, i) => (
+                                        <div key={i} className="flex gap-3 items-start group">
+                                            <div className="w-5 h-5 shrink-0 rounded bg-primary/20 border border-primary/40 flex items-center justify-center text-[10px] font-black text-white">
+                                                {s.s}
+                                            </div>
+                                            <p className="text-slate-400 text-[11px] font-bold leading-tight">{s.t}</p>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
+
+                            {/* POSTFIX ALGO */}
+                            <div className="bg-slate-900 border-2 border-emerald-500/20 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col h-full">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl -mr-16 -mt-16"></div>
+                                <h4 className="text-sm font-black text-emerald-400 mb-6 flex items-center gap-2 uppercase tracking-tight">
+                                    <span className="material-symbols-outlined text-base">east</span>
+                                    Evaluasi Postfix
+                                </h4>
+                                <div className="space-y-4 flex-1">
+                                    {[
+                                        { s: "1", t: "Scan ekspresi dari KIRI ke KANAN.", c: "emerald" },
+                                        { s: "2", t: "ANGKA → PUSH ke stack.", c: "emerald" },
+                                        { s: "3", t: "OPERATOR → POP 2 angka (A & B).", c: "emerald" },
+                                        { s: "4", t: "PUSH hasil (A [op] B) ke stack.", c: "emerald" }
+                                    ].map((s, i) => (
+                                        <div key={i} className="flex gap-3 items-start group">
+                                            <div className="w-5 h-5 shrink-0 rounded bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-[10px] font-black text-emerald-400">
+                                                {s.s}
+                                            </div>
+                                            <p className="text-slate-400 text-[11px] font-bold leading-tight">{s.t}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* PREFIX ALGO */}
+                            <div className="bg-slate-900 border-2 border-blue-500/20 rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col h-full">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl -mr-16 -mt-16"></div>
+                                <h4 className="text-sm font-black text-blue-400 mb-6 flex items-center gap-2 uppercase tracking-tight">
+                                    <span className="material-symbols-outlined text-base">west</span>
+                                    Evaluasi Prefix
+                                </h4>
+                                <div className="space-y-4 flex-1">
+                                    {[
+                                        { s: "1", t: "Scan ekspresi dari KANAN ke KIRI.", c: "blue" },
+                                        { s: "2", t: "ANGKA → PUSH ke stack.", c: "blue" },
+                                        { s: "3", t: "OPERATOR → POP 2 angka (A & B).", c: "blue" },
+                                        { s: "4", t: "PUSH hasil (A [op] B) ke stack.", c: "blue" }
+                                    ].map((s, i) => (
+                                        <div key={i} className="flex gap-3 items-start group">
+                                            <div className="w-5 h-5 shrink-0 rounded bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-[10px] font-black text-blue-400">
+                                                {s.s}
+                                            </div>
+                                            <p className="text-slate-400 text-[11px] font-bold leading-tight">{s.t}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </ScrollReveal>
@@ -760,7 +859,7 @@ export default function Module5Content() {
                 <ScrollReveal>
                     <div className="mt-8 text-center bg-primary/5 p-6 rounded-2xl border-2 border-dashed border-primary/20">
                         <p className="text-sm font-bold text-slate-600 dark:text-slate-400 italic">
-                            💡 Cobalah simulasi Postfix Evaluator pada visualizer di Bagian 3 (Pilih mode POSTFIX) untuk melihat algoritma ini bekerja secara visual!
+                            💡 Cobalah berbagai mode Evaluator (POSTFIX, PREFIX, INFIX) pada visualizer di Bagian 3 untuk melihat bagaimana Stack digunakan dalam berbagai notasi matematika!
                         </p>
                     </div>
                 </ScrollReveal>
