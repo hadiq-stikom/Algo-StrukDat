@@ -9,11 +9,18 @@ interface Item {
     priority?: number; // 1 (High) - 3 (Low), for Priority Queue
 }
 
+const SIZE = 5;
 type Mode = "priority" | "deque";
 
 export default function VariasiQueueVisualizer() {
     const [mode, setMode] = useState<Mode>("priority");
-    const [queue, setQueue] = useState<Item[]>([]);
+    const [dequeType, setDequeType] = useState<"circular" | "linear">("circular");
+
+    const [queue, setQueue] = useState<(Item | null)[]>([]);
+    const [front, setFront] = useState(-1);
+    const [rear, setRear] = useState(-1);
+    const [count, setCount] = useState(0);
+
     const [isExecuting, setIsExecuting] = useState(false);
     const [info, setInfo] = useState("Pilih mode dan operasikan antrean untuk melihat simulasi.");
 
@@ -25,10 +32,29 @@ export default function VariasiQueueVisualizer() {
     const [dqValue, setDqValue] = useState("");
 
     // Reset simulator
-    const reset = (newMode: Mode) => {
+    const reset = (newMode: Mode, newDequeType?: "circular" | "linear") => {
         setMode(newMode);
-        setQueue([]);
-        setInfo(`Mode ${newMode === "priority" ? "Priority Queue" : "Deque"} siap!`);
+        const type = newDequeType || dequeType;
+        if (newDequeType) setDequeType(newDequeType);
+
+        if (newMode === "deque") {
+            if (type === "circular") {
+                setQueue(Array(SIZE).fill(null));
+                setFront(-1);
+                setRear(-1);
+                setCount(0);
+                setInfo(`Mode Deque (Circular) siap! Pointer berputar lewat Modulo.`);
+            } else {
+                setQueue([]);
+                setCount(0);
+                setInfo(`Mode Deque (Linear) siap! Elemen akan digeser (Shifting) saat push depan.`);
+            }
+        } else {
+            setQueue([]);
+        }
+        if (newMode === "priority") {
+            setInfo(`Mode Priority Queue siap!`);
+        }
         setIsExecuting(false);
     };
 
@@ -79,43 +105,105 @@ export default function VariasiQueueVisualizer() {
     // --- DEQUE LOGIC ---
     const dqEnqueue = async (side: "front" | "rear") => {
         if (!dqValue) return;
-        if (queue.length >= 5) {
+        if (count >= SIZE) {
             setInfo("Antrean penuh! (Maks 5)");
             return;
         }
 
         setIsExecuting(true);
-        setInfo(`1. Menerima elemen '${dqValue}' secara paksa dari jalur ${side === "front" ? "DEPAN" : "BELAKANG"}...`);
-        await new Promise(r => setTimeout(r, 800));
-
         const newItem: Item = { id: Date.now(), value: dqValue };
-        setQueue(prev => {
-            if (side === "front") return [newItem, ...prev];
-            return [...prev, newItem];
-        });
 
-        setInfo(`✅ '${dqValue}' berhasil dimasukkan dari ${side}.`);
+        if (dequeType === "circular") {
+            setInfo(`1. Menerima elemen '${dqValue}' dari jalur ${side === "front" ? "DEPAN" : "BELAKANG"}...`);
+            await new Promise(r => setTimeout(r, 600));
+
+            let newFront = front;
+            let newRear = rear;
+            let targetIndex = -1;
+
+            if (side === "rear") {
+                targetIndex = (rear + 1) % SIZE;
+                newRear = targetIndex;
+                if (front === -1) newFront = 0;
+                setInfo(`2. REAR berputar dari ${rear} ke ${newRear}.`);
+            } else {
+                targetIndex = front === -1 ? 0 : (front - 1 + SIZE) % SIZE;
+                newFront = targetIndex;
+                if (rear === -1) newRear = 0;
+                setInfo(`2. FRONT berputar dari ${front} ke ${newFront}.`);
+            }
+
+            await new Promise(r => setTimeout(r, 600));
+            setQueue(prev => {
+                const next = [...prev];
+                next[targetIndex] = newItem;
+                return next;
+            });
+            setFront(newFront);
+            setRear(newRear);
+        } else {
+            // LINEAR LOGIC
+            if (side === "front") {
+                setInfo(`1. Menambahkan '${dqValue}' di DEPAN. PERHATIAN: Semua elemen lain harus digeser ke kanan!`);
+                await new Promise(r => setTimeout(r, 1000));
+                setQueue(prev => [newItem, ...prev]);
+            } else {
+                setInfo(`1. Menambahkan '${dqValue}' di BELAKANG. (Efisiensi O(1) karena tidak ada shifting).`);
+                await new Promise(r => setTimeout(r, 800));
+                setQueue(prev => [...prev, newItem]);
+            }
+        }
+
+        setCount(prev => prev + 1);
+        setInfo(`✅ '${dqValue}' berhasil dimasukkan.`);
         setDqValue("");
         setIsExecuting(false);
     };
 
     const dqDequeue = async (side: "front" | "rear") => {
-        if (queue.length === 0) {
+        if (count === 0) {
             setInfo("Antrean kosong!");
             return;
         }
 
         setIsExecuting(true);
-        const item = side === "front" ? queue[0] : queue[queue.length - 1];
-        setInfo(`1. Mengambil elemen dari ${side === "front" ? "DEPAN" : "BELAKANG"}: '${item.value}'...`);
-        await new Promise(r => setTimeout(r, 800));
 
-        setQueue(prev => {
-            if (side === "front") return prev.slice(1);
-            return prev.slice(0, prev.length - 1);
-        });
+        if (dequeType === "circular") {
+            const targetIndex = side === "front" ? front : rear;
+            const item = queue[targetIndex];
+            setInfo(`1. Mengambil '${item?.value}' dari ${side === "front" ? "FRONT" : "REAR"} di index [${targetIndex}]...`);
+            await new Promise(r => setTimeout(r, 800));
 
-        setInfo(`✅ '${item.value}' telah dikeluarkan.`);
+            setQueue(prev => {
+                const next = [...prev];
+                next[targetIndex] = null;
+                return next;
+            });
+
+            if (count === 1) {
+                setFront(-1);
+                setRear(-1);
+            } else {
+                if (side === "front") setFront((front + 1) % SIZE);
+                else setRear((rear - 1 + SIZE) % SIZE);
+            }
+            setInfo(`✅ '${item?.value}' telah dikeluarkan.`);
+        } else {
+            // LINEAR LOGIC
+            const item = side === "front" ? queue[0] : queue[queue.length - 1];
+            if (side === "front") {
+                setInfo(`1. Mengambil '${item?.value}' dari DEPAN. PERHATIAN: Semua sisa elemen harus digeser ke kiri!`);
+                await new Promise(r => setTimeout(r, 1000));
+                setQueue(prev => prev.slice(1));
+            } else {
+                setInfo(`1. Mengambil '${item?.value}' dari BELAKANG. (Efisiensi O(1) karena tidak ada shifting).`);
+                await new Promise(r => setTimeout(r, 800));
+                setQueue(prev => prev.slice(0, -1));
+            }
+            setInfo(`✅ Elemen '${item?.value}' telah dikeluarkan.`);
+        }
+
+        setCount(prev => prev - 1);
         setIsExecuting(false);
     };
 
@@ -165,34 +253,104 @@ export default function VariasiQueueVisualizer() {
                         </>
                     )}
 
-                    <div className="flex gap-3 z-10 w-full justify-center">
+                    <div className="flex gap-3 z-10 w-full justify-center items-end">
                         <AnimatePresence mode="popLayout">
-                            {queue.map((item, idx) => (
-                                <motion.div
-                                    key={item.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.5, y: -50 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    exit={{ opacity: 0, scale: 0.5, y: 50 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                    className={`w-16 h-16 flex flex-col justify-center items-center rounded-xl border-2 font-black shadow-lg relative
-                                        ${idx === 0 ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-slate-600 bg-slate-800 text-white"}
-                                    `}
-                                >
-                                    <span className="text-xl">{item.value}</span>
-                                    {mode === "priority" && (
-                                        <span className={`absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white shadow-md border border-white/20
-                                            ${item.priority === 1 ? 'bg-rose-500' : item.priority === 2 ? 'bg-amber-500' : 'bg-slate-500'}
-                                        `}>
-                                            P{item.priority}
-                                        </span>
-                                    )}
-                                    <span className="absolute -bottom-5 text-[9px] text-slate-500 font-mono tracking-widest text-center">[{idx}]</span>
-                                </motion.div>
-                            ))}
+                            {queue.map((item, idx) => {
+                                if (mode === "priority" && item) {
+                                    return (
+                                        <motion.div
+                                            key={item.id}
+                                            layout
+                                            initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+                                            className={`w-16 h-16 flex flex-col justify-center items-center rounded-xl border-2 font-black shadow-lg relative
+                                                ${idx === 0 ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-slate-600 bg-slate-800 text-white"}
+                                            `}
+                                        >
+                                            <span className="text-xl">{item.value}</span>
+                                            <span className={`absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white shadow-md border border-white/20
+                                                ${item.priority === 1 ? 'bg-rose-500' : item.priority === 2 ? 'bg-amber-500' : 'bg-slate-500'}
+                                            `}>
+                                                P{item.priority}
+                                            </span>
+                                            <span className="absolute -bottom-5 text-[9px] text-slate-500 font-mono tracking-widest text-center">[{idx}]</span>
+                                        </motion.div>
+                                    );
+                                } else if (mode === "deque") {
+                                    if (dequeType === "circular") {
+                                        const isFront = idx === front;
+                                        const isRear = idx === rear;
+                                        const isActive = item !== null;
+
+                                        return (
+                                            <div key={idx} className="flex flex-col items-center gap-1">
+                                                <div className="flex gap-1 text-[8px] font-black uppercase justify-center h-4">
+                                                    {isFront && <motion.span initial={{y:5}} animate={{y:0}} className="text-emerald-400 bg-emerald-400/10 px-1 rounded">F</motion.span>}
+                                                    {isRear && <motion.span initial={{y:5}} animate={{y:0}} className="text-amber-400 bg-amber-400/10 px-1 rounded">R</motion.span>}
+                                                </div>
+                                                <motion.div
+                                                    layout
+                                                    animate={{ 
+                                                        scale: isActive ? 1 : 0.95,
+                                                        opacity: isActive ? 1 : 0.3
+                                                    }}
+                                                    className={`w-14 h-14 md:w-16 md:h-16 flex flex-col justify-center items-center rounded-xl border-2 font-black shadow-lg relative transition-colors
+                                                        ${isActive 
+                                                            ? (isFront ? "border-emerald-500 bg-emerald-500/20 text-emerald-400" : isRear ? "border-amber-500 bg-amber-500/20 text-amber-400" : "border-cyan-500/50 bg-slate-800 text-cyan-400") 
+                                                            : "border-slate-700 border-dashed bg-transparent text-slate-600"}
+                                                    `}
+                                                >
+                                                    <AnimatePresence mode="wait">
+                                                        {item ? (
+                                                            <motion.span 
+                                                                key={item.id}
+                                                                initial={{ opacity: 0, scale: 0.5 }}
+                                                                animate={{ opacity: 1, scale: 1 }}
+                                                                exit={{ opacity: 0, scale: 0.5 }}
+                                                                className="text-xl"
+                                                            >
+                                                                {item.value}
+                                                            </motion.span>
+                                                        ) : (
+                                                            <span key="empty" className="text-[8px] uppercase opacity-20">null</span>
+                                                        )}
+                                                    </AnimatePresence>
+                                                    <span className="absolute -bottom-5 text-[9px] text-slate-500 font-mono tracking-widest">[{idx}]</span>
+                                                </motion.div>
+                                            </div>
+                                        );
+                                    } else if (item) {
+                                        // LINEAR DEQUE VISUALS (Shift only)
+                                        return (
+                                            <motion.div
+                                                key={item.id}
+                                                layout
+                                                initial={{ opacity: 0, scale: 0.5, x: 20 }}
+                                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                exit={{ opacity: 0, scale: 0.5, x: -20 }}
+                                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                                className={`w-14 h-14 md:w-16 md:h-16 flex flex-col justify-center items-center rounded-xl border-2 font-black shadow-lg relative
+                                                    ${idx === 0 ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-slate-600 bg-slate-800 text-white"}
+                                                `}
+                                            >
+                                                <span className="text-xl">{item.value}</span>
+                                                <span className="absolute -bottom-5 text-[9px] text-slate-500 font-mono tracking-widest text-center">[{idx}]</span>
+                                                {idx === 0 && <span className="absolute -top-4 text-[8px] text-emerald-500 font-black uppercase">Front</span>}
+                                            </motion.div>
+                                        );
+                                    }
+                                }
+                                return null;
+                            })}
                         </AnimatePresence>
-                        {queue.length === 0 && (
+                        {mode === "priority" && queue.length === 0 && (
                             <div className="text-slate-500 font-black uppercase text-sm tracking-[0.3em] z-10">Antrean Kosong</div>
+                        )}
+                        {mode === "deque" && count === 0 && (
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div className="text-slate-500 font-black uppercase text-sm tracking-[0.3em] opacity-20">Deque Kosong</div>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -244,6 +402,22 @@ export default function VariasiQueueVisualizer() {
                         </div>
                     ) : (
                         <div className="space-y-4">
+                            {/* Deque Type Toggle */}
+                            <div className="flex bg-slate-900 border border-slate-700 p-1 rounded-lg mb-2">
+                                <button 
+                                    onClick={() => reset("deque", "linear")}
+                                    className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${dequeType === "linear" ? "bg-cyan-500 text-white shadow-lg" : "text-slate-500 hover:text-white"}`}
+                                >
+                                    LINEAR (SHIFTED)
+                                </button>
+                                <button 
+                                    onClick={() => reset("deque", "circular")}
+                                    className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${dequeType === "circular" ? "bg-amber-500 text-white shadow-lg" : "text-slate-500 hover:text-white"}`}
+                                >
+                                    CIRCULAR (POINTER)
+                                </button>
+                            </div>
+
                             <div className="bg-slate-800 p-4 rounded-xl border border-cyan-500/30 space-y-3">
                                 <label className="text-[10px] font-black text-cyan-400 uppercase tracking-widest text-center block">Manipulasi Data</label>
                                 <input
@@ -258,14 +432,14 @@ export default function VariasiQueueVisualizer() {
                                 <div className="grid grid-cols-2 gap-2">
                                     <button
                                         onClick={() => dqEnqueue("front")}
-                                        disabled={isExecuting || !dqValue || queue.length >= 5}
+                                        disabled={isExecuting || !dqValue || count >= SIZE}
                                         className="bg-cyan-600/80 hover:bg-cyan-600 text-white font-black text-[9px] py-2 rounded-lg transition-colors uppercase disabled:opacity-50 flex items-center justify-center gap-1"
                                     >
                                         <span className="material-symbols-outlined text-[10px]">arrow_forward</span> Push Depan
                                     </button>
                                     <button
                                         onClick={() => dqEnqueue("rear")}
-                                        disabled={isExecuting || !dqValue || queue.length >= 5}
+                                        disabled={isExecuting || !dqValue || count >= SIZE}
                                         className="bg-amber-600/80 hover:bg-amber-600 text-white font-black text-[9px] py-2 rounded-lg transition-colors uppercase disabled:opacity-50 flex items-center justify-center gap-1"
                                     >
                                         Push Belakang <span className="material-symbols-outlined text-[10px]">arrow_back</span>
@@ -275,14 +449,14 @@ export default function VariasiQueueVisualizer() {
                             <div className="grid grid-cols-2 gap-2">
                                 <button
                                     onClick={() => dqDequeue("front")}
-                                    disabled={isExecuting || queue.length === 0}
+                                    disabled={isExecuting || count === 0}
                                     className="bg-rose-500/80 hover:bg-rose-500 text-white font-black text-[9px] py-3 rounded-xl transition-colors uppercase disabled:opacity-50"
                                 >
                                     Pop Depan
                                 </button>
                                 <button
                                     onClick={() => dqDequeue("rear")}
-                                    disabled={isExecuting || queue.length === 0}
+                                    disabled={isExecuting || count === 0}
                                     className="bg-teal-500/80 hover:bg-teal-500 text-white font-black text-[9px] py-3 rounded-xl transition-colors uppercase disabled:opacity-50"
                                 >
                                     Pop Belakang

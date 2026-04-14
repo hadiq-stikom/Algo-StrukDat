@@ -149,6 +149,7 @@ export default function Module6Content() {
                             NEW
                         </motion.div>
                     </div>
+                    <p className="text-sm text-slate-500 font-bold italic text-center">Analogi dasar: Siapa cepat dia dapat layanan.</p>
                 </div>
                 <div className="bg-slate-900 p-8 rounded-3xl border-4 border-emerald-500/20 shadow-2xl text-left">
                     <p className="text-emerald-400 font-black text-xl mb-6 uppercase tracking-widest">Digital Use Cases:</p>
@@ -169,11 +170,89 @@ export default function Module6Content() {
                     </ul>
                 </div>
             </div>
+
+            {/* Special Highlight: Marketplace */}
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="bg-linear-to-r from-cyan-600 to-blue-700 p-1 rounded-3xl mt-8 shadow-2xl"
+            >
+                <div className="bg-slate-900 rounded-[22px] p-8 flex flex-col md:flex-row items-center gap-8 text-left">
+                    <div className="bg-blue-500/20 p-6 rounded-2xl">
+                        <span className="material-symbols-outlined text-6xl text-blue-400 animate-pulse">shopping_cart_checkout</span>
+                    </div>
+                    <div>
+                        <h4 className="text-2xl font-black text-white uppercase italic mb-2 tracking-tighter">🚨 Kasus Modern: Marketplace Flash Sale</h4>
+                        <p className="text-slate-300 text-lg font-medium leading-relaxed max-w-2xl">
+                            Saat jutaan user menekan tombol <strong className="text-white">"Beli Sekarang"</strong> secara bersamaan, server tidak bisa memproses semuanya seketika. 
+                            Queue digunakan untuk menampung permintaan tersebut dan memprosesnya satu per satu untuk mencegah sistem <strong className="text-rose-400">CRASH</strong>.
+                        </p>
+                    </div>
+                </div>
+            </motion.div>
         </div>,
 
         // Slide 2: Operations & Pointers
         <div key="s2" className="space-y-8">
             <h3 className="text-4xl font-black text-center text-slate-900 dark:text-white mb-10 uppercase italic">Bagian 2: Core Operations ⚙️</h3>
+            <div className="bg-blue-500/10 border-4 border-blue-500/30 p-10 rounded-3xl mt-10">
+                <h4 className="text-2xl font-black text-blue-600 dark:text-blue-400 mb-8 uppercase italic flex items-center gap-3 justify-center">
+                    <span className="material-symbols-outlined text-3xl">architecture</span>
+                    Anatomi Queue (Pointer System)
+                </h4>
+                
+                <div className="relative flex items-center justify-center py-12">
+                    {/* Front Pointer Indicator */}
+                    <div className="absolute -top-4 left-[20%] flex flex-col items-center">
+                        <span className="text-rose-500 font-black text-xs uppercase tracking-widest mb-2">FRONT (Exit)</span>
+                        <motion.span 
+                            animate={{ y: [0, 5, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            className="material-symbols-outlined text-rose-500 text-3xl"
+                        >
+                            arrow_downward
+                        </motion.span>
+                    </div>
+
+                    {/* Queue Pipe Visual */}
+                    <div className="w-full max-w-2xl h-24 bg-slate-900 border-x-8 border-dashed border-slate-700 rounded-3xl flex items-center px-4 gap-4 shadow-2xl relative overflow-hidden">
+                        <div className="absolute inset-0 bg-linear-to-r from-rose-500/10 via-transparent to-emerald-500/10"></div>
+                        {[1, 2, 3, 4].map((v) => (
+                            <div key={v} className={`h-16 flex-1 rounded-xl border-2 flex items-center justify-center font-black text-xl shadow-lg ${v === 1 ? 'bg-rose-500 border-rose-400 text-white' : v === 4 ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-slate-800 border-slate-700 text-slate-400'}`}>
+                                {v === 1 ? 'Data A' : v === 4 ? 'Data D' : '...'}
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Rear Pointer Indicator */}
+                    <div className="absolute -bottom-4 right-[20%] flex flex-col items-center">
+                        <motion.span 
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            className="material-symbols-outlined text-emerald-500 text-3xl"
+                        >
+                            arrow_upward
+                        </motion.span>
+                        <span className="text-emerald-500 font-black text-xs uppercase tracking-widest mt-2">REAR (Entry)</span>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8 mt-10">
+                    <div className="bg-white/50 dark:bg-white/5 p-5 rounded-2xl border-2 border-rose-500/20 text-left">
+                        <p className="text-rose-500 font-black text-lg mb-2 flex items-center gap-2">
+                            <span className="material-symbols-outlined">first_page</span> FRONT Pointer
+                        </p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">Penunjuk data <strong className="text-rose-500 underline">terdepan</strong>. Elemen inilah yang akan dihapus selanjutnya saat operasi Dequeue.</p>
+                    </div>
+                    <div className="bg-white/50 dark:bg-white/5 p-5 rounded-2xl border-2 border-emerald-500/20 text-left">
+                        <p className="text-emerald-500 font-black text-lg mb-2 flex items-center gap-2">
+                            <span className="material-symbols-outlined">last_page</span> REAR Pointer
+                        </p>
+                        <p className="text-sm text-slate-600 dark:text-slate-300 font-medium">Penunjuk data <strong className="text-emerald-500 underline">paling belakang</strong>. Posisi tempat data baru akan masuk saat operasi Enqueue.</p>
+                    </div>
+                </div>
+            </div>
+
             <div className="grid grid-cols-3 gap-6">
                 {[
                     { label: "ENQUEUE", title: "TAMBAH BELAKANG", desc: "Masuk lewat REAR.", color: "bg-emerald-500" },
@@ -190,20 +269,7 @@ export default function Module6Content() {
                     </div>
                 ))}
             </div>
-            <div className="bg-blue-500/10 border-4 border-blue-500/30 p-8 rounded-3xl mt-10 grid grid-cols-2 gap-8">
-                <div>
-                    <p className="text-blue-600 dark:text-blue-400 font-black text-xl mb-2 flex items-center gap-3 italic">
-                        <span className="material-symbols-outlined">east</span> FRONT Pointer
-                    </p>
-                    <p className="text-lg text-slate-700 dark:text-slate-200 font-medium">Menunjuk ke elemen <strong className="text-primary italic">pertama</strong> yang akan diproses.</p>
-                </div>
-                <div>
-                    <p className="text-blue-600 dark:text-blue-400 font-black text-xl mb-2 flex items-center gap-3 italic">
-                        <span className="material-symbols-outlined">west</span> REAR Pointer
-                    </p>
-                    <p className="text-lg text-slate-700 dark:text-slate-200 font-medium">Menunjuk ke elemen <strong className="text-primary italic">terakhir</strong> yang baru saja masuk.</p>
-                </div>
-            </div>
+
         </div>,
 
         // Slide 3: Code Implementation
@@ -225,11 +291,22 @@ export default function Module6Content() {
     `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
     `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data){`
 
-    `}    <span className="text-slate-400"># DEQUEUE → O(1)*</span>{`
     `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-cyan-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
-    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
-    `}        <span className="text-cyan-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
+    `}        <span className="text-cyan-400">if not</span> <span className="text-orange-300">self</span>.items: <span className="text-cyan-400">return</span> <span className="text-green-400">"Empty"</span>{`
+    
+    `}        <span className="text-slate-400"># 1. Simpan elemen terdepan</span>{`
+    `}        data = <span className="text-orange-300">self</span>.items[<span className="text-amber-300">0</span>]{`
+    
+    `}        <span className="text-slate-400"># 2. PROSES GESER (SHIFTING) → O(n)</span>{`
+    `}        <span className="text-cyan-400">for</span> i <span className="text-cyan-400">in range</span>(<span className="text-cyan-400">len</span>(<span className="text-orange-300">self</span>.items) - <span className="text-amber-300">1</span>):{`
+    `}            <span className="text-orange-300">self</span>.items[i] = <span className="text-orange-300">self</span>.items[i+<span className="text-amber-300">1</span>]{`
+    
+    `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>() <span className="text-slate-400"># Hapus duplikat di akhir</span>{`
+    `}        <span className="text-cyan-400">return</span> data{`
+
+`}    <span className="text-slate-400"># Menggunakan pop(0) juga melakukan proses geser di atas!</span>{`
+`}    <span className="text-cyan-400">def</span> <span className="text-blue-400">simple_dequeue</span>(<span className="text-orange-300">self</span>):{`
+`}        <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>)  <span className="text-slate-400"># Tetap O(n)</span>
                     </code>
                 </pre>
                 <div className="p-6 bg-black/40 border-t-2 border-white/10">
@@ -614,6 +691,49 @@ export default function Module6Content() {
                                         </ul>
                                     </div>
                                 </div>
+
+                                {/* Modern Marketplace Example */}
+                                <div className="p-6 bg-slate-900 border-2 border-blue-500/30 rounded-2xl relative overflow-hidden group">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                        <span className="material-symbols-outlined text-8xl text-blue-400">bolt</span>
+                                    </div>
+                                    <div className="relative z-10">
+                                        <h4 className="text-lg font-black text-blue-400 uppercase italic mb-4 flex items-center gap-2">
+                                            <span className="material-symbols-outlined">shopping_cart_checkout</span>
+                                            Kasus Modern: Marketplace Flash Sale
+                                        </h4>
+                                        <div className="grid md:grid-cols-3 gap-6 items-center">
+                                            <div className="col-span-2 space-y-3">
+                                                <p className="text-sm text-slate-300 leading-relaxed font-medium capitalize">
+                                                    Bayangkan jutaan orang mengklik <strong className="text-white">"BELI SEKARANG"</strong> dalam satu detik yang sama.
+                                                </p>
+                                                <p className="text-xs text-slate-400 italic">
+                                                    Server tidak akan kuat memproses 1.000.000 permintaan sekaligus. Caranya? Semua request dimasukkan ke dalam <strong className="text-blue-400 text-sm">Message Queue</strong> (seperti RabbitMQ atau Kafka).
+                                                </p>
+                                                <div className="flex gap-2 pt-2">
+                                                    <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] font-black rounded-sm tracking-widest uppercase">Scalability</span>
+                                                    <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-[10px] font-black rounded-sm tracking-widest uppercase">Reliability</span>
+                                                </div>
+                                            </div>
+                                            <div className="bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center justify-center text-center">
+                                                <div className="relative w-full h-12 bg-slate-700 rounded-lg mb-2 overflow-hidden flex items-center px-2 gap-1 border-2 border-dashed border-slate-600">
+                                                    <span className="text-[8px] text-slate-500 absolute -top-1 left-1 font-black uppercase tracking-tighter">Queue</span>
+                                                    {[1, 2, 3, 4, 5].map((v) => (
+                                                        <motion.div 
+                                                            key={v}
+                                                            animate={{ x: [-20, 0] }}
+                                                            transition={{ repeat: Infinity, duration: 1.5, delay: v * 0.2 }}
+                                                            className="w-6 h-6 bg-blue-500 rounded-sm flex items-center justify-center text-[10px] text-white font-black"
+                                                        >
+                                                            req
+                                                        </motion.div>
+                                                    ))}
+                                                </div>
+                                                <p className="text-[10px] font-black text-slate-500 uppercase">Proses Antrean</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </section>
                     </FocusSection>
@@ -646,7 +766,51 @@ export default function Module6Content() {
                         <section className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl overflow-hidden shadow-sm">
                             <div className="flex flex-col md:flex-row">
                                 <div className="md:w-2/5 bg-cyan-500/10 p-6 border-b-2 md:border-b-0 md:border-r-2 border-cyan-500/20">
-                                    <h4 className="text-xl font-black text-cyan-700 dark:text-cyan-400 mb-4 italic uppercase">Core Operations</h4>
+                                    <h4 className="text-xl font-black text-cyan-700 dark:text-cyan-400 mb-4 italic uppercase">Anatomi & Operasi</h4>
+
+                                    {/* Anatomy Visual */}
+                                    <div className="mb-8 p-1 bg-linear-to-r from-rose-500/20 to-emerald-500/20 rounded-2xl">
+                                        <div className="bg-white dark:bg-slate-950 rounded-[14px] p-6 text-left">
+                                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 text-center">Visualisasi Anatomi Queue</p>
+                                            
+                                            <div className="relative flex items-center justify-center py-8">
+                                                {/* Labels */}
+                                                <div className="absolute -top-2 left-0 flex flex-col items-start text-left">
+                                                   <span className="text-[9px] font-black text-rose-500 uppercase px-2 py-0.5 bg-rose-500/10 rounded-sm">Front (Keluar)</span>
+                                                   <span className="material-symbols-outlined text-rose-500 text-lg ml-4">arrow_downward</span>
+                                                </div>
+                                                <div className="absolute -bottom-2 right-0 flex flex-col items-end text-right">
+                                                   <span className="material-symbols-outlined text-emerald-500 text-lg mr-4">arrow_upward</span>
+                                                   <span className="text-[9px] font-black text-emerald-500 uppercase px-2 py-0.5 bg-emerald-500/10 rounded-sm">Rear (Masuk)</span>
+                                                </div>
+
+                                                {/* Pipe */}
+                                                <div className="w-full h-12 bg-slate-100 dark:bg-slate-900 border-x-4 border-dashed border-slate-300 dark:border-slate-800 rounded-xl flex items-center px-2 gap-2 overflow-hidden shadow-inner relative justify-center">
+                                                    <div className="absolute inset-0 bg-linear-to-r from-rose-500/5 via-transparent to-emerald-500/5"></div>
+                                                    {[1, 2, 3, 4, 5, 6].map((v) => (
+                                                        <div key={v} className={`h-8 w-8 rounded-md border flex items-center justify-center text-[10px] font-black ${v === 1 ? 'bg-rose-500 border-rose-400 text-white' : v === 6 ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400'}`}>
+                                                            {v === 1 ? 'A' : v === 6 ? 'F' : ''}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-4 mt-8">
+                                                <div className="space-y-1 text-left">
+                                                    <p className="text-xs font-black text-rose-600 uppercase flex items-center gap-1">
+                                                        <span className="material-symbols-outlined text-sm">first_page</span> FRONT
+                                                    </p>
+                                                    <p className="text-[10px] text-slate-500 font-medium leading-relaxed italic">Posisi elemen pertama. Digunakan untuk operasi Dequeue.</p>
+                                                </div>
+                                                <div className="space-y-1 text-right">
+                                                    <p className="text-xs font-black text-emerald-600 uppercase flex items-center gap-1 justify-end">
+                                                        <span className="material-symbols-outlined text-sm">last_page</span> REAR
+                                                    </p>
+                                                    <p className="text-[10px] text-slate-500 font-medium leading-relaxed italic text-right">Posisi elemen terakhir. Digunakan untuk operasi Enqueue.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div className="space-y-6">
                                         <div className="flex gap-3 items-center">
@@ -671,17 +835,6 @@ export default function Module6Content() {
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="mt-10 p-4 bg-blue-500/5 border-2 border-blue-500/20 rounded-xl">
-                                        <p className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase mb-2 flex items-center gap-1">
-                                            <span className="material-symbols-outlined text-xs">info</span>
-                                            Key Pointers
-                                        </p>
-                                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                            <strong>FRONT:</strong> Menunjuk ke elemen pertama yang akan keluar.<br />
-                                            <strong>REAR:</strong> Menunjuk ke elemen terakhir yang baru masuk.
-                                        </p>
-                                    </div>
                                 </div>
                                 <div className="md:w-3/5 p-0 bg-slate-900">
                                     <div className="bg-slate-800 px-4 py-2 flex justify-between border-b border-white/10">
@@ -699,11 +852,16 @@ export default function Module6Content() {
     `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">enqueue</span>(<span className="text-orange-300">self</span>, data):{`
     `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">append</span>(data){`
 
-    `}    <span className="text-slate-400"># DEQUEUE → O(1)*</span>{`
     `}    <span className="text-cyan-400">def</span> <span className="text-blue-400">dequeue</span>(<span className="text-orange-300">self</span>):{`
-    `}        <span className="text-cyan-400">if len</span>(<span className="text-orange-300">self</span>.items) &gt; <span className="text-amber-300">0</span>:{`
-    `}            <span className="text-cyan-400">return</span> <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>(<span className="text-amber-300">0</span>){`
-    `}        <span className="text-cyan-400">return</span> <span className="text-green-400">"Queue Empty!"</span>
+    `}        <span className="text-slate-400"># 1. Simpan data depan</span>{`
+    `}        data = <span className="text-orange-300">self</span>.items[<span className="text-amber-300">0</span>]{`
+    
+    `}        <span className="text-slate-400"># 2. GESER SEMUA KE KIRI → O(n)</span>{`
+    `}        <span className="text-cyan-400">for</span> i <span className="text-cyan-400">in range</span>(<span className="text-cyan-400">len</span>(<span className="text-orange-300">self</span>.items)-<span className="text-amber-300">1</span>):{`
+    `}            <span className="text-orange-300">self</span>.items[i] = <span className="text-orange-300">self</span>.items[i+<span className="text-amber-300">1</span>]{`
+    
+    `}        <span className="text-orange-300">self</span>.items.<span className="text-blue-400">pop</span>() <span className="text-slate-400"># Hapus duplikat di akhir</span>{`
+    `}        <span className="text-cyan-400">return</span> data
                                         </code>
                                     </pre>
                                     <p className="p-4 text-[9px] text-slate-500 italic bg-black/20 font-bold tracking-tight">

@@ -108,7 +108,7 @@ export default function StackVisualizer() {
         setMode("postfix");
         setStack([]);
         let localStack: StackItem[] = [];
-        const tokens = expressions.postfix.split(" ").filter(t => t !== "");
+        const tokens = tokenize(expressions.postfix);
 
         for (let i = 0; i < tokens.length; i++) {
             setActiveToken(i);
@@ -141,6 +141,7 @@ export default function StackVisualizer() {
                 else if (token === "-") res = a - b;
                 else if (token === "*") res = a * b;
                 else if (token === "/") res = a / b;
+                else if (token === "^") res = Math.pow(a, b);
 
                 setStepInfo(`Hitung: ${a} ${token} ${b} = ${res}. PUSH hasil ke Stack.`);
                 const resultItem = { id: getNextId(), value: res };
@@ -160,7 +161,7 @@ export default function StackVisualizer() {
         setMode("prefix");
         setStack([]);
         let localStack: StackItem[] = [];
-        const tokens = expressions.prefix.split(" ").filter(t => t !== "");
+        const tokens = tokenize(expressions.prefix);
 
         // Prefix is evaluated Right-to-Left
         for (let i = tokens.length - 1; i >= 0; i--) {
@@ -194,6 +195,7 @@ export default function StackVisualizer() {
                 else if (token === "-") res = a - b;
                 else if (token === "*") res = a * b;
                 else if (token === "/") res = a / b;
+                else if (token === "^") res = Math.pow(a, b);
 
                 setStepInfo(`Hitung: ${a} ${token} ${b} = ${res}. PUSH hasil ke Stack.`);
                 const resultItem = { id: getNextId(), value: res };
@@ -208,11 +210,20 @@ export default function StackVisualizer() {
         setIsExecuting(false);
     };
 
+    const tokenize = (expr: string): string[] => {
+        return expr
+            .replace(/\(/g, " ( ")
+            .replace(/\)/g, " ) ")
+            .replace(/([+\-*/^])/g, " $1 ")
+            .split(/\s+/)
+            .filter(t => t.trim() !== "");
+    };
+
     const infixToPostfix = (infix: string): string => {
         const priority: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3 };
         const stack: string[] = [];
         const result: string[] = [];
-        const tokens = infix.split(" ").filter(t => t !== "");
+        const tokens = tokenize(infix);
 
         tokens.forEach(token => {
             if (!isNaN(parseFloat(token))) {
@@ -240,15 +251,43 @@ export default function StackVisualizer() {
     };
 
     const infixToPrefix = (infix: string): string => {
-        const tokens = infix.split(" ").filter(t => t !== "").reverse();
+        const tokens = tokenize(infix).reverse();
         const mappedTokens = tokens.map(t => {
             if (t === "(") return ")";
             if (t === ")") return "(";
             return t;
         });
 
-        const postfix = infixToPostfix(mappedTokens.join(" "));
-        return postfix.split(" ").reverse().join(" ");
+        // Use slightly modified logic for prefix to handle associativity
+        const priority: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3 };
+        const stack: string[] = [];
+        const result: string[] = [];
+
+        mappedTokens.forEach(token => {
+            if (!isNaN(parseFloat(token))) {
+                result.push(token);
+            } else if (token === "(") {
+                stack.push(token);
+            } else if (token === ")") {
+                while (stack.length > 0 && stack[stack.length - 1] !== "(") {
+                    result.push(stack.pop()!);
+                }
+                stack.pop(); // pop "("
+            } else {
+                // For prefix conversion via reversed postfix, we use strict > for priority
+                // so that the relative order of operators with same priority is maintained correctly when re-reversed
+                while (stack.length > 0 && stack[stack.length - 1] !== "(" && priority[stack[stack.length - 1]] > priority[token]) {
+                    result.push(stack.pop()!);
+                }
+                stack.push(token);
+            }
+        });
+
+        while (stack.length > 0) {
+            result.push(stack.pop()!);
+        }
+
+        return result.reverse().join(" ");
     };
 
     const handleConvert = (type: 'postfix' | 'prefix') => {
@@ -265,8 +304,8 @@ export default function StackVisualizer() {
         setOperatorStack([]);
         let localOperandStack: StackItem[] = [];
         let localOperatorStack: StackItem[] = [];
-        const tokens = expressions.infix.split(" ").filter(t => t !== "");
-        const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2 };
+        const tokens = tokenize(expressions.infix);
+        const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3 };
 
         const applyOp = async (op: string) => {
             setStepInfo(`Operator ${op} diproses. POP 2 angka.`);
@@ -287,6 +326,7 @@ export default function StackVisualizer() {
             else if (op === "-") res = a - b;
             else if (op === "*") res = a * b;
             else if (op === "/") res = a / b;
+            else if (op === "^") res = Math.pow(a, b);
             
             setStepInfo(`Hitung: ${a} ${op} ${b} = ${res}. PUSH hasil.`);
             const resultItem: StackItem = { id: getNextId(), value: res };
@@ -585,7 +625,7 @@ export default function StackVisualizer() {
                                 )}
 
                                 <div className="flex flex-wrap gap-1 mt-1">
-                                    {(expressions as any)[mode].split(" ").map((token: string, i: number) => (
+                                    {tokenize((expressions as any)[mode]).map((token: string, i: number) => (
                                         <motion.span
                                             key={i}
                                             animate={{ 

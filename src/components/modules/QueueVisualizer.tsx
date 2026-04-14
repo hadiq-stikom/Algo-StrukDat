@@ -7,12 +7,13 @@ interface QueueItem {
     id: number;
     value: string | number;
     priority?: number;
+    slot?: number;
 }
 
 export default function QueueVisualizer() {
     const [queue, setQueue] = useState<QueueItem[]>([
-        { id: 1, value: "A", priority: 2 },
-        { id: 2, value: "B", priority: 2 }
+        { id: 1, value: "A", priority: 2, slot: 0 },
+        { id: 2, value: "B", priority: 2, slot: 1 }
     ]);
     const [stepInfo, setStepInfo] = useState("Klik tombol untuk mencoba operasi Queue.");
     const [isExecuting, setIsExecuting] = useState(false);
@@ -20,13 +21,15 @@ export default function QueueVisualizer() {
     const [isCircularMode, setIsCircularMode] = useState(false);
     const [isPriorityMode, setIsPriorityMode] = useState(false);
     const [itemPriority, setItemPriority] = useState<number>(2);
+    const [lastAssignedSlot, setLastAssignedSlot] = useState(1);
     const MAX_SIZE = 5;
 
     const reset = () => {
         setQueue([
-            { id: 1, value: "A", priority: 2 },
-            { id: 2, value: "B", priority: 2 }
+            { id: 1, value: "A", priority: 2, slot: 0 },
+            { id: 2, value: "B", priority: 2, slot: 1 }
         ]);
+        setLastAssignedSlot(1);
         setStepInfo("Queue direset.");
         setIsExecuting(false);
     };
@@ -46,20 +49,29 @@ export default function QueueVisualizer() {
         }
         await new Promise(r => setTimeout(r, 600));
 
-        const newItem: QueueItem = { id: Date.now(), value: val, priority: isPriorityMode ? itemPriority : 2 };
+        const nextSlot = isCircularMode ? (lastAssignedSlot + 1) % MAX_SIZE : undefined;
+        const newItem: QueueItem = { 
+            id: Date.now(), 
+            value: val, 
+            priority: isPriorityMode ? itemPriority : 2,
+            slot: nextSlot
+        };
 
         if (isPriorityMode) {
             setStepInfo(`2. Menyisipkan '${val}' berdasarkan prioritas. Sistem mencari posisi yang tepat.`);
             await new Promise(r => setTimeout(r, 800));
             setQueue(prev => {
                 const newQueue = [...prev, newItem];
-                // Sort by priority (1 is highest in this display, let's say 1=High, 2=Medium, 3=Low)
-                // Actually let's use 1=High, 2=Med, 3=Low for easier understanding
                 return newQueue.sort((a: QueueItem, b: QueueItem) => (a.priority || 0) - (b.priority || 0));
             });
             setStepInfo(`3. '${val}' telah ditempatkan. Selesai (O(log N) jika pakai Heap)!`);
         } else {
-            setStepInfo(`2. Menempatkan '${val}' di posisi REAR. Selesai (O(1))!`);
+            if (isCircularMode) {
+                setLastAssignedSlot(nextSlot as number);
+                setStepInfo(`2. Menempatkan '${val}' di Slot ${nextSlot}. FRONT tetap, REAR bergeser.`);
+            } else {
+                setStepInfo(`2. Menempatkan '${val}' di posisi REAR via append(). Enqueue = O(1) ✅`);
+            }
             setQueue(prev => [...prev, newItem]);
         }
 
@@ -75,10 +87,17 @@ export default function QueueVisualizer() {
         }
 
         setIsExecuting(true);
-        setStepInfo(`1. Mengambil data '${queue[0].value}' dari posisi FRONT.`);
-        await new Promise(r => setTimeout(r, 600));
 
-        setStepInfo(`2. Data dikeluarkan. Selesai (O(1))!`);
+        if (isCircularMode || isPriorityMode) {
+            setStepInfo(`1. Mengambil data '${queue[0].value}' dari posisi FRONT.`);
+            await new Promise(r => setTimeout(r, 600));
+            setStepInfo(`2. Pointer FRONT digeser → O(1) ✅ Tidak ada pergeseran elemen!`);
+        } else {
+            setStepInfo(`1. Mengambil data '${queue[0].value}' dari posisi FRONT.`);
+            await new Promise(r => setTimeout(r, 600));
+            setStepInfo(`2. Data '${queue[0].value}' dikeluarkan. Semua elemen bergeser → O(n) pada List biasa. Gunakan deque untuk O(1)!`);
+        }
+
         setQueue(prev => prev.slice(1));
         await new Promise(r => setTimeout(r, 600));
         setIsExecuting(false);
@@ -196,9 +215,9 @@ export default function QueueVisualizer() {
                                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                                 const y = Math.sin((angle * Math.PI) / 180) * radius;
 
-                                const itemInSlot = queue[slotIdx];
-                                const isFront = slotIdx === 0 && queue.length > 0;
-                                const isRear = slotIdx === queue.length - 1 && queue.length > 0;
+                                const itemInSlot = queue.find(item => item.slot === slotIdx);
+                                const isFront = itemInSlot && itemInSlot.id === queue[0]?.id;
+                                const isRear = itemInSlot && itemInSlot.id === queue[queue.length - 1]?.id;
 
                                 return (
                                     <div
@@ -305,23 +324,65 @@ export default function QueueVisualizer() {
                         Reset Simulator
                     </button>
 
-                    <div className="bg-slate-50 dark:bg-slate-900/40 p-4 rounded-xl border border-slate-100 dark:border-slate-800/50">
-                        <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">FIFO Properties</h5>
+                    <div className="bg-slate-50 dark:bg-slate-900/40 p-4 rounded-xl border border-slate-100 dark:border-slate-800/50 space-y-3">
+                        <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                            Kompleksitas ({isCircularMode ? 'Circular' : isPriorityMode ? 'Priority' : 'Linear List'})
+                        </h5>
                         <ul className="space-y-2">
-                            <li className="flex items-start gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
-                                <span className="text-emerald-500 mt-0.5">●</span>
-                                <div>O(1) untuk Enqueue & Dequeue</div>
+                            <li className="flex items-start gap-2">
+                                <span className="text-emerald-500 text-[10px] font-black mt-0.5">●</span>
+                                <div>
+                                    <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400">
+                                        Enqueue → {isPriorityMode ? 'O(log N)' : 'O(1)'}
+                                    </span>
+                                    <p className="text-[9px] text-slate-500 italic">
+                                        {isPriorityMode
+                                            ? 'Perlu cari posisi berdasarkan prioritas (Heap: O(log N)).'
+                                            : isCircularMode
+                                                ? 'REAR = (REAR + 1) % SIZE, hanya update pointer.'
+                                                : 'append() ke belakang, tidak ada pergeseran.'
+                                        }
+                                    </p>
+                                </div>
                             </li>
-                            <li className="flex items-start gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
-                                <span className="text-emerald-500 mt-0.5">●</span>
-                                <div>Masuk lewat REAR, keluar lewat FRONT</div>
+                            <li className="flex items-start gap-2">
+                                <span className={`${isCircularMode ? 'text-emerald-500' : 'text-rose-500'} text-[10px] font-black mt-0.5`}>●</span>
+                                <div>
+                                    <span className={`text-[10px] font-black ${isCircularMode ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-500'}`}>
+                                        Dequeue → {isCircularMode ? 'O(1) ✅' : 'O(n) ⚠️'}
+                                    </span>
+                                    <p className="text-[9px] text-slate-500 italic">
+                                        {isCircularMode
+                                            ? 'FRONT = (FRONT + 1) % SIZE, hanya geser pointer. Tidak ada shifting!'
+                                            : 'pop(0) menggeser semua elemen ke kiri.'
+                                        }
+                                    </p>
+                                </div>
                             </li>
-                            <li className="flex items-start gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
-                                <span className="text-emerald-500 mt-0.5">●</span>
-                                <div>Mencegah monopolasi resource</div>
+                            <li className="flex items-start gap-2">
+                                <span className="text-blue-500 text-[10px] font-black mt-0.5">●</span>
+                                <div>
+                                    <span className="text-[10px] font-black text-blue-500">Masuk REAR, keluar FRONT</span>
+                                    <p className="text-[9px] text-slate-500 italic">Prinsip FIFO dijaga ketat.</p>
+                                </div>
                             </li>
                         </ul>
+                        {!isCircularMode && (
+                            <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
+                                <p className="text-[9px] text-slate-400 italic">
+                                    💡 <span className="font-black text-primary">Tips:</span> Untuk Enqueue & Dequeue O(1) sekaligus, gunakan <code className="bg-primary/10 text-primary px-1 rounded">collections.deque</code> di Python.
+                                </p>
+                            </div>
+                        )}
+                        {isCircularMode && (
+                            <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
+                                <p className="text-[9px] text-slate-400 italic">
+                                    🔄 <span className="font-black text-primary">Keunggulan:</span> Circular Queue mengatasi <em>False Overflow</em> sekaligus menjaga semua operasi tetap O(1).
+                                </p>
+                            </div>
+                        )}
                     </div>
+
                 </div>
             </div>
         </div>
