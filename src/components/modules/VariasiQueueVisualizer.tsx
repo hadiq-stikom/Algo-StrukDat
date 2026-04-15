@@ -77,7 +77,9 @@ export default function VariasiQueueVisualizer() {
         await new Promise(r => setTimeout(r, 800));
 
         // Sort by priority (ascending, so 1 comes first)
-        newQueue.sort((a, b) => a.priority! - b.priority!);
+        // Ensure we filter out nulls if any, and handle potential undefined priority
+        newQueue = newQueue.filter(item => item !== null);
+        newQueue.sort((a, b) => (a!.priority ?? 0) - (b!.priority ?? 0));
 
         setQueue(newQueue);
         setInfo(`✅ '${pqValue}' telah disisipkan ke posisi yang tepat berdasar prioritas.`);
@@ -94,6 +96,12 @@ export default function VariasiQueueVisualizer() {
 
         setIsExecuting(true);
         const item = queue[0];
+        
+        if (!item) {
+            setIsExecuting(false);
+            return;
+        }
+
         setInfo(`1. Mengambil elemen prioritas tertinggi: '${item.value}' (P${item.priority}) di depan.`);
         await new Promise(r => setTimeout(r, 800));
 

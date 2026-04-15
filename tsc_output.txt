@@ -1,0 +1,5 @@
+src/components/modules/VariasiQueueVisualizer.tsx(80,33): error TS18047: 'a' is possibly 'null'.
+src/components/modules/VariasiQueueVisualizer.tsx(80,47): error TS18047: 'b' is possibly 'null'.
+src/components/modules/VariasiQueueVisualizer.tsx(97,62): error TS18047: 'item' is possibly 'null'.
+src/components/modules/VariasiQueueVisualizer.tsx(97,79): error TS18047: 'item' is possibly 'null'.
+src/components/modules/VariasiQueueVisualizer.tsx(101,23): error TS18047: 'item' is possibly 'null'.
