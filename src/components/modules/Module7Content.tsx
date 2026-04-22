@@ -137,55 +137,75 @@ export default function Module7Content() {
             </div>
         </div>,
 
-        // Slide 5: Stack Overflow
-        // Slide 5: Stack Overflow
-        <div key="s5" className="space-y-8 h-full flex flex-col justify-center">
-            <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 uppercase italic text-center">Bahaya Rekursi</h3>
-            <div className="bg-rose-950 p-12 rounded-3xl border-4 border-rose-500/50 shadow-[0_0_50px_rgba(239,68,68,0.2)] relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/10 blur-[120px] -mr-32 -mt-32 pointer-events-none"></div>
-                <div className="flex-1 space-y-6 z-10">
-                    <h4 className="text-5xl font-black text-white mb-2 flex items-center gap-4 italic tracking-tighter">
-                        <span className="material-symbols-outlined text-rose-500 text-6xl">warning</span>
+        // Slide 5: Stack Overflow & Anatomy
+        <div key="s5" className="space-y-6 h-full flex flex-col justify-center">
+            <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4 uppercase italic text-center">Bahaya & Anatomi Rekursi</h3>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-rose-950 p-8 rounded-3xl border-4 border-rose-500/50 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/10 blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                    <h4 className="text-3xl font-black text-white mb-4 flex items-center gap-3 italic tracking-tighter">
+                        <span className="material-symbols-outlined text-rose-500 text-4xl">warning</span>
                         Stack Overflow! 🌋
                     </h4>
-                    <p className="text-rose-100/80 text-2xl leading-relaxed font-bold italic">
-                        Memori Call Stack memiliki batas. Jika fungsi merekursi terlalu dalam atau <span className="underline decoration-rose-500 decoration-4">kehilangan Base Case</span>, aplikasi akan CRASH.
+                    <p className="text-rose-100/80 text-lg leading-relaxed font-bold italic mb-6">
+                        Memori Call Stack memiliki batas. Tanpa <span className="underline decoration-rose-500 decoration-4">Base Case</span> yang benar, tumpukan akan meluap dan aplikasi CRASH.
                     </p>
-                    <div className="bg-black/50 p-6 rounded-2xl border-2 border-rose-500/30 font-mono text-xl text-rose-400 font-bold shadow-inner">
-                        RecursionError: maximum recursion depth exceeded
+                    <div className="bg-black/50 p-4 rounded-xl border-2 border-rose-500/30 font-mono text-base text-rose-400 font-bold">
+                        RecursionError: max depth exceeded
                     </div>
                 </div>
 
-                {/* Stack Limit Visualization */}
-                <div className="w-full md:w-1/3 p-6 bg-rose-900/30 rounded-3xl border-4 border-dashed border-rose-500/40 relative z-10 flex flex-col gap-2 items-center justify-center">
-                    <p className="text-sm font-black text-rose-400 uppercase tracking-widest">Stack Limit (Browser API / OS)</p>
-                    <div className="w-full h-48 bg-black/60 rounded-xl border-4 border-rose-900 flex flex-col-reverse p-2 gap-2 overflow-hidden relative shadow-inner">
-                        <div className="absolute top-0 left-0 w-full h-8 bg-linear-to-b from-rose-500/30 to-transparent"></div>
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                            <div key={i} className={`h-full w-full rounded-md ${i > 5 ? 'bg-rose-500 animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.8)]' : 'bg-rose-800'}`}></div>
-                        ))}
+                <div className="bg-slate-900 p-8 rounded-3xl border-4 border-primary/20 shadow-2xl">
+                    <h4 className="text-2xl font-black text-primary mb-6 uppercase italic flex items-center gap-2">
+                        <span className="material-symbols-outlined">layers</span>
+                        Anatomi Stack Frame
+                    </h4>
+                    <div className="space-y-4">
+                        <p className="text-slate-400 text-sm font-bold italic">Tiap panggilan fungsi memakan memori untuk menyimpan:</p>
+                        <div className="space-y-2">
+                            {[
+                                { label: "Parameters", desc: "Nilai input fungsi (n, array, dll)" },
+                                { label: "Return Address", desc: "Ke mana hasil dikirim setelah selesai" },
+                                { label: "Local Variables", desc: "Variabel yang dibuat di dalam fungsi" }
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+                                    <div>
+                                        <p className="text-xs font-black text-white uppercase leading-none mb-1">{item.label}</p>
+                                        <p className="text-[10px] text-slate-500 font-bold">{item.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <p className="text-[12px] font-black text-rose-400 uppercase tracking-[0.3em] mt-2 animate-bounce">Tumpukan Membludak!</p>
                 </div>
             </div>
         </div>,
 
-        // Slide 6: Tail vs Tree
-        <div key="s6" className="space-y-8">
-            <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-10 uppercase italic">Tail vs Tree Recursion</h3>
-            <div className="grid grid-cols-2 gap-8">
-                <div className="bg-white dark:bg-surface border-4 border-emerald-500/20 rounded-3xl p-8 shadow-2xl">
-                    <h4 className="text-2xl font-black text-emerald-600 mb-4 uppercase italic">Tail Recursion</h4>
-                    <p className="text-lg text-slate-600 dark:text-slate-400 font-bold italic mb-6">Panggilan terakhir adalah fungsi itu sendiri. Sangat hemat memori (O(1) stack frame).</p>
-                    <div className="bg-emerald-500/10 p-4 rounded-xl border-2 border-emerald-500/20">
-                        <p className="font-mono text-sm text-emerald-700">return tail_func(n-1, acc)</p>
+        // Slide 6: Jenis-jenis Rekursi
+        <div key="s6" className="space-y-6">
+            <h3 className="text-3xl font-black text-center text-slate-900 dark:text-white mb-4 uppercase italic">Jenis-jenis Rekursi</h3>
+            <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white dark:bg-surface border-4 border-emerald-500/20 rounded-3xl p-6 shadow-2xl flex flex-col">
+                    <h4 className="text-xl font-black text-emerald-600 mb-3 uppercase italic">Tail</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 font-bold italic mb-4 flex-1">Panggilan terakhir adalah fungsi itu sendiri. Sangat hemat memori (O(1) space).</p>
+                    <div className="bg-emerald-500/10 p-3 rounded-xl border-2 border-emerald-500/20">
+                        <p className="font-mono text-[10px] text-emerald-700">return tail_func(n-1, acc)</p>
                     </div>
                 </div>
-                <div className="bg-white dark:bg-surface border-4 border-amber-500/20 rounded-3xl p-8 shadow-2xl">
-                    <h4 className="text-2xl font-black text-amber-600 mb-4 uppercase italic">Tree Recursion</h4>
-                    <p className="text-lg text-slate-600 dark:text-slate-400 font-bold italic mb-6">Memanggil diri sendiri &gt; 1 kali. Menciptakan percabangan (eksponensial O(2ⁿ)).</p>
-                    <div className="bg-amber-500/10 p-4 rounded-xl border-2 border-amber-500/20">
-                        <p className="font-mono text-sm text-amber-700">return fib(n-1) + fib(n-2)</p>
+                <div className="bg-white dark:bg-surface border-4 border-amber-500/20 rounded-3xl p-6 shadow-2xl flex flex-col">
+                    <h4 className="text-xl font-black text-amber-600 mb-3 uppercase italic">Tree</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 font-bold italic mb-4 flex-1">Memanggil diri sendiri &gt; 1 kali. Menciptakan percabangan (Eksponensial O(2ⁿ)).</p>
+                    <div className="bg-amber-500/10 p-3 rounded-xl border-2 border-amber-500/20">
+                        <p className="font-mono text-[10px] text-amber-700">return fib(n-1) + fib(n-2)</p>
+                    </div>
+                </div>
+                <div className="bg-white dark:bg-surface border-4 border-indigo-500/20 rounded-3xl p-6 shadow-2xl flex flex-col">
+                    <h4 className="text-xl font-black text-indigo-600 mb-3 uppercase italic">Indirect</h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 font-bold italic mb-4 flex-1">Fungsi A memanggil B, dan B memanggil A. Melingkar (Mutual Recursion).</p>
+                    <div className="bg-indigo-500/10 p-3 rounded-xl border-2 border-indigo-500/20">
+                        <p className="font-mono text-[10px] text-indigo-700 italic">A() ➔ B() ➔ A()</p>
                     </div>
                 </div>
             </div>
@@ -269,8 +289,52 @@ export default function Module7Content() {
             </div>
         </div>,
 
-        // Slide 9: Summary
-        <div key="s9" className="space-y-8 h-full flex flex-col justify-center text-center">
+        // Slide 11: Complexity Analysis Table
+        <div key="s11" className="space-y-8 h-full flex flex-col justify-center">
+            <h3 className="text-4xl font-black text-center text-slate-900 dark:text-white mb-6 uppercase italic">Analisis Kompleksitas</h3>
+            <div className="overflow-hidden rounded-3xl border-4 border-primary/20 shadow-2xl max-w-5xl mx-auto w-full">
+                <table className="w-full text-left border-collapse bg-white dark:bg-slate-900">
+                    <thead className="bg-primary text-white">
+                        <tr>
+                            <th className="p-6 text-sm font-black uppercase italic tracking-widest">Jenis Rekursi</th>
+                            <th className="p-6 text-sm font-black uppercase italic tracking-widest">Waktu (Time)</th>
+                            <th className="p-6 text-sm font-black uppercase italic tracking-widest">Memori (Space)</th>
+                            <th className="p-6 text-sm font-black uppercase italic tracking-widest">Contoh Kasus</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-slate-600 dark:text-slate-300 font-bold italic">
+                        <tr className="border-b border-primary/10 hover:bg-primary/5 transition-colors">
+                            <td className="p-6">Linier</td>
+                            <td className="p-6 text-emerald-500">O(n)</td>
+                            <td className="p-6 text-rose-500">O(n)</td>
+                            <td className="p-6 text-xs font-mono">Factorial, Sum Array</td>
+                        </tr>
+                        <tr className="border-b border-primary/10 hover:bg-primary/5 transition-colors">
+                            <td className="p-6">Divide & Conquer</td>
+                            <td className="p-6 text-emerald-500">O(log n)</td>
+                            <td className="p-6 text-emerald-500">O(log n)</td>
+                            <td className="p-6 text-xs font-mono">Binary Search</td>
+                        </tr>
+                        <tr className="border-b border-primary/10 hover:bg-primary/5 transition-colors">
+                            <td className="p-6">Tree (Percabangan)</td>
+                            <td className="p-6 text-rose-500">O(2ⁿ)</td>
+                            <td className="p-6 text-rose-500">O(n)</td>
+                            <td className="p-6 text-xs font-mono">Fibonacci, Hanoi</td>
+                        </tr>
+                        <tr className="hover:bg-primary/5 transition-colors">
+                            <td className="p-6">Tail (Optimized)</td>
+                            <td className="p-6 text-emerald-500">O(n)</td>
+                            <td className="p-6 text-emerald-500">O(1)</td>
+                            <td className="p-6 text-xs font-mono">Tail-Factorial</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p className="text-center text-slate-500 font-bold italic text-sm">Space Complexity O(n) berasal dari tumpukan Call Stack yang tercipta.</p>
+        </div>,
+
+        // Slide 12: Summary
+        <div key="s_summary" className="space-y-8 h-full flex flex-col justify-center text-center">
             <div className="bg-linear-to-br from-teal-500/20 to-primary/20 p-12 rounded-3xl border-4 border-teal-500/30 shadow-2xl relative overflow-hidden">
                 <div className="absolute -left-20 -top-20 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]"></div>
                 <h4 className="text-5xl font-black text-slate-900 dark:text-white mb-10 uppercase italic tracking-tighter decoration-teal-500 decoration-8 underline-offset-8">Ringkasan Materi</h4>
@@ -599,7 +663,7 @@ export default function Module7Content() {
                     </div>
                 </ScrollReveal>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-3 gap-8">
                     {/* Tail Recursion */}
                     <ScrollReveal>
                         <FocusSection>
@@ -610,12 +674,12 @@ export default function Module7Content() {
                                     </div>
                                     <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase italic">Tail Recursion</h4>
                                 </div>
-                                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                                    Optimasi di mana pemanggilan rekursif adalah <strong>tindakan terakhir</strong> dalam fungsi. Sistem tidak perlu menyimpan stack frame lama because tidak ada sisa perhitungan.
+                                <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                    Optimasi di mana pemanggilan rekursif adalah <strong>tindakan terakhir</strong>. Sistem tidak perlu menyimpan stack frame lama because tidak ada sisa perhitungan.
                                 </p>
                                 <div className="p-3 bg-emerald-500/5 border border-emerald-500/20 rounded-xl">
-                                    <p className="text-[10px] font-black text-emerald-600 uppercase mb-1">Keunggulan: Hemat Memori</p>
-                                    <p className="text-[10px] text-slate-500 italic">Mencegah Stack Overflow meskipun kedalaman rekursi sangat besar.</p>
+                                    <p className="text-[10px] font-black text-emerald-600 uppercase mb-1">Hemat Memori: O(1) Space</p>
+                                    <p className="text-[9px] text-slate-500 italic leading-tight">Mencegah Stack Overflow meskipun kedalaman rekursi sangat besar.</p>
                                 </div>
                             </div>
                         </FocusSection>
@@ -631,12 +695,33 @@ export default function Module7Content() {
                                     </div>
                                     <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase italic">Tree Recursion</h4>
                                 </div>
-                                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                                     Fungsi memanggil dirinya sendiri <strong>lebih dari satu kali</strong>. Ini menciptakan struktur pohon (seperti deret Fibonacci).
                                 </p>
                                 <div className="p-3 bg-cyan-500/5 border border-cyan-500/20 rounded-xl">
-                                    <p className="text-[10px] font-black text-cyan-600 uppercase mb-1">Bahaya: Kompleksitas O(2^n)</p>
-                                    <p className="text-[10px] text-slate-500 italic">Data bertambah sedikit, waktu eksekusi meledak secara eksponensial.</p>
+                                    <p className="text-[10px] font-black text-cyan-600 uppercase mb-1">Kompleksitas: O(2ⁿ)</p>
+                                    <p className="text-[9px] text-slate-500 italic leading-tight">Data bertambah sedikit, waktu eksekusi meledak secara eksponensial.</p>
+                                </div>
+                            </div>
+                        </FocusSection>
+                    </ScrollReveal>
+
+                    {/* Indirect Recursion */}
+                    <ScrollReveal>
+                        <FocusSection>
+                            <div className="bg-white dark:bg-surface border-2 border-primary/20 rounded-2xl p-6 shadow-sm h-full">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="bg-indigo-500/20 p-2 rounded-lg text-indigo-600">
+                                        <span className="material-symbols-outlined text-xl">sync</span>
+                                    </div>
+                                    <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase italic">Indirect Recursion</h4>
+                                </div>
+                                <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                                    Dua atau lebih fungsi saling memanggil satu sama lain dalam pola melingkar (Mutual Recursion).
+                                </p>
+                                <div className="p-3 bg-indigo-500/5 border border-indigo-500/20 rounded-xl">
+                                    <p className="text-[10px] font-black text-indigo-600 uppercase mb-1">Mutual Calling</p>
+                                    <p className="text-[9px] text-slate-500 italic leading-tight">Contoh: Cek ganjil-genap menggunakan dua fungsi yang saling memanggil.</p>
                                 </div>
                             </div>
                         </FocusSection>
@@ -721,34 +806,49 @@ export default function Module7Content() {
                             <IterationVsRecursionVisualizer />
                         </div>
 
-                        {/* 2. Panduan Konversi */}
+                        {/* 2. Panduan Konversi & Mental Model */}
                         <div className="bg-slate-900 border-2 border-primary/20 rounded-3xl p-8 shadow-xl">
                             <h4 className="text-2xl font-black text-white uppercase italic mb-6 flex items-center gap-3">
-                                <span className="material-symbols-outlined text-primary text-3xl">swap_horiz</span>
-                                Panduan Konversi
+                                <span className="material-symbols-outlined text-primary text-3xl">psychology</span>
+                                Mental Model: The Leap of Faith
                             </h4>
-
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="space-y-4">
-                                    <h5 className="font-black text-emerald-400 uppercase tracking-widest text-xs flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                                        Looping ➔ Rekursi
-                                    </h5>
-                                    <ul className="text-xs text-slate-400 space-y-3 font-medium">
-                                        <li>1. Jadikan <strong className="text-emerald-300">Variabel Loop</strong> (misal <code className="text-white">i</code>) sebagai <strong>Parameter Fungsi</strong>.</li>
-                                        <li>2. Jadikan <strong className="text-emerald-300">Kondisi Berhenti Loop</strong> (<code className="text-white">i &lt;= n</code>) sebagai <strong>Base Case</strong>.</li>
-                                        <li>3. Jadikan <strong className="text-emerald-300">Langkah Update</strong> (<code className="text-white">i++</code>) sebagai argument saat <strong>Memanggil diri sendiri</strong>.</li>
-                                    </ul>
+                            
+                            <div className="grid md:grid-cols-2 gap-12">
+                                <div className="space-y-6">
+                                    <p className="text-sm text-slate-300 font-bold italic bg-white/5 p-4 rounded-2xl border-l-4 border-primary">
+                                        "Jangan coba menelusuri setiap langkah rekursi di otakmu (kamu bukan komputer!). Cukup percaya bahwa panggilan fungsi selanjutnya akan memberikan hasil yang benar."
+                                    </p>
+                                    <div className="space-y-4">
+                                        <h5 className="font-black text-emerald-400 uppercase tracking-widest text-xs flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                            Looping ➔ Rekursi
+                                        </h5>
+                                        <ul className="text-[11px] text-slate-400 space-y-2 font-medium">
+                                            <li>1. Jadikan <strong className="text-emerald-300">Variabel Loop</strong> sebagai <strong>Parameter Fungsi</strong>.</li>
+                                            <li>2. Jadikan <strong className="text-emerald-300">Kondisi Berhenti Loop</strong> sebagai <strong>Base Case</strong>.</li>
+                                            <li>3. Jadikan <strong className="text-emerald-300">Langkah Update</strong> sebagai argument saat <strong>Memanggil diri sendiri</strong>.</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div className="space-y-4">
-                                    <h5 className="font-black text-teal-400 uppercase tracking-widest text-xs flex items-center gap-2">
-                                        <span className="material-symbols-outlined text-sm">arrow_back</span>
-                                        Rekursi ➔ Looping
-                                    </h5>
-                                    <ul className="text-xs text-slate-400 space-y-3 font-medium">
-                                        <li>Jika <strong>Tail Recursion</strong>: Ubah langsung pakai <code className="text-white">while(true)</code> dan update variabel lokal. Sangat mudah.</li>
-                                        <li>Jika <strong>Tree Recursion</strong> (ada &gt;1 pemanggilan): Anda <strong>WAJIB</strong> menggunakan struktur data <strong className="text-teal-300">Stack</strong> secara manual (Array warna-warni) untuk menyimpan state yang tertunda.</li>
-                                    </ul>
+                                <div className="space-y-6">
+                                    <div className="bg-teal-500/10 border border-teal-500/20 p-5 rounded-2xl">
+                                        <h5 className="font-black text-teal-400 uppercase tracking-widest text-[10px] mb-3">Tips: Cara Berpikir Rekursif</h5>
+                                        <ol className="text-[10px] text-slate-400 space-y-2 list-decimal pl-4 italic">
+                                            <li>Tentukan <span className="text-white">Base Case</span> (Kapan harus berhenti?).</li>
+                                            <li>Tentukan <span className="text-white">Hubungan f(n) dan f(n-1)</span>.</li>
+                                            <li>Lakukan <span className="text-white">Leap of Faith</span>: Percaya f(n-1) berhasil.</li>
+                                        </ol>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h5 className="font-black text-teal-400 uppercase tracking-widest text-xs flex items-center gap-2">
+                                            <span className="material-symbols-outlined text-sm">arrow_back</span>
+                                            Rekursi ➔ Looping
+                                        </h5>
+                                        <ul className="text-[11px] text-slate-400 space-y-2 font-medium">
+                                            <li>Jika <strong>Tail Recursion</strong>: Gunakan <code className="text-white">while(true)</code> dan update variabel lokal.</li>
+                                            <li>Jika <strong>Tree Recursion</strong>: Gunakan struktur data <strong className="text-teal-300">Stack</strong> manual untuk menyimpan state.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -786,7 +886,7 @@ export default function Module7Content() {
                 </ScrollReveal>
             </div>
 
-            {/* ─── BAGIAN 6: SELF CHECK ─── */}
+            {/* ─── BAGIAN 8: ANALISIS KOMPLEKSITAS & KUIS ─── */}
             <div className="space-y-10">
                 <ScrollReveal>
                     <div className="relative">
@@ -794,9 +894,9 @@ export default function Module7Content() {
                             <div className="w-full border-t-2 border-primary/40"></div>
                         </div>
                         <div className="relative flex justify-center gap-4">
-                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 8: Self-Check & Kuis</span>
-                            <button onClick={() => openPresentation(8)} className="bg-primary/20 hover:bg-primary/30 text-primary text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
-                                <span className="material-symbols-outlined text-xs">play_arrow</span> SLIDE
+                            <span className="bg-bg-base px-6 text-sm font-black uppercase tracking-[0.4em] text-primary border-x-2 border-primary/40">Bagian 8: Analisis Kompleksitas</span>
+                            <button onClick={() => openPresentation(10)} className="bg-primary/20 hover:bg-primary/30 text-primary text-[10px] font-black px-3 py-1 rounded-full transition-colors flex items-center gap-1">
+                                <span className="material-symbols-outlined text-xs">analytics</span> SLIDE
                             </button>
                         </div>
                     </div>
