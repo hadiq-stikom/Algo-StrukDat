@@ -8,6 +8,7 @@ import RecursionVisualizer from "./RecursionVisualizer";
 import HanoiVisualizer from "./HanoiVisualizer";
 import PresentationMode from "@/components/PresentationMode";
 import IterationVsRecursionVisualizer from "./IterationVsRecursionVisualizer";
+import RecursionTreeVisualizer from "./RecursionTreeVisualizer";
 
 export default function Module7Content() {
     const [isPresentationOpen, setIsPresentationOpen] = useState(false);
@@ -208,6 +209,17 @@ export default function Module7Content() {
                         <p className="font-mono text-[10px] text-indigo-700 italic">A() ➔ B() ➔ A()</p>
                     </div>
                 </div>
+            </div>
+        </div>,
+
+        // Slide Tree: Tree Recursion Visualizer
+        <div key="s_tree_viz" className="space-y-8 h-full flex flex-col items-center justify-center">
+            <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-4 uppercase italic text-center">Visualisasi Tree Recursion (Fibonacci)</h3>
+            <p className="text-lg text-slate-500 font-bold mb-8 text-center max-w-4xl italic">
+                Perhatikan bagaimana satu panggilan fungsi bercabang menjadi dua, membentuk struktur pohon yang tumbuh secara eksponensial.
+            </p>
+            <div className="w-full max-w-6xl bg-white dark:bg-slate-950 p-8 rounded-3xl border-4 border-primary/30 shadow-2xl">
+                <RecursionTreeVisualizer />
             </div>
         </div>,
 
@@ -704,6 +716,11 @@ export default function Module7Content() {
                                 </div>
                             </div>
                         </FocusSection>
+                    </ScrollReveal>
+
+                    {/* Tree Recursion Visualizer Integration */}
+                    <ScrollReveal className="md:col-span-3">
+                        <RecursionTreeVisualizer />
                     </ScrollReveal>
 
                     {/* Indirect Recursion */}
