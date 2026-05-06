@@ -1,6 +1,6 @@
 {
-  "isActive": false,
-  "startTime": null,
+  "isActive": true,
+  "startTime": 1778039657016,
   "durationMinutes": 75,
-  "examId": "1777441548941"
+  "examId": "1778039639654"
 }

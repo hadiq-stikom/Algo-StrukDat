@@ -69,13 +69,22 @@ export default function AdminUTSValidator() {
                     <div className="flex items-end gap-3">
                         <button 
                             onClick={async () => {
-                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value;
-                                const res = await fetch('/api/uts/config', {
-                                    method: 'POST',
-                                    body: JSON.stringify({ action: 'START', password: pass })
-                                });
-                                if (res.ok) alert("UTS BERHASIL DIBUKA!");
-                                else alert("Password Salah atau Gagal!");
+                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value.trim();
+                                if (!pass) { alert("Masukkan password!"); return; }
+                                
+                                try {
+                                    const res = await fetch('/api/uts/config', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ action: 'START', password: pass })
+                                    });
+                                    const data = await res.json();
+                                    
+                                    if (res.ok) alert("UTS BERHASIL DIBUKA!");
+                                    else alert(data.error || "Gagal membuka UTS");
+                                } catch (e) {
+                                    alert("Terjadi kesalahan koneksi!");
+                                }
                             }}
                             className="flex-1 py-4 bg-green-600 text-white rounded-2xl font-black shadow-lg hover:bg-green-700 transition-all"
                         >
@@ -83,14 +92,23 @@ export default function AdminUTSValidator() {
                         </button>
                         <button 
                             onClick={async () => {
-                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value;
+                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value.trim();
+                                if (!pass) { alert("Masukkan password!"); return; }
                                 if (!confirm("PERINGATAN: Ini akan mereset ID Ujian. Mahasiswa yang sudah selesai akan bisa login lagi. Lanjutkan?")) return;
-                                const res = await fetch('/api/uts/config', {
-                                    method: 'POST',
-                                    body: JSON.stringify({ action: 'RESET', password: pass })
-                                });
-                                if (res.ok) alert("SESI UTS BERHASIL DI-RESET!");
-                                else alert("Password Salah atau Gagal!");
+                                
+                                try {
+                                    const res = await fetch('/api/uts/config', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ action: 'RESET', password: pass })
+                                    });
+                                    const data = await res.json();
+                                    
+                                    if (res.ok) alert("SESI UTS BERHASIL DI-RESET!");
+                                    else alert(data.error || "Gagal reset sesi");
+                                } catch (e) {
+                                    alert("Terjadi kesalahan koneksi!");
+                                }
                             }}
                             className="flex-1 py-4 bg-slate-600 text-white rounded-2xl font-black shadow-lg hover:bg-slate-700 transition-all"
                         >
@@ -98,13 +116,22 @@ export default function AdminUTSValidator() {
                         </button>
                         <button 
                             onClick={async () => {
-                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value;
-                                const res = await fetch('/api/uts/config', {
-                                    method: 'POST',
-                                    body: JSON.stringify({ action: 'STOP', password: pass })
-                                });
-                                if (res.ok) alert("UTS BERHASIL DITUTUP!");
-                                else alert("Password Salah atau Gagal!");
+                                const pass = (document.getElementById('admin-pass') as HTMLInputElement).value.trim();
+                                if (!pass) { alert("Masukkan password!"); return; }
+                                
+                                try {
+                                    const res = await fetch('/api/uts/config', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ action: 'STOP', password: pass })
+                                    });
+                                    const data = await res.json();
+                                    
+                                    if (res.ok) alert("UTS BERHASIL DITUTUP!");
+                                    else alert(data.error || "Gagal menutup UTS");
+                                } catch (e) {
+                                    alert("Terjadi kesalahan koneksi!");
+                                }
                             }}
                             className="flex-1 py-4 bg-red-600 text-white rounded-2xl font-black shadow-lg hover:bg-red-700 transition-all"
                         >

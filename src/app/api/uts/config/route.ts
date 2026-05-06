@@ -39,9 +39,11 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { action, password } = body;
 
-        // Simple security: You can change this password
-        if (password !== "admin123") {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        // Use environment variable for security, fallback to "admin123"
+        const adminPass = process.env.ADMIN_PASSWORD || "admin123";
+
+        if (password !== adminPass) {
+            return NextResponse.json({ error: "Password Admin Salah!" }, { status: 401 });
         }
 
         let config = getConfig();
@@ -57,9 +59,18 @@ export async function POST(request: Request) {
             config.examId = Date.now().toString(); // New ID for new session
         }
 
-        fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
+        try {
+            fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
+        } catch (fsError) {
+            console.error("FS Error:", fsError);
+            return NextResponse.json({ 
+                error: "Gagal menyimpan konfigurasi ke filesystem (Vercel detect?). Gunakan Database/KV untuk persistensi di hosting.",
+                details: String(fsError)
+            }, { status: 500 });
+        }
+
         return NextResponse.json(config);
     } catch (error) {
-        return NextResponse.json({ error: "Failed to update config" }, { status: 500 });
+        return NextResponse.json({ error: "Gagal memproses request", details: String(error) }, { status: 500 });
     }
 }
