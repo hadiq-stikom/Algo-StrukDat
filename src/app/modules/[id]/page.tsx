@@ -10,6 +10,8 @@ import Module5Content from '@/components/modules/Module5Content';
 import Module6Content from '@/components/modules/Module6Content';
 import Module7Content from '@/components/modules/Module7Content';
 import Module8Content from '@/components/modules/Module8Content';
+import Module9Content from '@/components/modules/Module9Content';
+import Module13Content from '@/components/modules/Module13Content';
 import ModuleCompletionToggle from "@/components/ModuleCompletionToggle";
 import ModuleProgressHeader from "@/components/ModuleProgressHeader";
 
@@ -63,19 +65,21 @@ export default async function ModulePage({ params }: { params: Promise<{ id: str
                     <ModuleProgressHeader moduleId={module.id} />
                 </div>
 
-                {/* Dynamic Module Content Component */}
-                {id === '1' && <Module1Content />}
-                {id === '2' && <Module2Content />}
-                {id === '3' && <Module3Content />}
-                {id === '4' && <Module4Content />}
-                {id === '5' && <Module5Content />}
-                {id === '6' && <Module6Content />}
-                {id === '7' && <Module7Content />}
-                {id === '8' && <Module8Content />}
+                 {/* Dynamic Module Content Component */}
+                 {id === '1' && <Module1Content />}
+                 {id === '2' && <Module2Content />}
+                 {id === '3' && <Module3Content />}
+                 {id === '4' && <Module4Content />}
+                 {id === '5' && <Module5Content />}
+                 {id === '6' && <Module6Content />}
+                 {id === '7' && <Module7Content />}
+                 {id === '8' && <Module8Content />}
+                 {id === '9' && <Module9Content />}
+                 {id === '13' && <Module13Content />}
                 {/* Module Completion Toggle (Client Side) */}
                 <ModuleCompletionToggle moduleId={module.id} />
 
-                {id !== '1' && id !== '2' && id !== '3' && id !== '4' && id !== '5' && id !== '6' && id !== '7' && id !== '8' && (
+                {id !== '1' && id !== '2' && id !== '3' && id !== '4' && id !== '5' && id !== '6' && id !== '7' && id !== '8' && id !== '13' && (
                     <section className="space-y-6">
                         <h3 className="text-xl font-bold px-2">Content Topics</h3>
                         <div className="grid gap-4">
