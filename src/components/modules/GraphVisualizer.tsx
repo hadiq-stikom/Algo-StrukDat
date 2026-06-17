@@ -397,7 +397,9 @@ export default function GraphVisualizer() {
                     <span className="text-[10px] font-black text-slate-500 uppercase italic">Edge</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <polygon points="0,0 0,6 6,3" fill="currentColor" className="text-slate-400" />
+                    <svg width="8" height="8" viewBox="0 0 6 6" className="text-slate-400" aria-hidden="true">
+                        <polygon points="0,0 0,6 6,3" fill="currentColor" />
+                    </svg>
                     <span className="text-[10px] font-black text-slate-500 uppercase italic">Directed</span>
                 </div>
             </div>
