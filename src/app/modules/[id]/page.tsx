@@ -12,6 +12,7 @@ import Module7Content from '@/components/modules/Module7Content';
 import Module8Content from '@/components/modules/Module8Content';
 import Module9Content from '@/components/modules/Module9Content';
 import Module10Content from '@/components/modules/Module10Content';
+import Module11Content from '@/components/modules/Module11Content';
 import Module13Content from '@/components/modules/Module13Content';
 import ModuleCompletionToggle from "@/components/ModuleCompletionToggle";
 import ModuleProgressHeader from "@/components/ModuleProgressHeader";
@@ -77,11 +78,12 @@ export default async function ModulePage({ params }: { params: Promise<{ id: str
                  {id === '8' && <Module8Content />}
                  {id === '9' && <Module9Content />}
                  {id === '10' && <Module10Content />}
+                 {id === '11' && <Module11Content />}
                  {id === '13' && <Module13Content />}
                 {/* Module Completion Toggle (Client Side) */}
                 <ModuleCompletionToggle moduleId={module.id} />
 
-                {id !== '1' && id !== '2' && id !== '3' && id !== '4' && id !== '5' && id !== '6' && id !== '7' && id !== '8' && id !== '9' && id !== '10' && id !== '13' && (
+                {id !== '1' && id !== '2' && id !== '3' && id !== '4' && id !== '5' && id !== '6' && id !== '7' && id !== '8' && id !== '9' && id !== '10' && id !== '11' && id !== '13' && (
                     <section className="space-y-6">
                         <h3 className="text-xl font-bold px-2">Content Topics</h3>
                         <div className="grid gap-4">
