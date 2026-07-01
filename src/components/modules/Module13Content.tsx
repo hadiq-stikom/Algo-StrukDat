@@ -222,6 +222,239 @@ export default function Module13Content() {
         </code>
     );
 
+    const GraphDiagram = () => (
+        <div className="mx-auto max-w-2xl">
+            <div className="mb-4 text-sm font-bold text-slate-700 dark:text-slate-300 text-center">Contoh Graph sederhana: node dan koneksi antar node</div>
+            <div className="relative aspect-[4/3] rounded-3xl bg-slate-950/80 border border-slate-800 overflow-hidden">
+                <svg viewBox="0 0 320 240" className="w-full h-full">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8" />
+                        </marker>
+                    </defs>
+                    <line x1="70" y1="70" x2="180" y2="70" stroke="#38bdf8" strokeWidth="4" />
+                    <line x1="70" y1="70" x2="120" y2="160" stroke="#38bdf8" strokeWidth="4" />
+                    <line x1="180" y1="70" x2="240" y2="130" stroke="#38bdf8" strokeWidth="4" />
+                    <line x1="120" y1="160" x2="240" y2="130" stroke="#38bdf8" strokeWidth="4" />
+                    <circle cx="70" cy="70" r="22" fill="#38bdf8" opacity="0.95" />
+                    <circle cx="180" cy="70" r="22" fill="#f97316" opacity="0.95" />
+                    <circle cx="120" cy="160" r="22" fill="#22c55e" opacity="0.95" />
+                    <circle cx="240" cy="130" r="22" fill="#a855f7" opacity="0.95" />
+                    <text x="70" y="76" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="800">A</text>
+                    <text x="180" y="76" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="800">B</text>
+                    <text x="120" y="166" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="800">C</text>
+                    <text x="240" y="136" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="800">D</text>
+                    <text x="100" y="40" textAnchor="middle" fill="#cbd5e1" fontSize="12">A - B</text>
+                    <text x="135" y="195" textAnchor="middle" fill="#cbd5e1" fontSize="12">A - C</text>
+                    <text x="210" y="40" textAnchor="middle" fill="#cbd5e1" fontSize="12">B - D</text>
+                    <text x="190" y="120" textAnchor="middle" fill="#cbd5e1" fontSize="12">C - D</text>
+                </svg>
+            </div>
+        </div>
+    );
+
+    const GraphMatrixExample = ({
+        title,
+        code,
+        variant,
+    }: {
+        title: string;
+        code: string;
+        variant: "undirected" | "directed-unweighted" | "undirected-weighted" | "directed-weighted";
+    }) => (
+        <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr] items-start rounded-3xl border border-slate-800 bg-slate-950 p-4 shadow-xl">
+            <div className="rounded-3xl bg-slate-900 p-4">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400 mb-3">{title}</div>
+                <pre className="overflow-x-auto text-sm font-mono leading-relaxed">{code}</pre>
+            </div>
+            <GraphMatrixDiagram variant={variant} />
+        </div>
+    );
+
+    const GraphMatrixDiagram = ({
+        variant,
+    }: {
+        variant: "undirected" | "directed-unweighted" | "undirected-weighted" | "directed-weighted";
+    }) => {
+        const titleMap: Record<typeof variant, string> = {
+            "undirected": "Undirected Unweighted",
+            "directed-unweighted": "Directed Unweighted",
+            "undirected-weighted": "Undirected Weighted",
+            "directed-weighted": "Directed Weighted",
+        };
+
+        return (
+            <div className="rounded-3xl border border-slate-700 bg-slate-900 p-4 text-slate-100 shadow-xl">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400 mb-3">{titleMap[variant]} Diagram</div>
+                <svg viewBox="0 0 220 140" className="w-full h-auto">
+                    <defs>
+                        <marker id="arrow-directed-unweighted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="strokeWidth" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8" />
+                        </marker>
+                        <marker id="arrow-directed-weighted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" markerUnits="strokeWidth" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8" />
+                        </marker>
+                    </defs>
+                    {variant === "undirected" && (
+                        <>
+                            <line x1="45" y1="35" x2="175" y2="35" stroke="#38bdf8" strokeWidth="3" />
+                            <line x1="45" y1="35" x2="45" y2="105" stroke="#38bdf8" strokeWidth="3" />
+                            <line x1="175" y1="35" x2="175" y2="105" stroke="#38bdf8" strokeWidth="3" />
+                            <line x1="45" y1="105" x2="175" y2="105" stroke="#38bdf8" strokeWidth="3" />
+                            <circle cx="45" cy="35" r="16" fill="#38bdf8" />
+                            <circle cx="175" cy="35" r="16" fill="#f97316" />
+                            <circle cx="45" cy="105" r="16" fill="#22c55e" />
+                            <circle cx="175" cy="105" r="16" fill="#a855f7" />
+                            <text x="45" y="40" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">A</text>
+                            <text x="175" y="40" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">B</text>
+                            <text x="45" y="110" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">C</text>
+                            <text x="175" y="110" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">D</text>
+                        </>
+                    )}
+                    {variant === "directed-unweighted" && (
+                        <>
+                            <line x1="40" y1="40" x2="164" y2="40" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-unweighted)" />
+                            <line x1="168" y1="42" x2="114" y2="104" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-unweighted)" />
+                            <line x1="110" y1="104" x2="50" y2="50" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-unweighted)" />
+                            <circle cx="40" cy="40" r="16" fill="#38bdf8" />
+                            <circle cx="180" cy="40" r="16" fill="#f97316" />
+                            <circle cx="110" cy="110" r="16" fill="#22c55e" />
+                            <text x="40" y="45" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">X</text>
+                            <text x="180" y="45" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">Y</text>
+                            <text x="110" y="115" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">Z</text>
+                        </>
+                    )}
+                    {variant === "undirected-weighted" && (
+                        <>
+                            <line x1="40" y1="70" x2="100" y2="70" stroke="#38bdf8" strokeWidth="3" />
+                            <line x1="100" y1="70" x2="160" y2="70" stroke="#38bdf8" strokeWidth="3" />
+                            <circle cx="40" cy="70" r="16" fill="#38bdf8" />
+                            <circle cx="100" cy="70" r="16" fill="#22c55e" />
+                            <circle cx="160" cy="70" r="16" fill="#f97316" />
+                            <text x="40" y="75" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">A</text>
+                            <text x="100" y="75" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">B</text>
+                            <text x="160" y="75" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">C</text>
+                            <text x="70" y="60" fill="#cbd5e1" fontSize="11" textAnchor="middle">4</text>
+                            <text x="130" y="60" fill="#cbd5e1" fontSize="11" textAnchor="middle">2</text>
+                        </>
+                    )}
+                    {variant === "directed-weighted" && (
+                        <>
+                            <line x1="40" y1="40" x2="180" y2="40" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-weighted)" />
+                            <line x1="40" y1="40" x2="110" y2="110" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-weighted)" />
+                            <line x1="110" y1="110" x2="180" y2="40" stroke="#38bdf8" strokeWidth="3" markerEnd="url(#arrow-directed-weighted)" />
+                            <circle cx="40" cy="40" r="16" fill="#38bdf8" />
+                            <circle cx="180" cy="40" r="16" fill="#f97316" />
+                            <circle cx="110" cy="110" r="16" fill="#22c55e" />
+                            <text x="40" y="45" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">X</text>
+                            <text x="180" y="45" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">Y</text>
+                            <text x="110" y="115" fill="#ffffff" fontSize="14" fontWeight="700" textAnchor="middle">Z</text>
+                            <text x="110" y="28" fill="#cbd5e1" fontSize="11" textAnchor="middle">5</text>
+                            <text x="80" y="80" fill="#cbd5e1" fontSize="11" textAnchor="middle">3</text>
+                            <text x="160" y="80" fill="#cbd5e1" fontSize="11" textAnchor="middle">2</text>
+                        </>
+                    )}
+                </svg>
+            </div>
+        );
+    };
+
+    const GraphMatrixExamples = () => {
+        const examples = [
+            {
+                title: "Undirected Unweighted",
+                variant: "undirected" as const,
+                code: `matrix = [\n  [0, 1, 1, 0],\n  [1, 0, 0, 1],\n  [1, 0, 0, 1],\n  [0, 1, 1, 0],\n]`,
+            },
+            {
+                title: "Directed Unweighted",
+                variant: "directed-unweighted" as const,
+                code: `matrix = [\n  [0, 1, 0],\n  [0, 0, 1],\n  [1, 0, 0],\n]`,
+            },
+            {
+                title: "Undirected Weighted",
+                variant: "undirected-weighted" as const,
+                code: `matrix = [\n  [0, 4, 0],\n  [4, 0, 2],\n  [0, 2, 0],\n]`,
+            },
+            {
+                title: "Directed Weighted",
+                variant: "directed-weighted" as const,
+                code: `matrix = [\n  [0, 5, 0],\n  [0, 0, 3],\n  [2, 0, 0],\n]`,
+            },
+        ];
+        return (
+            <div className="space-y-6">
+                {examples.map((example) => (
+                    <GraphMatrixExample
+                        key={example.title}
+                        title={example.title}
+                        variant={example.variant}
+                        code={example.code}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+
+    const GraphLinkedListDiagram = () => (
+        <div className="rounded-3xl border border-slate-800 bg-slate-950 p-4 text-slate-100 shadow-xl">
+            <div className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400 mb-3">Ilustrasi Linked List</div>
+            <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-sky-500 grid place-items-center text-white font-bold">A</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">B</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">C</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="text-slate-500">null</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-rose-500 grid place-items-center text-white font-bold">B</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">A</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">D</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="text-slate-500">null</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-emerald-500 grid place-items-center text-white font-bold">C</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">A</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">D</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="text-slate-500">null</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-full bg-purple-500 grid place-items-center text-white font-bold">D</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">B</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-100">C</span>
+                    <span className="text-slate-400">→</span>
+                    <span className="text-slate-500">null</span>
+                </div>
+            </div>
+        </div>
+    );
+
+    const GraphLinkedListCode = () => (
+        <code>
+            <span className="text-cyan-400"># Representasi Graph dengan Linked List</span><br />
+            A: B -&gt; C -&gt; null<br />
+            B: A -&gt; D -&gt; null<br />
+            C: A -&gt; D -&gt; null<br />
+            D: B -&gt; C -&gt; null<br />
+            <br />
+            <span className="text-cyan-400"># Jika weighted, setiap node menyimpan bobot</span><br />
+            A: (B, 4) -&gt; (C, 2) -&gt; null<br />
+            B: (A, 4) -&gt; (D, 1) -&gt; null<br />
+        </code>
+    );
+
     const slides = [
         <div key="s1" className="space-y-8 text-center">
             <div className="bg-sky-500/10 w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6 border-4 border-sky-500/20 shadow-2xl">
@@ -496,6 +729,9 @@ export default function Module13Content() {
                                     </div>
                                 ))}
                             </div>
+                            <div className="mt-8">
+                                <GraphDiagram />
+                            </div>
                         </section>
                     </FocusSection>
                 </ScrollReveal>
@@ -609,6 +845,23 @@ export default function Module13Content() {
                                         <li>Get neighbors: O(V)</li>
                                         <li>Check edge: O(1) langsung</li>
                                     </ul>
+                                </div>
+                            </div>
+                            <div className="space-y-6">
+                                <div className="rounded-3xl border border-slate-200/10 bg-slate-950 p-5 text-slate-100 shadow-xl">
+                                    <h4 className="font-black text-xl text-cyan-300 mb-4">Representasi Array (Matrix)</h4>
+                                    <GraphMatrixExamples />
+                                    <p className="mt-3 text-xs text-slate-400">Contoh representasi graph dalam bentuk matriks untuk graph directed, undirected, weighted, dan unweighted.</p>
+                                </div>
+                                <div className="rounded-3xl border border-slate-200/10 bg-slate-950 p-5 text-slate-100 shadow-xl">
+                                    <h4 className="font-black text-xl text-emerald-300 mb-4">Representasi Linked List</h4>
+                                    <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                                        <div className="rounded-3xl bg-slate-900 p-4">
+                                            <pre className="overflow-x-auto text-sm font-mono leading-relaxed"><GraphLinkedListCode /></pre>
+                                        </div>
+                                        <GraphLinkedListDiagram />
+                                    </div>
+                                    <p className="mt-3 text-xs text-slate-400">Linked list memungkinkan setiap node menyimpan daftar tetangga secara berurutan, termasuk bobot jika diperlukan.</p>
                                 </div>
                             </div>
                         </section>
